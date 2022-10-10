@@ -1,0 +1,12 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  background: #ffffff;
+  font-family: 'Titillium Web', sans-serif;
+}
