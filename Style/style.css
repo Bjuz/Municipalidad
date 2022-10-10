@@ -7,6 +7,62 @@ html {
 }
 
 body {
-  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: white;
   font-family: 'Titillium Web', sans-serif;
+  border-style: solid;
+  border-radius: 25px;
+  max-width: 960px;
+  margin: auto;
+  
+}
+
+div.Title{
+  width: 50%;
+  
+  /* align-items: center; */
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  background-color: aliceblue;
+}
+
+div.Datos{
+  width: 50%;
+  background-color: aliceblue;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+div.Correo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div.Password {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div.Actions{
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+}
+
+button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+img.Logo{
+  width: 40%;
+  height: 40%;
 }
