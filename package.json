@@ -1,8 +1,26 @@
 {
-  "dependencies": {
-    "firebase": "^9.10.0"
+  "name": "webpack-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "build": "webpack --mode=development",
+    "start": "webpack app.js --mode development --watch",
+    "test": "jest --detectOpenHandles "
   },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
   "devDependencies": {
-    "jest": "^29.1.2"
+    "@babel/preset-env": "^7.19.3",
+    "jest": "^29.1.2",
+    "polymer-cli": "^1.9.11",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "dependencies": {
+    "firebase": "^9.12.1",
+    "lodash": "^4.17.21"
   }
 }
