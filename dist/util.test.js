@@ -3,7 +3,7 @@ const { loginComplete} = require('./util');
 const { ForgetPassword} = require('./util');
 
 test("login ok",  async ()=>{
-    const result =  await loginComplete("test@gmail.com","123456789"); // todo bien
+    const result =  await loginComplete("test@gmail.com","123456789"); // todo bien // correo valido
     console.log(result)
     expect(result).toBe("Logueado");
 });
