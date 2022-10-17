@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 
-html {
+/* html {
   overflow-y: scroll;
 }
 
@@ -63,7 +63,7 @@ button{
   justify-content: center;
   margin-right: 5px;
   margin-left: 5px;
-}
+} */
 
 img.Logo{
   width: 40%;
