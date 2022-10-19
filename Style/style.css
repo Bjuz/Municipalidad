@@ -1,71 +1,102 @@
-*, *:before, *:after {
-  box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap%27');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
 }
 
-/* html {
-  overflow-y: scroll;
+img.logo {
+	width: 40%;
+	height: 40%;
 }
 
+/*Edicion tipo y tamaño letras--------------------------------*/
+
+* {
+	font-family: 'Poppins', sans-serif;
+}
+
+.header1 {
+	font-weight: 600;
+}
+
+.header2 {
+	font-size: 1rem;
+}
+
+a {
+	color: black;
+}
+
+a:hover {
+	color: #A89C44;
+}
+
+input {
+	font-weight: 600;
+}
+
+
+/*Edicion fondo------------------------------------------------*/
 body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: white;
-  font-family: 'Titillium Web', sans-serif;
-  border-style: solid;
-  border-radius: 25px;
-  max-width: 960px;
-  margin: auto;
-  
+	background-color: #8C9D3C;
 }
 
-div.Logo{
-  width: auto;
-  
+/*Linea centro---------------------------------------------------*/
+
+/*Form login---------------------------------------------------*/
+
+.form {
+	padding: 0 2em;
 }
 
-div.Title{
-  width: 50%;
-  border-top-left-radius: 25px;
-  border-bottom-left-radius: 25px;
-  background-color: aliceblue;
+.form__input {
+	background-color: transparent;
+	width: 100%;
+	border: 0px solid transparent;
+	border-radius: 0;
+	border-bottom: 1px solid #aaa;
+	padding: 1em .5em .5em;
+	padding-left: 2em;
+	outline: none;
+	margin: 1.5em auto;
+	transition: all .5s ease;
 }
 
-div.Datos{
-  width: 50%;
-  background-color: aliceblue;
-  border-top-right-radius: 25px;
-  border-bottom-right-radius: 25px;
+.form__input:focus {
+	border-bottom-color: #94ab65;
+	box-shadow: 0 0 5px #94ab65;
+	border-radius: 4px;
 }
 
-div.Correo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.btn {
+	transition: all .5s ease;
+	width: 70%;
+	border-radius: 30px;
+	color: #fff;
+	font-weight: 600;
+	background-color: #94ab65;
+	border: 1px solid #fff;
+	margin-top: 1.5em;
+	margin-bottom: 1em;
 }
 
-div.Password {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.btn:hover,
+.btn:focus {
+	background-color: #94ab65;
+	color: #fff;
 }
 
-div.Actions{
-  display: flex;
-  align-items: center;
-  justify-content: center; 
+.forgotpassword{
+	background-color: transparent;
+	border: transparent;
+	text-decoration: underline;
 }
 
-button{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 5px;
-  margin-left: 5px;
-} */
-
-img.Logo{
-  width: 40%;
-  height: 40%;
+.forgotpassword :hover {
+	color: #A89C44;
 }
+
+/*media query---------------------------------------------------*/
