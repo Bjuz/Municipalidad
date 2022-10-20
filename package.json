@@ -7,7 +7,7 @@
   "scripts": {
     "build": "webpack --mode=development",
     "start": "webpack app.js --mode development --watch",
-    "test": "jest --detectOpenHandles "
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
