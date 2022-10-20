@@ -21,7 +21,7 @@ test("login wrong password",  async ()=>{
 });
 
 test("forgot password Okay",  async ()=>{
-    const result =  await ForgetPassword("ti@santabarbara.go.cr");//todo bien 2
+    const result =  await ForgetPassword("asistenterh@santabarbara.go.cr");//todo bien 2
     console.log(result)
     expect(result).toBe("Se ha enviado un correo para restablecer la contraseña");
 });
