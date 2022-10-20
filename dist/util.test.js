@@ -29,5 +29,5 @@ test("forgot password Okay",  async ()=>{
 test("forgot password no Okay",  async ()=>{
     const result =  await ForgetPassword("talentohuman@santabarbara.go.cr");//falta la t
     console.log(result)
-    expect(result).toBe("Firebase: Error (auth/user-not-found)."); 
+    expect(result).toBe("Firebase: Error (auth/user-not-found).");  
 });
