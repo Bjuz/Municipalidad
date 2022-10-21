@@ -27,5 +27,5 @@ steps:
 - task: VSTest@2
   inputs:
     testSelector: 'testAssemblies'
-    testAssemblyVer2: '**\*test*.side'
+    testAssemblyVer2: '**\*test*.js' 
     searchFolder: '$(System.DefaultWorkingDirectory)'
