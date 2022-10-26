@@ -29,6 +29,7 @@ steps:
   inputs:
     testSelector: 'testAssemblies'
     testAssemblyVer2: |
+      util.test.js
       **\test.js
       !**\*test*.js
       !**\util.test.js
