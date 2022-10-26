@@ -19,17 +19,9 @@ steps:
     rm -rf node_modules/
     npm install
     npm run build
-  displayName: 'npm install and build'
+  displayName: 'install and build'
 
-#- script: |
-#    npm test
-#  displayName: 'npm test'
+- script: |
+    npm test
+  displayName: 'test'
 
-- task: VSTest@2
-  inputs:
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: |
-      **\*test*.dll
-      !**\*util.test.js
-      !**\obj\**
-    searchFolder: '$(System.DefaultWorkingDirectory)'
