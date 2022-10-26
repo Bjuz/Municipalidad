@@ -7,7 +7,8 @@
   "scripts": {
     "build": "webpack --mode=development",
     "start": "webpack app.js --mode development --watch",
-    "test": "jest"
+    "test": "jest",
+    "testCoverge": "jest --coverage --coverageReporters=cobertura"
   },
   "keywords": [],
   "author": "",
