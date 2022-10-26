@@ -23,7 +23,7 @@ steps:
 
 - script: |
     npm test
-    npm testCoverge
+     npm run testCoverge
   displayName: 'test'
 
 - task: PublishCodeCoverageResults@1
