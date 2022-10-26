@@ -27,6 +27,12 @@ steps:
 
 - task: VSTest@2
   inputs:
-    testSelector: 'testRun'
+    testSelector: 'testAssemblies'
+    testAssemblyVer2: |
+      **\test.js
+      !**\*test*.js
+      !**\util.test.js
     searchFolder: '$(System.DefaultWorkingDirectory)'
+
+
 
