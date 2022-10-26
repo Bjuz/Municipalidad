@@ -21,19 +21,15 @@ steps:
     npm run build
   displayName: 'install and build'
 
-#- script: |
-#    npm test
-#  displayName: 'test'
+- script: |
+    npm test
+    npm testCoverge
+  displayName: 'test'
 
-- task: VSTest@2
+- task: PublishCodeCoverageResults@1
   inputs:
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: |
-      util.test.js
-      **\test.js
-      !**\*test*.js
-      !**\util.test.js
-    searchFolder: '$(System.DefaultWorkingDirectory)'
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: $(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml
 
 
 
