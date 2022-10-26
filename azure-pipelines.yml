@@ -34,7 +34,7 @@ steps:
 - task: PublishCodeCoverageResults@1
   inputs: 
     codeCoverageTool: Cobertura # or JaCoCo
-    summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*coverage.xml'
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*clover.xml'
     reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
 
 
