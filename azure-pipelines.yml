@@ -21,7 +21,12 @@ steps:
     npm run build
   displayName: 'install and build'
 
-- script: |
-    npm test
-  displayName: 'test'
+#- script: |
+#    npm test
+#  displayName: 'test'
+
+- task: VSTest@2
+  inputs:
+    testSelector: 'testRun'
+    searchFolder: '$(System.DefaultWorkingDirectory)'
 
