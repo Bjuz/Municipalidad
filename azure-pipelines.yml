@@ -26,10 +26,10 @@ stages:
             rm -rf node_modules/
             npm install
             npm run build
-          displayName: 'install and build'
+          displayName: 'npm install and build'
 
 
-- stage:  development_Team #The Stage do you prefer
+- stage:  Test #The Stage do you prefer
   #condition: eq(variables['Build.SourceBranch'], 'refs/heads/Testing') #If the change is from development branch the following job will be executed 
   pool: Default
   jobs: #Chose the prefer job
@@ -37,17 +37,20 @@ stages:
       steps:
         - script: |
             npm test
-          displayName: 'test'
+          displayName: 'npm test'
     - job: 
       steps:
         - task: PublishTestResults@2
+          displayName: 'Publish Report'
           condition: succeededOrFailed()
           inputs:
             testRunner: JUnit
             testResultsFiles: '**/test-report.xml'
+             
     - job: 
       steps:      
         - task: PublishCodeCoverageResults@1
+          displayName: 'Publish Coverage'
           inputs: 
             codeCoverageTool: Cobertura # or JaCoCo
             summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*clover.xml'
