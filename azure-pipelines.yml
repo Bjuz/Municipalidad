@@ -14,16 +14,12 @@ stages:
   #condition: eq(variables['Build.SourceBranch'], 'refs/heads/Testing') #If the change is from development branch the following job will be executed 
   pool: Default
   jobs: 
-    - job: Install_Node
+    - job: Install
       steps:
         - task: NodeTool@0
           inputs:
             versionSpec: '16.x'
           displayName: 'Install Node.js'
-    - job: Npm_Install_Build
-      dependsOn: Install_Node
-      condition: succeeded() 
-      steps:
         - script: |
             rm -rf node_modules/
             npm install
@@ -35,26 +31,17 @@ stages:
   #condition: eq(variables['Build.SourceBranch'], 'refs/heads/Testing') #If the change is from development branch the following job will be executed 
   pool: Default
   jobs: #Chose the prefer job
-    - job: Npm_test
+    - job: Test
       steps:
         - script: |
             npm test
           displayName: 'npm test'
-    - job: Npm_Pusbish_Report
-      dependsOn: Npm_test
-      condition: succeeded() 
-      steps:
         - task: PublishTestResults@2
           displayName: 'Publish Report'
           condition: succeededOrFailed()
           inputs:
             testRunner: JUnit
-            testResultsFiles: '**/test-report.xml'
-             
-    - job: Npm_Publish_Coverage
-      dependsOn: Npm_Pusbish_Report
-      condition: succeeded()
-      steps:      
+            testResultsFiles: '**/test-report.xml'               
         - task: PublishCodeCoverageResults@1
           displayName: 'Publish Coverage'
           inputs: 
