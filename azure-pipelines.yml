@@ -9,33 +9,51 @@ trigger:
 
 pool: Default
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '16.x'
-  displayName: 'Install Node.js'
+stages:
+- stage:  Deploy #The Stage do you prefer
+  #condition: eq(variables['Build.SourceBranch'], 'refs/heads/Testing') #If the change is from development branch the following job will be executed 
+  pool: Default'
+  jobs: 
+    - job: 
+      steps:
+        - task: NodeTool@0
+          inputs:
+            versionSpec: '16.x'
+          displayName: 'Install Node.js'
+    - job: 
+      steps:
+        - script: |
+            rm -rf node_modules/
+            npm install
+            npm run build
+          displayName: 'install and build'
 
-- script: |
-    rm -rf node_modules/
-    npm install
-    npm run build
-  displayName: 'install and build'
 
-- script: |
-    npm test
-  displayName: 'test'
+- stage:  development_Team #The Stage do you prefer
+  #condition: eq(variables['Build.SourceBranch'], 'refs/heads/Testing') #If the change is from development branch the following job will be executed 
+  pool: Default
+  jobs: #Chose the prefer job
+    - job: 
+      steps:
+        - script: |
+            npm test
+          displayName: 'test'
+    - job: 
+      steps:
+        - task: PublishTestResults@2
+          condition: succeededOrFailed()
+          inputs:
+            testRunner: JUnit
+            testResultsFiles: '**/test-report.xml'
+    - job: 
+      steps:      
+        - task: PublishCodeCoverageResults@1
+          inputs: 
+            codeCoverageTool: Cobertura # or JaCoCo
+            summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*clover.xml'
+            reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
 
-- task: PublishTestResults@2
-  condition: succeededOrFailed()
-  inputs:
-    testRunner: JUnit
-    testResultsFiles: '**/test-report.xml'
-  
-- task: PublishCodeCoverageResults@1
-  inputs: 
-    codeCoverageTool: Cobertura # or JaCoCo
-    summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*clover.xml'
-    reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
+
 
 
 
