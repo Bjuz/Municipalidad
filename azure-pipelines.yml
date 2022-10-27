@@ -54,7 +54,7 @@ stages:
           inputs: 
             codeCoverageTool: Cobertura # or JaCoCo
             summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*clover.xml'
-            reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
+            reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
 
 
 
