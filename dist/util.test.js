@@ -9,7 +9,7 @@ test("login ok",  async ()=>{
 });
 
 test("login wrong email",  async ()=>{
-    const result =  await loginComplete("talento@santabarbara.go.cr","Talen$to25");//falt la t
+    const result =  await loginComplete("talento@santabarbara.go.cr","Talen$to25");//falt la t2
     console.log(result)
     expect(result).toBe("Firebase: Error (auth/user-not-found).");
 });
