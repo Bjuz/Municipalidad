@@ -45,8 +45,9 @@ stages:
         - task: PublishCodeCoverageResults@1
           displayName: 'Publish Coverage'
           inputs: 
-            codeCoverageTool: Cobertura # or JaCoCo
+            codeCoverageTool: 'Cobertura'
             summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*clover.xml'
+            pathToSources: '$(System.DefaultWorkingDirectory)/coverage'
             reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
 
 
