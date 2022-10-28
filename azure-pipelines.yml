@@ -76,9 +76,9 @@ stages:
             gitHubConnection: 'Github'
             repositoryName: 'Bjuz/Municipalidad1'
             action: 'create'
-            tag: $(draftReleaseTag)
             target: '$(Build.SourceVersion)'
-            tagPattern: 'release-v1.*'
+            tagSource: 'manual'
+            tag: '$(draftReleaseTag)'
             assets: '$(System.DefaultWorkingDirectory)'
             changeLogCompareToRelease: 'lastFullRelease'
             changeLogType: 'commitBased'
