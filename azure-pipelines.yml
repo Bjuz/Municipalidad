@@ -63,6 +63,14 @@ stages:
             archiveType: 'zip'
             archiveFile: '$(Build.ArtifactStagingDirectory)/Web.zip'
             replaceExistingArchive: true
+            
+        
+        - task: PublishBuildArtifacts@1
+          inputs:
+            PathtoPublish: '$(Build.ArtifactStagingDirectory)/Web.zip'
+            ArtifactName: 'Web'
+            publishLocation: 'Container'
+            
         - task: GitHubRelease@1
           inputs:
             gitHubConnection: 'Github'
