@@ -71,15 +71,15 @@ stages:
             ArtifactName: 'Web'
             publishLocation: 'Container'
             
-        - task: GitHubRelease@1
+        - task: GitHubRelease@0
           inputs:
             gitHubConnection: 'Github'
             repositoryName: 'Bjuz/Municipalidad1'
             action: 'create'
+            tag: $(draftReleaseTag)
             target: '$(Build.SourceVersion)'
-            tagSource: 'gitTag'
             tagPattern: 'release-v1.*'
-            assets: '$(Build.ArtifactStagingDirectory)/Web.zip'
+            assets: '$(System.DefaultWorkingDirectory)'
             changeLogCompareToRelease: 'lastFullRelease'
             changeLogType: 'commitBased'
 
