@@ -9,25 +9,25 @@ test("login ok",  async ()=>{
 });
 
 test("login wrong email",  async ()=>{
-    const result =  await loginComplete("talento@santabarbara.go.cr","Talen$to25");//falt la t2
+    const result =  await loginComplete("talento@santabarbara.go.cr","Talen$to25");//falta humano
     console.log(result)
-    expect(result).toBe("Firebase: Error (auth/user-not-found).");
+    expect(result).not.toBe("Logueado");
 });
 
 test("login wrong password",  async ()=>{
-    const result =  await loginComplete("asistenterh@santabarbara.go.cr","Asis$ten8");//falta el 9 en password
+    const result =  await loginComplete("asistenterh@santabarbara.go.cr","Asis$ten8");//falta el 5 en password
     console.log(result)
-    expect(result).toBe("Firebase: Error (auth/wrong-password).");
+    expect(result).not.toBe("Logueado");
 });
 
 test("forgot password Okay",  async ()=>{
-    const result =  await ForgetPassword("asistenterh@santabarbara.go.cr");//todo bien 2
+    const result =  await ForgetPassword("asistenterh@santabarbara.go.cr");//todo bien
     console.log(result)
     expect(result).toBe("Se ha enviado un correo para restablecer la contraseña");
 });
 
 test("forgot password no Okay",  async ()=>{
-    const result =  await ForgetPassword("talentohuman@santabarbara.go.cr");//falta la t
+    const result =  await ForgetPassword("talentohuman@santabarbara.go.cr");//falta la o en el correo
     console.log(result)
     expect(result).toBe("Firebase: Error (auth/user-not-found).");  
 });
