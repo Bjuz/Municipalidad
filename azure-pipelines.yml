@@ -70,6 +70,7 @@ stages:
             action: 'create'
             target: '$(Build.SourceVersion)'
             tagSource: 'gitTag'
+            tagPattern: 'release-v1.*'
             assets: '$(Build.ArtifactStagingDirectory)/Web.zip'
             changeLogCompareToRelease: 'lastFullRelease'
             changeLogType: 'commitBased'
