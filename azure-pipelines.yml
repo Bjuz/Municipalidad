@@ -79,7 +79,7 @@ stages:
             target: '$(Build.SourceVersion)'
             tagSource: 'manual'
             tag: '$(draftReleaseTag)'
-            assets: '$(System.DefaultWorkingDirectory)'
+            assets: '$(Build.ArtifactStagingDirectory)/Web.zip'
             changeLogCompareToRelease: 'lastFullRelease'
             changeLogType: 'commitBased'
 
