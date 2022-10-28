@@ -50,38 +50,7 @@ stages:
             pathToSources: '$(System.DefaultWorkingDirectory)/coverage'
             reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
 
-- stage:  Deploy #The Stage do you prefer
-  #condition: eq(variables['Build.SourceBranch'], 'refs/heads/Testing') #If the change is from development branch the following job will be executed 
-  pool: Default
-  jobs: #Chose the prefer job
-    - job: Deploy_in_Github
-      steps:
-        - task: ArchiveFiles@2
-          inputs:
-            rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
-            includeRootFolder: false
-            archiveType: 'zip'
-            archiveFile: '$(Build.ArtifactStagingDirectory)/Web.zip'
-            replaceExistingArchive: true
-            
-        
-        - task: PublishBuildArtifacts@1
-          inputs:
-            PathtoPublish: '$(Build.ArtifactStagingDirectory)/Web.zip'
-            ArtifactName: 'Web'
-            publishLocation: 'Container'
-            
-        - task: GitHubRelease@0
-          inputs:
-            gitHubConnection: 'Github'
-            repositoryName: 'Bjuz/Municipalidad1'
-            action: 'create'
-            target: '$(Build.SourceVersion)'
-            tagSource: 'manual'
-            tag: '$(draftReleaseTag)'
-            assets: '$(Build.ArtifactStagingDirectory)/Web.zip'
-            changeLogCompareToRelease: 'lastFullRelease'
-            changeLogType: 'commitBased'
+
 
 
 
