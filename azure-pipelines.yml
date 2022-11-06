@@ -49,6 +49,22 @@ stages:
             summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*clover.xml'
             pathToSources: '$(System.DefaultWorkingDirectory)/coverage'
             reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
+          
+        
+- stage:  Deploy #The Stage do you prefer
+  #condition: eq(variables['Build.SourceBranch'], 'refs/heads/Testing') #If the change is from development branch the following job will be executed 
+  pool: Default
+  jobs: #Chose the prefer job
+    - job: deploy_github
+      steps:
+        - script: |
+            git remote add github https://github.com/Bjuz/Municipalidad1-.git
+            git add .
+            git commit -m "Deploy from DevOps"
+            git push -u github master
+            git status
+          displayName: 'deploy into github pages'
+        
 
 
 
