@@ -1,6 +1,8 @@
 const db = firebase.firestore();
 const auth = firebase.auth();
 
+var id = document.getElementById("id");
+
 
 
     window.addEventListener('DOMContentLoaded',(e)=>{
