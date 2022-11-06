@@ -29,5 +29,5 @@ test("forgot password Okay",  async ()=>{
 test("forgot password no Okay",  async ()=>{
     const result =  await ForgetPassword("talentohuman@santabarbara.go.cr");//falta la o en el correo
     console.log(result)
-    expect(result).not.toBe("Se ha enviado un correo para restablecer la contraseña");  
+    expect(result).not.toBe("Se ha enviado un correo para restablecer la contraseña");  // resultado no esperado "Se ha enviado un correo para restablecer la contraseña"
 });
