@@ -58,6 +58,7 @@ stages:
     - job: deploy_github
       steps:
         - script: |
+            git reset --hard HEAD
             git remote add github https://github.com/Bjuz/Municipalidad1-.git
             git add .
             git commit -m "Deploy from DevOps"
