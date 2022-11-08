@@ -1,9 +1,9 @@
 
 const { ObtenerFuncionarios } = require('./util');
+const { UpdateUserInfo } = require('./util');
 
 document.getElementById("Search").onclick = async function () {
-  var id = document.getElementById("idlook").value;
-  var test =  await ObtenerFuncionarios(id);
+  let test = await loadInfo();
   document.getElementById("id").value = test.id;
   document.getElementById("name").value= test.name;
   document.getElementById("email").value= test.email;
@@ -21,7 +21,19 @@ document.getElementById("Search").onclick = async function () {
   optionToSelect.selected = true;
 }
 
+async function loadInfo(){
+  var id = document.getElementById("idlook").value;
+  var test =  await ObtenerFuncionarios(id);
+  return test;
+}
+
 document.getElementById("sendData").onclick = function () {
+ 
+  UpdateUser();
+  
+};
+
+async function UpdateUser(){
   var id = document.getElementById("id").value;
   var name = document.getElementById("name").value;
   var email = document.getElementById("email").value;
@@ -34,25 +46,6 @@ document.getElementById("sendData").onclick = function () {
   var entryTime = document.getElementById("entryTime").value;
   var departureTime = document.getElementById("departureTime").value;
 
-  console.log(
-    id +
-      " " +
-      name +
-      " " +
-      email +
-      " " +
-      accumulatedDays +
-      " " +
-      ancient +
-      " " +
-      boss +
-      " " +
-      salary +
-      " " +
-      role +
-      " " +
-      entryTime +
-      " " +
-      departureTime
-  );
-};
+ const text =  await UpdateUserInfo(id,name,email,accumulatedDays,ancient,boss,salary,role,entryTime,departureTime);
+ return text;
+}

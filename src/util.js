@@ -4,7 +4,7 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword,onAuthStateChanged, sendPasswordResetEmail } from "firebase/auth";
 import { getFirestore, query } from "firebase/firestore";
 import { collection, addDoc } from "firebase/firestore"; 
-import { getDocs } from "firebase/firestore"; 
+import { getDocs, updateDoc, doc } from "firebase/firestore"; 
 import { identity } from 'lodash';
 
 
@@ -137,6 +137,7 @@ export async function Funcionarios(id){
   data.forEach(element => {
     if(element.id == id){
       Identidad =  element;
+      console.log(element)
     }
   });
 
@@ -152,13 +153,40 @@ async function LoadDb(){
 }
 
 
-
-
-
-
-
-
 /*Fin Feriado*/
+
+
+
+export async function  UpdateUserInfo(id,name,email,accumulatedDays,ancient,boss,salary,role,entryTime,departureTime){
+  const VarResponse = await UpdateInfo (id,name,email,accumulatedDays,ancient,boss,salary,role,entryTime,departureTime);
+  return VarResponse;
+
+}
+
+export async function UpdateInfo(id,name,email,accumulatedDays,ancient,boss,salary,role,entryTime,departureTime){
+  const docRef = doc(db, "users", id);
+  updateDoc(docRef, {
+  id,
+  name,
+  email,
+  accumulatedDays,
+  ancient,
+  boss,
+  salary,
+  role,
+  entryTime,
+  departureTime
+ })
+ .then(function () {
+  return("Se ha actualizado la informacion del usuario con id: "+ id);
+  // ...
+})
+.catch((error) => {
+  const errorMessage = error.message;
+  return errorMessage;
+});
+}
+
 
 
 
@@ -174,6 +202,13 @@ async function LoadDb(){
       // ...
     }
   });
+
+
+
+
+
+
+ 
 */
 
 
