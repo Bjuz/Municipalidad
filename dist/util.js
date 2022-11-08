@@ -2,6 +2,8 @@
 
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword,onAuthStateChanged, sendPasswordResetEmail } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore"; 
 
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -20,32 +22,13 @@ const firebaseApp = initializeApp({
 });
 
 const auth = getAuth(firebaseApp);
-var id = "empty";
+const db = getFirestore(firebaseApp);
 
+/*Inicio login*/
 export async function  loginComplete(email,password){
   const login = await LoginFb (email,password);
   return login;
 
-}
-
-export async function  ForgetPassword(email){
-  const VarResponse = await Forget (email);
-  return VarResponse;
-
-}
-
-export async function Forget(email){
-  const test = await sendPasswordResetEmail(auth,email)
-  .then(function () {
-    return("Se ha enviado un correo para restablecer la contraseña");
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    return errorMessage;
-  });
-  return test;
 }
 
 export  async function LoginFb (email,password) {
@@ -65,7 +48,85 @@ export  async function LoginFb (email,password) {
   return test
     
   };
+/*Fin login*/
 
+/*Inicio Forget Password*/
+export async function  ForgetPassword(email){
+  const VarResponse = await Forget (email);
+  return VarResponse;
+
+}
+
+export async function Forget(email){
+  const test = await sendPasswordResetEmail(auth,email)
+  .then(function () {
+    return("Se ha enviado un correo para restablecer la contraseña");
+    // ...
+  })
+  .catch((error) => {
+    const errorMessage = error.message;
+    return errorMessage;
+  });
+  return test;
+}
+
+/*Fin Forget Password*/
+
+
+/*Inicio Registrar*/
+export async function  RegisterUser(id,name,email,accumulatedDays,ancient,boss,salary,role,entryTime,departureTime){
+  const VarResponse = await Register (id,name,email,accumulatedDays,ancient,boss,salary,role,entryTime,departureTime);
+  return VarResponse;
+
+}
+
+export async function Register(id,name,email,accumulatedDays,ancient,boss,salary,role,entryTime,departureTime){
+  const test = await await addDoc(collection(db, "users"), {
+    id,
+    name,
+    email,
+    accumulatedDays,
+    ancient,
+    boss,
+    salary,
+    role,
+    entryTime,
+    departureTime
+  })
+  .catch((error) => {
+    const errorMessage = error.message;
+    return errorMessage;
+  });
+  return "Usuario ingresado exitosamente con el id: " + test.id;
+}
+
+/*Fin Registrar*/
+
+/*Inicio Feriado*/
+export async function  RegisterFeriado(date){
+  const VarResponse = await Feriado (date);
+  return VarResponse;
+
+}
+
+export async function Feriado(date){
+  const test = await await addDoc(collection(db, "Feriados"), {
+   date
+  })
+  .catch((error) => {
+    const errorMessage = error.message;
+    return errorMessage;
+  });
+  return "Feriado ingresado exitosamente";
+}
+
+/*Fin Feriado*/
+
+
+
+
+
+/* Experimental
   onAuthStateChanged(auth, (user) => {
     if (user) {
       // User is signed in, see docs for a list of available properties
@@ -77,7 +138,7 @@ export  async function LoginFb (email,password) {
       // ...
     }
   });
-
+*/
 
 
 

@@ -1,3 +1,9 @@
+
+
+document.getElementById("Search").onclick = function () {
+  var id = document.getElementById("idlook").value;
+}
+
 document.getElementById("sendData").onclick = function () {
   var id = document.getElementById("id").value;
   var name = document.getElementById("name").value;
