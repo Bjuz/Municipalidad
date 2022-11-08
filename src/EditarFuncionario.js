@@ -1,7 +1,24 @@
 
+const { ObtenerFuncionarios } = require('./util');
 
-document.getElementById("Search").onclick = function () {
+document.getElementById("Search").onclick = async function () {
   var id = document.getElementById("idlook").value;
+  var test =  await ObtenerFuncionarios(id);
+  document.getElementById("id").value = test.id;
+  document.getElementById("name").value= test.name;
+  document.getElementById("email").value= test.email;
+  document.getElementById("accumulatedDays").value= test.accumulatedDays;
+  document.getElementById("ancient").value= test.ancient;
+  document.getElementById("boss").value= test.boss;
+  document.getElementById("salary").value= test.salary;
+  document.getElementById("entryTime").value = test.entryTime;
+  document.getElementById("departureTime").value = test.departureTime;
+
+  const text = test.role;
+  const $select = document.getElementById("role");
+  const $options = Array.from($select.options);
+  const optionToSelect = $options.find(item => item.text ===text);
+  optionToSelect.selected = true;
 }
 
 document.getElementById("sendData").onclick = function () {

@@ -2,8 +2,10 @@
 
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword,onAuthStateChanged, sendPasswordResetEmail } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, query } from "firebase/firestore";
 import { collection, addDoc } from "firebase/firestore"; 
+import { getDocs } from "firebase/firestore"; 
+import { identity } from 'lodash';
 
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -110,7 +112,7 @@ export async function  RegisterFeriado(date){
 }
 
 export async function Feriado(date){
-  const test = await await addDoc(collection(db, "Feriados"), {
+  const test = await addDoc(collection(db, "Feriados"), {
    date
   })
   .catch((error) => {
@@ -122,7 +124,41 @@ export async function Feriado(date){
 
 /*Fin Feriado*/
 
+/*Inicio Busqueda*/
+export async function  ObtenerFuncionarios(id){
+  const VarResponse = await Funcionarios (id);
+  return VarResponse;
 
+}
+
+export async function Funcionarios(id){
+ const data = await LoadDb();
+ var Identidad;
+  data.forEach(element => {
+    if(element.id == id){
+      Identidad =  element;
+    }
+  });
+
+  return Identidad;
+}
+
+async function LoadDb(){
+  const querySnapshot = await getDocs(collection(db, "users"));
+  const data = await querySnapshot.docs.map((doc)=>({
+    ...doc.data()
+  }));
+  return data;
+}
+
+
+
+
+
+
+
+
+/*Fin Feriado*/
 
 
 

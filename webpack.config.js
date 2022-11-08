@@ -7,6 +7,7 @@ module.exports = {
     index: './src/index.js',
     RegistroFuncionario: './src/RegistroFuncionario.js',
     IngresarDiaFeriado: './src/IngresarDiaFeriado.js',
+    EditarFuncionario: './src/EditarFuncionario.js',
   },
   // The location of the build folder described above
   output: {
