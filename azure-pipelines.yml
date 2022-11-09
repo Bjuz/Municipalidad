@@ -44,8 +44,8 @@ stages:
             testResultsFiles: '**/junit.xml'               
         - task: PublishCodeCoverageResults@1
           inputs:
-            codeCoverageTool: 'Cobertura'
-            summaryFileLocation: '$(System.DefaultWorkingDirectory)**/coverage/clover.xml'
+            codeCoverageTool: Cobertura
+            summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
         
 
 
