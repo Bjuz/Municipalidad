@@ -2,9 +2,9 @@
 
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword,onAuthStateChanged, sendPasswordResetEmail } from "firebase/auth";
-import { getFirestore, query } from "firebase/firestore";
+import { Firestore, getFirestore, query } from "firebase/firestore";
 import { collection, addDoc } from "firebase/firestore"; 
-import { getDocs, updateDoc, doc } from "firebase/firestore"; 
+import { getDocs, updateDoc, doc,docSnap,getDoc } from "firebase/firestore"; 
 import { identity } from 'lodash';
 
 
@@ -77,8 +77,14 @@ export async function Forget(email){
 
 /*Inicio Registrar*/
 export async function  RegisterUser(id,name,email,accumulatedDays,ancient,boss,salary,role,entryTime,departureTime){
-  const VarResponse = await Register (id,name,email,accumulatedDays,ancient,boss,salary,role,entryTime,departureTime);
+  var result = await Funcionarios(id);
+  if( result =="empty"){
+    const VarResponse = await Register (id,name,email,accumulatedDays,ancient,boss,salary,role,entryTime,departureTime);
   return VarResponse;
+  }else{
+    return "El usuario ya existe";
+  }
+  
 
 }
 
@@ -99,6 +105,21 @@ export async function Register(id,name,email,accumulatedDays,ancient,boss,salary
     const errorMessage = error.message;
     return errorMessage;
   });
+  var ref = doc(db,"users",test.id);
+    await updateDoc(
+      ref,{
+      id,
+      name,
+      email,
+      accumulatedDays,
+      ancient,
+      boss,
+      salary,
+      role,
+      entryTime,
+      departureTime,
+      Ref: test.id
+    });
   return "Usuario ingresado exitosamente con el id: " + test.id;
 }
 
@@ -133,14 +154,14 @@ export async function  ObtenerFuncionarios(id){
 
 export async function Funcionarios(id){
  const data = await LoadDb();
- var Identidad;
+ var Identidad = "empty";
   data.forEach(element => {
     if(element.id == id){
       Identidad =  element;
       console.log(element)
     }
   });
-
+  console.log(Identidad);
   return Identidad;
 }
 
@@ -148,6 +169,7 @@ async function LoadDb(){
   const querySnapshot = await getDocs(collection(db, "users"));
   const data = await querySnapshot.docs.map((doc)=>({
     ...doc.data()
+    
   }));
   return data;
 }
@@ -157,35 +179,41 @@ async function LoadDb(){
 
 
 
-export async function  UpdateUserInfo(id,name,email,accumulatedDays,ancient,boss,salary,role,entryTime,departureTime){
-  const VarResponse = await UpdateInfo (id,name,email,accumulatedDays,ancient,boss,salary,role,entryTime,departureTime);
+export async function  UpdateUserInfo(ref,id,name,email,accumulatedDays,ancient,boss,salary,role,entryTime,departureTime){
+  const VarResponse = await UpdateInfo (ref,id,name,email,accumulatedDays,ancient,boss,salary,role,entryTime,departureTime);
   return VarResponse;
 
 }
 
-export async function UpdateInfo(id,name,email,accumulatedDays,ancient,boss,salary,role,entryTime,departureTime){
-  const docRef = doc(db, "users", id);
-  updateDoc(docRef, {
-  id,
-  name,
-  email,
-  accumulatedDays,
-  ancient,
-  boss,
-  salary,
-  role,
-  entryTime,
-  departureTime
- })
- .then(function () {
-  return("Se ha actualizado la informacion del usuario con id: "+ id);
-  // ...
-})
-.catch((error) => {
-  const errorMessage = error.message;
-  return errorMessage;
-});
-}
+export async function UpdateInfo(ref,id,name,email,accumulatedDays,ancient,boss,salary,role,entryTime,departureTime){
+  var ref = doc(db,"users",ref);
+    await updateDoc(
+      ref,{
+      id,
+      name,
+      email,
+      accumulatedDays,
+      ancient,
+      boss,
+      salary,
+      role,
+      entryTime,
+      departureTime
+    })
+    .then(()=>{
+
+      console.log("changes");
+      return "changes"
+    })
+    .catch((error)=>{
+      console.log(error);
+      return error;
+    })
+
+
+
+  };
+  
 
 
 

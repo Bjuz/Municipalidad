@@ -1,6 +1,10 @@
 
 const { loginComplete} = require('./util'); //importa loginComplete from dist 
-const { ForgetPassword} = require('./util'); //importa ForgetPassword from dist 
+const { ForgetPassword} = require('./util'); //importa ForgetPassword from dist RegisterFeriado
+const { RegisterUser} = require('./util'); //importa ForgetPassword from dist
+const { RegisterFeriado} = require('./util'); //importa ForgetPassword from dist
+const { ObtenerFuncionarios} = require('./util'); //importa ForgetPassword from dist
+const { UpdateUserInfo} = require('./util'); //importa ForgetPassword from dist
 
 test("login ok",  async ()=>{
     const result =  await loginComplete("ti@santabarbara.go.cr","Municip$ali123"); // todo bien // correo valido

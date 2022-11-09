@@ -45,7 +45,9 @@ async function UpdateUser(){
 
   var entryTime = document.getElementById("entryTime").value;
   var departureTime = document.getElementById("departureTime").value;
+  var test =  await ObtenerFuncionarios(id);
 
- const text =  await UpdateUserInfo(id,name,email,accumulatedDays,ancient,boss,salary,role,entryTime,departureTime);
+ const text =  await UpdateUserInfo(test.Ref,id,name,email,accumulatedDays,ancient,boss,salary,role,entryTime,departureTime);
+ alert(text);
  return text;
 }
