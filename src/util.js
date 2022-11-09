@@ -181,7 +181,7 @@ export async function Funcionarios(id){
 
 async function LoadDb(){
   const querySnapshot = await getDocs(collection(db, "users"));
-  const data = await querySnapshot.docs.map((doc)=>({
+  const data = querySnapshot.docs.map((doc)=>({
     ...doc.data()
     
   }));
@@ -190,7 +190,7 @@ async function LoadDb(){
 
 async function LoadFeriado(){
   const querySnapshot = await getDocs(collection(db, "Feriados"));
-  const data = await querySnapshot.docs.map((doc)=>({
+  const data = querySnapshot.docs.map((doc)=>({
     ...doc.data()
     
   }));
