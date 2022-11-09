@@ -45,10 +45,7 @@ stages:
         - task: PublishCodeCoverageResults@1
           inputs:
             codeCoverageTool: 'Cobertura'
-            summaryFileLocation: '$(System.DefaultWorkingDirectory)\coverage\clover.xml'
-            reportDirectory: '$(System.DefaultWorkingDirectory)\coverage\lcov-reportl\index.html' 
-          
-        
+            summaryFileLocation: '$(System.DefaultWorkingDirectory)**/coverage/clover.xml'': 
         
 
 
