@@ -7,7 +7,7 @@
   "scripts": {
     "build": "webpack --mode=development",
     "start": "webpack app.js --mode development --watch",
-    "test": "jest --ci --reporters=default --reporters=jest-junit --forceExit"
+    "test": "jest --ci  --config=jest.config.json --reporters=default --reporters=jest-junit --forceExit"
   },
   "jest": {
     "collectCoverage": true,
