@@ -3,7 +3,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword,onAuthStateChanged, sendPasswordResetEmail } from "firebase/auth";
 import { Firestore, getFirestore, query } from "firebase/firestore";
-import { collection, addDoc } from "firebase/firestore"; 
+import { collection, addDoc, deleteDoc } from "firebase/firestore"; 
 import { getDocs, updateDoc, doc,docSnap,getDoc } from "firebase/firestore"; 
 import { identity } from 'lodash';
 
@@ -127,8 +127,16 @@ export async function Register(id,name,email,accumulatedDays,ancient,boss,salary
 
 /*Inicio Feriado*/
 export async function  RegisterFeriado(date){
-  const VarResponse = await Feriado (date);
-  return VarResponse;
+
+  var result = await ObtFeriados(date);
+  if( result =="empty"){
+    const VarResponse = await Feriado (date);
+    return VarResponse;
+  }else{
+    return "El Feriado ya existe";
+  }
+
+ 
 
 }
 
@@ -139,6 +147,12 @@ export async function Feriado(date){
   .catch((error) => {
     const errorMessage = error.message;
     return errorMessage;
+  });
+  var ref = doc(db,"Feriados",test.id);
+  await updateDoc(
+      ref,{
+      date,
+      Ref: test.id
   });
   return "Feriado ingresado exitosamente";
 }
@@ -174,20 +188,54 @@ async function LoadDb(){
   return data;
 }
 
+async function LoadFeriado(){
+  const querySnapshot = await getDocs(collection(db, "Feriados"));
+  const data = await querySnapshot.docs.map((doc)=>({
+    ...doc.data()
+    
+  }));
+  return data;
+}
+
+export async function  ObtenerFeriados(id){
+  const VarResponse = await ObtFeriados (id);
+  return VarResponse;
+
+}
+
+export async function ObtFeriados(id){
+ const data = await LoadFeriado();
+ var Identidad = "empty";
+  data.forEach(element => {
+    if(element.date == id){
+      Identidad =  element;
+      console.log(element)
+    }
+  });
+  console.log(Identidad);
+  return Identidad;
+}
+
 
 /*Fin Feriado*/
 
 
 
 export async function  UpdateUserInfo(ref,id,name,email,accumulatedDays,ancient,boss,salary,role,entryTime,departureTime){
-  const VarResponse = await UpdateInfo (ref,id,name,email,accumulatedDays,ancient,boss,salary,role,entryTime,departureTime);
+  console.log(ref);
+  if(ref){
+    const VarResponse = await UpdateInfo (ref,id,name,email,accumulatedDays,ancient,boss,salary,role,entryTime,departureTime);
   return VarResponse;
 
+  }else{
+    return "usuario no existe"
+  }
+  
 }
 
 export async function UpdateInfo(ref,id,name,email,accumulatedDays,ancient,boss,salary,role,entryTime,departureTime){
   var ref = doc(db,"users",ref);
-    await updateDoc(
+    var response = await updateDoc(
       ref,{
       id,
       name,
@@ -203,13 +251,13 @@ export async function UpdateInfo(ref,id,name,email,accumulatedDays,ancient,boss,
     .then(()=>{
 
       console.log("changes");
-      return "changes"
+      return "El usuario ha sido actualizado"
     })
     .catch((error)=>{
       console.log(error);
-      return error;
+      return "error";
     })
-
+    return response
 
 
   };
@@ -222,7 +270,7 @@ export async function UpdateInfo(ref,id,name,email,accumulatedDays,ancient,boss,
   }
   
   export async function DeleteDocu(ref){
-    await deleteDoc(doc(db,"users",ref)).then(()=>{
+    var resut = await deleteDoc(doc(db,"users",ref)).then(()=>{
 
       console.log("Deleted");
       return "Deleted"
@@ -231,8 +279,28 @@ export async function UpdateInfo(ref,id,name,email,accumulatedDays,ancient,boss,
       console.log(error);
       return error;
     })
+    return resut;
 
     };
+
+    export async function  DeleteFeriadoCreaded(ref){
+      const VarResponse = await DeleteFer(ref);
+      return VarResponse;
+    
+    }
+    
+    export async function DeleteFer(ref){
+      var result = await deleteDoc(doc(db,"Feriados",ref)).then(()=>{
+  
+        console.log("Deleted");
+        return "Deleted"
+      })
+      .catch((error)=>{
+        console.log(error);
+        return error;
+      })
+      return result;
+      };
 
 
 /* Experimental
