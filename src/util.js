@@ -215,7 +215,24 @@ export async function UpdateInfo(ref,id,name,email,accumulatedDays,ancient,boss,
   };
   
 
+  export async function  DeleteDocumentCreaded(ref){
+    const VarResponse = await DeleteDocu(ref);
+    return VarResponse;
+  
+  }
+  
+  export async function DeleteDocu(ref){
+    await deleteDoc(doc(db,"users",ref)).then(()=>{
 
+      console.log("Deleted");
+      return "Deleted"
+    })
+    .catch((error)=>{
+      console.log(error);
+      return error;
+    })
+
+    };
 
 
 /* Experimental
