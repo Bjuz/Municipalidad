@@ -41,14 +41,12 @@ stages:
           condition: succeededOrFailed()
           inputs:
             testRunner: JUnit
-            testResultsFiles: '**/test-report.xml'               
+            testResultsFiles: '**/junit.xml'               
         - task: PublishCodeCoverageResults@1
-          displayName: 'Publish Coverage'
-          inputs: 
+          inputs:
             codeCoverageTool: 'Cobertura'
             summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/clover.xml'
-            pathToSources: '$(System.DefaultWorkingDirectory)/coverage'
-            reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
+            reportDirectory: '$(System.DefaultWorkingDirectory)/coverage/lcov-report/index.html'
           env:
             DISABLE_COVERAGE_AUTOGENERATE: 'true'  
           
