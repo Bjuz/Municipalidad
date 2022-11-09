@@ -41,16 +41,11 @@ stages:
           condition: succeededOrFailed()
           inputs:
             testRunner: JUnit
-            testResultsFiles: '**/test-report.xml'               
+            testResultsFiles: '**/junit.xml'               
         - task: PublishCodeCoverageResults@1
-          displayName: 'Publish Coverage'
-          inputs: 
-            codeCoverageTool: 'Cobertura'
-            summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*clover.xml'
-            pathToSources: '$(System.DefaultWorkingDirectory)/coverage'
-            reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
-          
-        
+          inputs:
+            codeCoverageTool: Cobertura
+            summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
         
 
 
