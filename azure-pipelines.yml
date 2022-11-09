@@ -46,9 +46,7 @@ stages:
           inputs:
             codeCoverageTool: 'Cobertura'
             summaryFileLocation: '$(System.DefaultWorkingDirectory)\coverage\clover.xml'
-            reportDirectory: '$(System.DefaultWorkingDirectory)\coverage\lcov-reportl'
-          env:
-            DISABLE_COVERAGE_AUTOGENERATE: 'true'  
+            reportDirectory: '$(System.DefaultWorkingDirectory)\coverage\lcov-reportl\index.html' 
           
         
         
