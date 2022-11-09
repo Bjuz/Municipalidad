@@ -10,47 +10,63 @@
 <body>
     <div class="container">
 
-        <div class="sidebar">
-            <li><a href="registroFuncionario.html">Registro funcionario</a> </li>
-            <li><a href="editarFuncionario.html">Editar funcionario</a></li>
-            <li><a href="ingresarDiaFeriado.html">Ingresar dias feriados</a></li>
-        </div>
+        <!--principal row-->
+        <div class="row"> 
+            <!--sidebar container-->
+            <div class="col-3"> 
+                <!--sidebar-->
+                <div class="btn-group-vertical">
+                    <!--sidebar options-->
+                    <button type="button" class="btn btn-secondary" href="/html/EditarFuncionario.html">Editar funcionario</button>
+                    <button type="button" class="btn btn-secondary" href="/html/RegistroFuncionario.html">Registro de funcionario</button>
+                    <button type="button" class="btn btn-secondary" href="/html/IngresarDiaFeriado.html">Ingresar día feriado</button>
+                </div>
 
-        <div class="components">
-            <h2>Editar informacion de un funcionario</h2>
 
-            <div class="input-components">
-                <input type="text" name="idlook" id="idlook" class="form__input" placeholder="Funcionario a buscar">
-                <button id="Search" type="submit" class="btn">Buscar</button>
+                <!-- <div class="sidebar">
+                    <li><a href="registroFuncionario.html">Registro funcionario</a> </li>
+                    <li><a href="editarFuncionario.html">Editar funcionario</a></li>
+                    <li><a href="ingresarDiaFeriado.html">Ingresar dias feriados</a></li>
+                </div> -->
             </div>
-            <div class="input-components">
-                <input type="text" name="id" id="id" class="form__input" placeholder="Cedula" readonly>
-                <input type="text" name="completeName" id="name" class="form__input" placeholder="Nombre completo">
-                <input type="text" name="email" id="email" class="form__input" placeholder="Correo electronico">
-                <input type="text" name="accumulatedDays" id="accumulatedDays" class="form__input" placeholder="Dias acumulados">
-                <input type="text" name="ancient" id="ancient" class="form__input" placeholder="Antiguedad">
-                <input type="text" name="boss" id="boss" class="form__input" placeholder="Jefe directo">
-                <input type="text" name="salary" id="salary" class="form__input" placeholder="Salario">
-                
-                <label for="role">Rol</label>
-                <select name="role" id="role">
-                    <option value="volvo">Funcionario</option>
-                    <option value="saab">Jefe directo</option>
-                    <option value="mercedes">Encargado de recursos humanos</option>
-                    <option value="audi">Alcalde</option>
-                  </select>
-                  
-                <h3>Horario laboral</h3>
-                <label for="entryTime">Hora entrada</label>
-                <input type="time" name="entryTime" id="entryTime" class="form__input" placeholder="Hora entrada">
-                <label for="departureTime">Hora salida</label>
-                <input type="time" name="departureTime" id="departureTime" class="form__input" placeholder="Hora salida">
-            
-                <button id="sendData" type="submit" class="btn">AGREGAR</button>
+            <!--main content-->
+            <div class="col-9">
+                <div class="components">
+                    <h2>Editar informacion de un funcionario</h2>
+        
+                    <div class="input-components">
+                        <input type="text" name="idlook" id="idlook" class="form__input" placeholder="Funcionario a buscar">
+                        <button id="Search" type="submit" class="btn">Buscar</button>
+                    </div>
+                    <div class="input-components">
+                        <input type="text" name="id" id="id" class="form__input" placeholder="Cedula" readonly>
+                        <input type="text" name="completeName" id="name" class="form__input" placeholder="Nombre completo">
+                        <input type="text" name="email" id="email" class="form__input" placeholder="Correo electronico">
+                        <input type="text" name="accumulatedDays" id="accumulatedDays" class="form__input" placeholder="Dias acumulados">
+                        <input type="text" name="ancient" id="ancient" class="form__input" placeholder="Antiguedad">
+                        <input type="text" name="boss" id="boss" class="form__input" placeholder="Jefe directo">
+                        <input type="text" name="salary" id="salary" class="form__input" placeholder="Salario">
+                        
+                        <label for="role">Rol</label>
+                        <select name="role" id="role">
+                            <option value="volvo">Funcionario</option>
+                            <option value="saab">Jefe directo</option>
+                            <option value="mercedes">Encargado de recursos humanos</option>
+                            <option value="audi">Alcalde</option>
+                          </select>
+                          
+                        <h3>Horario laboral</h3>
+                        <label for="entryTime">Hora entrada</label>
+                        <input type="time" name="entryTime" id="entryTime" class="form__input" placeholder="Hora entrada">
+                        <label for="departureTime">Hora salida</label>
+                        <input type="time" name="departureTime" id="departureTime" class="form__input" placeholder="Hora salida">
+        
+                        <button id="sendData" type="submit" class="btn">AGREGAR</button>
+                    </div> <!--input-components-->
+                </div> <!--components-->
             </div>
         </div>
-
-    </div>
+    </div> <!--container-->
     <script type="module" src="../dist/EditarFuncionario.bundle.js"></script>
 </body>
 </html>
