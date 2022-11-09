@@ -45,8 +45,8 @@ stages:
         - task: PublishCodeCoverageResults@1
           inputs:
             codeCoverageTool: 'Cobertura'
-            summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/clover.xml'
-            reportDirectory: '$(System.DefaultWorkingDirectory)/coverage/lcov-report/index.html'
+            summaryFileLocation: '$(System.DefaultWorkingDirectory)\coverage\clover.xml'
+            reportDirectory: '$(System.DefaultWorkingDirectory)\coverage\lcov-reportl'
           env:
             DISABLE_COVERAGE_AUTOGENERATE: 'true'  
           
