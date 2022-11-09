@@ -49,6 +49,8 @@ stages:
             summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*clover.xml'
             pathToSources: '$(System.DefaultWorkingDirectory)/coverage'
             reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
+          env:
+            DISABLE_COVERAGE_AUTOGENERATE: 'true'  
           
         
         
