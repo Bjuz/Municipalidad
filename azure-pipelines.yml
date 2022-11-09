@@ -46,7 +46,7 @@ stages:
           displayName: 'Publish Coverage'
           inputs: 
             codeCoverageTool: 'Cobertura'
-            summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*clover.xml'
+            summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/clover.xml'
             pathToSources: '$(System.DefaultWorkingDirectory)/coverage'
             reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
           env:
