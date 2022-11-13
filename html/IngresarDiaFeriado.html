@@ -1,35 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-      crossorigin="anonymous"
-    />
-    <title>Ingresar dias feriados</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="sidebar">
-        <li><a href="registroFuncionario.html">Registro funcionario</a></li>
-        <li><a href="editarFuncionario.html">Editar funcionario</a></li>
-        <li><a href="ingresarDiaFeriado.html">Ingresar dias feriados</a></li>
-      </div>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingresar feriado</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/fabe13b5d4.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/Style/style.css">
+    <link rel="stylesheet" href="/Style/RegistroFuncionario.css">
+</head>
+<body>
 
-      <div class="components">
-        <h2>Ingresar dia feriado</h2>
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                    
+                    <!--create navbar-->
+                    <h2>Sistema Gestión Vacaciones</h2>
+                    <p>Municipalidad Santa Barbara</p>
 
-        <div class="input-components">
-          <label for="date">Seleccione dia feriado:</label>
-          <input type="date" id="date" />
-          <button id="sendData" type="submit" class="btn">AGREGAR</button>
+                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                        
+                        <li class="nav-item">
+                            <a href="RegistroFuncionario.html" class="nav-link align-middle px-0">
+                                <i class="fa-solid fa-person"></i> <span class="ms-1 d-none d-sm-inline">Registro funcionario</span>
+                            </a>
+                        </li>
+                         
+                        <li>
+                            <a href="EditarFuncionario.html" class="nav-link px-0 align-middle">
+                                <i class="fa-solid fa-pen-to-square"></i> <span class="ms-1 d-none d-sm-inline">Editar funcionario</span></a>
+                        </li>
+                        
+                        <li>
+                            <a href="IngresarDiaFeriado.html" class="nav-link px-0 align-middle">
+                                <i class="fa-solid fa-calendar"></i> <span class="ms-1 d-none d-sm-inline">Ingresar días feriados</span> </a>
+                        </li>  
+                    </ul>
+                    
+                    <hr>
+                      <!--create icon options-->
+                    <div class="dropdown pb-4">
+                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
+                            <span class="d-none d-sm-inline mx-1">Nombre usuario</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                            <li><a class="dropdown-item" href="#">Saldo vacaciones</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            
+              <!--create content-->
+            <div class="col py-3">
+                <div class="components">
+                   
+                    <h2>Ingresar dia feriado</h2>
+
+                    <div class="input-components">
+                      <label for="date">Seleccione dia feriado:</label>
+                      <input type="date" id="date" />
+                      <button id="sendData" type="submit" class="btn">AGREGAR</button>
+                    </div>
+                  
+
+                </div>
+                               
+            </div>
         </div>
-      </div>
     </div>
+
     <script type="module" src="../dist/IngresarDiaFeriado.bundle.js"></script>
-  </body>
 </html>

@@ -1,0 +1,15 @@
+.components{
+    position: relative;
+    left: 2em;
+    bottom: -1em;
+}
+
+.input-select{
+    margin: 2em auto;
+}
+
+.navbar-configuration{
+    position: relative;
+    bottom: -1em;
+}
+

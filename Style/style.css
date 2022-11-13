@@ -41,7 +41,7 @@ input {
 
 /*Edicion fondo------------------------------------------------*/
 body {
-	background-color: #8C9D3C;
+	background-color: white;
 }
 
 /*Linea centro---------------------------------------------------*/
@@ -61,7 +61,7 @@ body {
 	padding: 1em .5em .5em;
 	padding-left: 2em;
 	outline: none;
-	margin: 1.5em auto;
+	margin: 0.5em auto;
 	transition: all .5s ease;
 }
 
@@ -99,4 +99,11 @@ body {
 	color: #A89C44;
 }
 
-/*media query---------------------------------------------------*/
+/*span and i color for navbar---------------------------------------------------*/
+span{
+	color: white;  
+  }
+  
+  i{
+	  color: white;  
+  }

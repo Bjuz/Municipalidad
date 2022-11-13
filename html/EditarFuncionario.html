@@ -4,40 +4,72 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar funcionario</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <title>Editar un funcionario</title>
+    <script src="https://kit.fontawesome.com/fabe13b5d4.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../Style/style.css">
+    <link rel="stylesheet" href="../Style/RegistroFuncionario.css">
 </head>
 <body>
-    <div class="container">
 
-        <!--principal row-->
-        <div class="row"> 
-            <!--sidebar container-->
-            <div class="col-3"> 
-                <!--sidebar-->
-                <div class="btn-group-vertical">
-                    <!--sidebar options-->
-                    <button type="button" class="btn btn-secondary" href="/html/EditarFuncionario.html">Editar funcionario</button>
-                    <button type="button" class="btn btn-secondary" href="/html/RegistroFuncionario.html">Registro de funcionario</button>
-                    <button type="button" class="btn btn-secondary" href="/html/IngresarDiaFeriado.html">Ingresar día feriado</button>
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                    
+                    <!--create navbar-->
+                    <h2>Sistema Gestión Vacaciones</h2>
+                    <p>Municipalidad Santa Barbara</p>
+
+                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                        
+                        <li class="nav-item">
+                            <a href="RegistroFuncionario.html" class="nav-link align-middle px-0">
+                                <i class="fa-solid fa-person"></i> <span class="ms-1 d-none d-sm-inline">Registro funcionario</span>
+                            </a>
+                        </li>
+                         
+                        <li>
+                            <a href="EditarFuncionario.html" class="nav-link px-0 align-middle">
+                                <i class="fa-solid fa-pen-to-square"></i> <span class="ms-1 d-none d-sm-inline">Editar funcionario</span></a>
+                        </li>
+                        
+                        <li>
+                            <a href="IngresarDiaFeriado.html" class="nav-link px-0 align-middle">
+                                <i class="fa-solid fa-calendar"></i> <span class="ms-1 d-none d-sm-inline">Ingresar días feriados</span> </a>
+                        </li>  
+                    </ul>
+                    
+                    <hr>
+                      <!--create icon options-->
+                    <div class="dropdown pb-4">
+                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
+                            <span class="d-none d-sm-inline mx-1">Nombre usuario</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                            <li><a class="dropdown-item" href="#">Saldo vacaciones</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
+                        </ul>
+                    </div>
                 </div>
-
-
-                <!-- <div class="sidebar">
-                    <li><a href="registroFuncionario.html">Registro funcionario</a> </li>
-                    <li><a href="editarFuncionario.html">Editar funcionario</a></li>
-                    <li><a href="ingresarDiaFeriado.html">Ingresar dias feriados</a></li>
-                </div> -->
             </div>
-            <!--main content-->
-            <div class="col-9">
+            
+            
+              <!--create content-->
+            <div class="col py-3">
                 <div class="components">
+                   
                     <h2>Editar informacion de un funcionario</h2>
         
                     <div class="input-components">
                         <input type="text" name="idlook" id="idlook" class="form__input" placeholder="Funcionario a buscar">
                         <button id="Search" type="submit" class="btn">Buscar</button>
                     </div>
+                   
                     <div class="input-components">
                         <input type="text" name="id" id="id" class="form__input" placeholder="Cedula" readonly>
                         <input type="text" name="completeName" id="name" class="form__input" placeholder="Nombre completo">
@@ -48,25 +80,29 @@
                         <input type="text" name="salary" id="salary" class="form__input" placeholder="Salario">
                         
                         <label for="role">Rol</label>
-                        <select name="role" id="role">
+                        <select name="role" id="role" class="form__input">
                             <option value="Funcionario">Funcionario</option>
                             <option value="Jefe directo">Jefe directo</option>
                             <option value="Encargado de recursos humanos">Encargado de recursos humanos</option>
                             <option value="Alcalde">Alcalde</option>
                           </select>
                           
+                       <div class="input-select">
                         <h3>Horario laboral</h3>
                         <label for="entryTime">Hora entrada</label>
                         <input type="time" name="entryTime" id="entryTime" class="form__input" placeholder="Hora entrada">
                         <label for="departureTime">Hora salida</label>
                         <input type="time" name="departureTime" id="departureTime" class="form__input" placeholder="Hora salida">
+                       </div>
         
                         <button id="sendData" type="submit" class="btn">AGREGAR</button>
-                    </div> <!--input-components-->
-                </div> <!--components-->
+                    </div> 
+
+                </div>
+                               
             </div>
         </div>
-    </div> <!--container-->
+    </div>
+
     <script type="module" src="../dist/EditarFuncionario.bundle.js"></script>
-</body>
 </html>
