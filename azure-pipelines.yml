@@ -65,9 +65,16 @@ stages:
           inputs:
             script: |
               npm install -g firebase-tools
+          displayName: 'firebase install'
+          
+        - task: CmdLine@2
+          inputs:
+            script: | 
               cd..
               firebase deploy
           displayName: 'firebase deploy'
+        
+          
             
 
 
