@@ -71,7 +71,7 @@ stages:
           inputs:
             script: | 
               cd..
-              firebase deploy
+              firebase deploy --token $(TOKEN)
           displayName: 'firebase deploy'
         
           
