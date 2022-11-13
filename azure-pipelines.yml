@@ -65,7 +65,7 @@ stages:
           inputs:
             script: |
               cd..
-              firebase 
+              firebase deploy
           displayName: 'firebase deploy'
             
 
