@@ -51,7 +51,23 @@ stages:
             codeCoverageTool: Cobertura
             summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
         
-
+- stage:  Deploy #The Stage do you prefer
+  #condition: eq(variables['Build.SourceBranch'], 'refs/heads/Testing') #If the change is from development branch the following job will be executed 
+  pool: Default
+  jobs: #Chose the prefer job
+    - job: Deploy_in_Firebase
+      steps:
+        - task: NodeTool@0
+          inputs:
+            versionSpec: '16.x'
+          
+        - task: CmdLine@2
+          inputs:
+            script: |
+              cd..
+              firebase 
+          displayName: 'firebase deploy'
+            
 
 
 
