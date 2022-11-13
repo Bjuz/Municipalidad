@@ -89,7 +89,7 @@ export async function  RegisterUser(id,name,email,accumulatedDays,ancient,boss,s
 }
 
 export async function Register(id,name,email,accumulatedDays,ancient,boss,salary,role,entryTime,departureTime){
-  const test = await await addDoc(collection(db, "users"), {
+  const test = await  addDoc(collection(db, "users"), {
     id,
     name,
     email,
