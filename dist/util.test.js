@@ -55,7 +55,7 @@ test(" Update User Okay",  async ()=>{
     var test =  await ObtenerFuncionarios("117840064");
     const result =  await UpdateUserInfo(test.Ref,"117840064","Jeaustin Rodriguez 2","Jeaustin.rdz@gmail.com","2","2","Henry","1600","Funcionario","07:00","16:00");//falta la o en el correo
     console.log(result)
-    expect(result).toBe("El usuario ha sido actualizado");  // resultado  esperado "El usuario ha sido actualizado"
+    expect(result).toBe("El usuario ha sido actualizado");  // resultado  esperado "El usuario ha sido actualizado" ok
 });
 
 test(" Update user no existance ",  async ()=>{
