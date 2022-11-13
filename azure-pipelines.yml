@@ -33,6 +33,10 @@ stages:
   jobs: #Chose the prefer job
     - job: Test
       steps:
+        - task: NodeTool@0
+          inputs:
+            versionSpec: '16.x'
+            
         - script: |
             npm test
           displayName: 'npm test'
