@@ -8,7 +8,7 @@ import { getDocs, updateDoc, doc,docSnap,getDoc } from "firebase/firestore";
 import { identity } from 'lodash';
 
 
-// TODO: Add SDKs for Firebase products that you want to use
+// TODO: Add SDKs for Firebase products that you want to usec 
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
