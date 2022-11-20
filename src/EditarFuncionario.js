@@ -1,3 +1,4 @@
+const { method } = require("lodash");
 const { ObtenerFuncionarios, signOut } = require("./util");
 const { UpdateUserInfo } = require("./util");
 
@@ -27,14 +28,18 @@ async function loadInfo() {
 }
 
 document.getElementById("sendData").onclick = function () {
+  alert("Send Data")
   UpdateUser();
 };
 
-document.getElementById("loggout").onClick = async function () {
-  console.log("Entro");
+document.getElementById("loggoutBtn").addEventListener('click', function() {
 
-  const text = await signOut();
-};
+  //const text = signOut();
+  location.href= './../index.html';
+
+});
+
+
 
 async function UpdateUser() {
   var id = document.getElementById("id").value;
