@@ -28,18 +28,15 @@ async function loadInfo() {
 }
 
 document.getElementById("sendData").onclick = function () {
-  alert("Send Data")
+  alert("Send Data");
   UpdateUser();
 };
 
-document.getElementById("loggoutBtn").addEventListener('click', function() {
-
+document.getElementById("loggoutBtn").addEventListener("click", function () {
   //const text = signOut();
-  location.href= './../index.html';
-
+  window.localStorage.clear();
+  location.href = "./../index.html";
 });
-
-
 
 async function UpdateUser() {
   var id = document.getElementById("id").value;
