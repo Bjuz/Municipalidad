@@ -19,6 +19,7 @@ async function Register(){
 
   var entryTime = document.getElementById("entryTime").value;
   var departureTime = document.getElementById("departureTime").value;
+  
   const text =  await RegisterUser(id,name,email,accumulatedDays,ancient,boss,salary,role,entryTime,departureTime);
 
   alert(text);

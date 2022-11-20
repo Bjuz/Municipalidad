@@ -1,39 +1,42 @@
-
-const { ObtenerFuncionarios } = require('./util');
-const { UpdateUserInfo } = require('./util');
+const { ObtenerFuncionarios, signOut } = require("./util");
+const { UpdateUserInfo } = require("./util");
 
 document.getElementById("Search").onclick = async function () {
   let test = await loadInfo();
   document.getElementById("id").value = test.id;
-  document.getElementById("name").value= test.name;
-  document.getElementById("email").value= test.email;
-  document.getElementById("accumulatedDays").value= test.accumulatedDays;
-  document.getElementById("ancient").value= test.ancient;
-  document.getElementById("boss").value= test.boss;
-  document.getElementById("salary").value= test.salary;
+  document.getElementById("name").value = test.name;
+  document.getElementById("email").value = test.email;
+  document.getElementById("accumulatedDays").value = test.accumulatedDays;
+  document.getElementById("ancient").value = test.ancient;
+  document.getElementById("boss").value = test.boss;
+  document.getElementById("salary").value = test.salary;
   document.getElementById("entryTime").value = test.entryTime;
   document.getElementById("departureTime").value = test.departureTime;
 
   const text = test.role;
   const $select = document.getElementById("role");
   const $options = Array.from($select.options);
-  const optionToSelect = $options.find(item => item.text ===text);
+  const optionToSelect = $options.find((item) => item.text === text);
   optionToSelect.selected = true;
-}
+};
 
-async function loadInfo(){
+async function loadInfo() {
   var id = document.getElementById("idlook").value;
-  var test =  await ObtenerFuncionarios(id);
+  var test = await ObtenerFuncionarios(id);
   return test;
 }
 
 document.getElementById("sendData").onclick = function () {
- 
   UpdateUser();
-  
 };
 
-async function UpdateUser(){
+document.getElementById("loggout").onClick = async function () {
+  console.log("Entro");
+
+  const text = await signOut();
+};
+
+async function UpdateUser() {
   var id = document.getElementById("id").value;
   var name = document.getElementById("name").value;
   var email = document.getElementById("email").value;
@@ -45,9 +48,21 @@ async function UpdateUser(){
 
   var entryTime = document.getElementById("entryTime").value;
   var departureTime = document.getElementById("departureTime").value;
-  var test =  await ObtenerFuncionarios(id);
+  var test = await ObtenerFuncionarios(id);
 
- const text =  await UpdateUserInfo(test.Ref,id,name,email,accumulatedDays,ancient,boss,salary,role,entryTime,departureTime);
- alert(text);
- return text;
+  const text = await UpdateUserInfo(
+    test.Ref,
+    id,
+    name,
+    email,
+    accumulatedDays,
+    ancient,
+    boss,
+    salary,
+    role,
+    entryTime,
+    departureTime
+  );
+  alert(text);
+  return text;
 }
