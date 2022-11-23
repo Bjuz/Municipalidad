@@ -1,10 +1,13 @@
 const { method } = require("lodash");
-const { ObtenerFuncionarios, signOut } = require("./util");
+const { ObtenerFuncionarios, signOut } = require("./util"); 
 const { UpdateUserInfo } = require("./util");
+const { signOutCurrentUser } = require("./util");
 
 document.getElementById("Search").onclick = async function () {
+  document.getElementById("loader").style.display = "block";
   let test = await loadInfo();
-  document.getElementById("id").value = test.id;
+  if(test != "empty"){
+    document.getElementById("id").value = test.id;
   document.getElementById("name").value = test.name;
   document.getElementById("email").value = test.email;
   document.getElementById("accumulatedDays").value = test.accumulatedDays;
@@ -19,6 +22,10 @@ document.getElementById("Search").onclick = async function () {
   const $options = Array.from($select.options);
   const optionToSelect = $options.find((item) => item.text === text);
   optionToSelect.selected = true;
+  }else{
+    alert("usuario no encontrado")
+  }
+  document.getElementById("loader").style.display = "none";
 };
 
 async function loadInfo() {
@@ -32,10 +39,15 @@ document.getElementById("sendData").onclick = function () {
   UpdateUser();
 };
 
-document.getElementById("loggoutBtn").addEventListener("click", function () {
-  //const text = signOut();
-  window.localStorage.clear();
-  location.href = "./../index.html";
+document.getElementById("loggoutBtn").addEventListener("click", async function () {
+  const text = await signOutCurrentUser();
+  if(text == "Sign out successful"){
+    alert(text);
+    location.href = "./../index.html";
+  }else{
+    alert(text);
+  }
+
 });
 
 async function UpdateUser() {
@@ -68,3 +80,8 @@ async function UpdateUser() {
   alert(text);
   return text;
 }
+
+window.addEventListener('DOMContentLoaded', async (event) => {
+  document.getElementById("loader").style.display = "none";
+
+});

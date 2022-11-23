@@ -2,6 +2,8 @@
 
 import { initializeApp } from "firebase/app";
 import {
+  createUserWithEmailAndPassword,
+  signOut,
   getAuth,
   signInWithEmailAndPassword,
   onAuthStateChanged,
@@ -10,7 +12,6 @@ import {
 import { Firestore, getFirestore, query } from "firebase/firestore";
 import { collection, addDoc, deleteDoc } from "firebase/firestore";
 import { getDocs, updateDoc, docSnap, doc, getDoc } from "firebase/firestore";
-import { identity } from "lodash";
 
 // TODO: Add SDKs for Firebase products that you want to usec
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -52,19 +53,7 @@ export async function LoginFb(email, password) {
 
   return test;
 }
-/*
-export async function signOut() {
-  auth
-    .signOut()
-    .then(() => {
-      console.log("Sign-out successful");
-      window.localStorage.clear();
-      location.href = "./index.html";
-    })
-    .catch((error) => {
-      console.log("Error " + error.message);
-    });
-}*/
+
 
 /*Fin login*/
 
@@ -163,7 +152,7 @@ export async function Register(
     departureTime,
     Ref: test.id,
   });
-  return "Usuario ingresado exitosamente con el id: " + test.id;
+  return "Usuario ingresado exitosamente";
 }
 
 /*Fin Registrar*/
@@ -358,23 +347,47 @@ export async function DeleteFer(ref) {
   return result;
 }
 
-/* Experimental
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      const uid = user.uid;
-      // ...
-    } else {
-      // User is signed out
-      // ...
-    }
+
+export async function signOutCurrentUser() {
+  var result = await SignOutUser();
+  return result;
+}
+
+export async function SignOutUser(){
+  var result = await signOut(auth)
+    .then(() => {
+      return "Sign out successful"
+    })
+    .catch((error) => {
+      return "Error " + error.message ;
+    });
+    return result;
+}
+
+export async function UserCurrentState(){
+  const VarResponse = auth.currentUser;
+  if(VarResponse){
+    return "Usuario logueado";
+  }
+  return VarResponse;
+}
+
+
+export async function CreateANewUser(email, password){
+  var result = await CreateUser(email, password);
+    return result;
+}
+
+export async function CreateUser(email,password){
+  var result = await createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+   return "Usuario creado exitosamente"
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    return errorMessage;
   });
+  return result;
+}
 
-
-
-
-
-
- 
-*/
