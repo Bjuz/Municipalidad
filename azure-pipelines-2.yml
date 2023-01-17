@@ -67,13 +67,13 @@ stages:
               npm install -g firebase-tools
           displayName: 'firebase install'
           
-        - task: CmdLine@2
+        - task: PowerShell@2
           inputs:
-            script: | 
+            targetType: 'inline'
+            script: |
               cd..
               ls
               firebase deploy --token $(Token)
-          displayName: 'firebase deploy'
         
           
             
