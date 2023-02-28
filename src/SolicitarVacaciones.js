@@ -3,8 +3,8 @@
 $(document).ready(function () {
     $("#vacationForm").submit(function () {
         var formData = {
-            "firstDate": $("#fechaInicio").val(),
-            "lastDate": $("#fechaFin").val(),
+            "firstDate": $("#firstDate").val(),
+            "finishDate": $("#finishDate").val(),
         }
         localStorage.setItem("formData", JSON.stringify(formData));
         console.log(formData);
