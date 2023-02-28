@@ -6,20 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solicitar vacaciones</title>
 
+    <!-- Calls JQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 <body>
     <div>
         <h1>Modulo de solicitud de vacaciones</h1>
+        <p>Por favor, ingrese las fechas de inicio y fin de sus vacaciones</p>
 
-
-        <!-- Ask for two dates, the beginning and the finish date -->
-        <form action="#">
+        <form id="vacationForm" onsubmit="return getFormData()">
             <label for="fechaInicio">Fecha de inicio</label>
             <input type="date" name="fechaInicio" id="fechaInicio">
             <label for="fechaFin">Fecha de fin</label>
             <input type="date" name="fechaFin" id="fechaFin">
-            <input type="submit" value="Solicitar" onclick="getFormData()" />
+            <input type="submit" value="Solicitar"  />
 
     </div>
 
