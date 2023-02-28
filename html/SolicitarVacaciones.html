@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitar vacaciones</title>
+
+
+</head>
+<body>
+    <div>
+        <h1>Modulo de solicitud de vacaciones</h1>
+
+
+        <!-- Ask for two dates, the beginning and the finish date -->
+        <form action="#">
+            <label for="fechaInicio">Fecha de inicio</label>
+            <input type="date" name="fechaInicio" id="fechaInicio">
+            <label for="fechaFin">Fecha de fin</label>
+            <input type="date" name="fechaFin" id="fechaFin">
+            <input type="submit" value="Solicitar" onclick="getFormData()" />
+
+    </div>
+
+    <!-- Calls SolicitarVacaciones.js-->
+    <script src="../src/SolicitarVacaciones.js"></script>
+</body>
+</html>
