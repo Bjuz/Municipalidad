@@ -1,4 +1,3 @@
-
 document.getElementById("sendData").onclick = function () {
 
     //Get values from the form on SolicitarVacaciones.html
