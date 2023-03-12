@@ -4,7 +4,6 @@ const { RegisterFeriado } = require('./util');
 document.getElementById("sendData").onclick = function () {
   document.getElementById("loader").style.display = "block";
     RegisterHoliday();
-
 };
 
 async function RegisterHoliday(){
