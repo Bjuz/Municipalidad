@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Solicitud</title>
+</head>
+<body>
+
+    <div id="loader"></div>
+    
+    <h2>Modificar Solicitud</h2>
+    <div>
+        <input type="text" name="idLook" id="idLook" placeholder="Id de solicitud">
+        <button id="search" type="submit" class="btn">Buscar</button>
+    </div>
+
+    <div>
+        <input type="text" name="id" id="id" placeholder="id" readonly>
+        <input type="date" name="startDate" id="startDate" value="2017-06-01"/>
+        <input type="date" name="finDate" id="finDate" value="2017-06-01"/>
+        <input type="text" name="motivo" id="motivo" placeholder="Motivo de solicitud">
+        <button id="updateBtn" type="submit">Actualizar solicitud</button>
+    </div>
+
+    <button id="deleteBtn" type="submit">Eliminar solicitud</button>
+</body>
+
+
+<script type="module" src="../src/EditarSolicitud.js"></script>
+</html>
