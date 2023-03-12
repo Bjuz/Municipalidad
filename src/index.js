@@ -2,6 +2,19 @@ const { loginComplete } = require("./util");
 const { ForgetPassword } = require("./util");
 const { UserCurrentState } = require("./util"); 
 
+
+
+// This method will trigger the button submit when the user keypress enter
+var password = document.getElementById("password");
+
+password.addEventListener("keypress",function(event) {
+
+  if(event.key == "Enter"){
+    event.preventDefault();
+    document.getElementById("Loggin").click();
+  }
+});
+
 document.getElementById("Loggin").onclick = function () {
   document.getElementById("loader").style.display = "block";
   loggin();
