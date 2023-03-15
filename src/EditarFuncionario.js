@@ -4,7 +4,7 @@ const { UpdateUserInfo } = require("./util");
 const { signOutCurrentUser } = require("./util");
 
 document.getElementById("Search").onclick = async function () {
-  document.getElementById("loader").style.display = "block";
+  //document.getElementById("loader").style.display = "block";
   let test = await loadInfo();
   if(test != "empty"){
     document.getElementById("id").value = test.id;
@@ -25,7 +25,7 @@ document.getElementById("Search").onclick = async function () {
   }else{
     alert("usuario no encontrado")
   }
-  document.getElementById("loader").style.display = "none";
+ // document.getElementById("loader").style.display = "none";
 };
 
 async function loadInfo() {
@@ -81,7 +81,8 @@ async function UpdateUser() {
   return text;
 }
 
-window.addEventListener('DOMContentLoaded', async (event) => {
+/*window.addEventListener('DOMContentLoaded', async (event) => {
   document.getElementById("loader").style.display = "none";
 
 });
+*/
