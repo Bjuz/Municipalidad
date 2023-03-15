@@ -1,6 +1,6 @@
 .components{
     position: relative;
-    left: 2em;
+    left: 4em;
     bottom: -1em;
 }
 
@@ -8,8 +8,11 @@
     margin: 2em auto;
 }
 
+.input-components{
+    width: 45%;
+}
+
 .navbar-configuration{
     position: relative;
     bottom: -1em;
 }
-
