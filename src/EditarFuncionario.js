@@ -3,6 +3,8 @@ const { ObtenerFuncionarios, signOut } = require("./util");
 const { UpdateUserInfo } = require("./util");
 const { signOutCurrentUser } = require("./util");
 
+
+
 document.getElementById("Search").onclick = async function () {
   //document.getElementById("loader").style.display = "block";
   let test = await loadInfo();
@@ -39,16 +41,7 @@ document.getElementById("sendData").onclick = function () {
   UpdateUser();
 };
 
-document.getElementById("loggoutBtn").addEventListener("click", async function () {
-  const text = await signOutCurrentUser();
-  if(text == "Sign out successful"){
-    alert(text);
-    location.href = "./../index.html";
-  }else{
-    alert(text);
-  }
 
-});
 
 async function UpdateUser() {
   var id = document.getElementById("id").value;
@@ -81,8 +74,16 @@ async function UpdateUser() {
   return text;
 }
 
-/*window.addEventListener('DOMContentLoaded', async (event) => {
-  document.getElementById("loader").style.display = "none";
 
-});
-*/
+
+
+/* Comment the code because the btn LoggoutBTn was deleted from the code, in case you need to active again, please create the btn or transform into a function
+document.getElementById("loggoutBtn").addEventListener("click", async function () {
+  const text = await signOutCurrentUser();
+  if(text == "Sign out successful"){
+    alert(text);
+    location.href = "./../index.html";
+  }else{
+    alert(text);
+  }
+});*/

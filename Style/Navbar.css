@@ -205,6 +205,7 @@ body.dark .sidebar header .toggle{
 .sidebar li a:hover .text{
     color: var(--sidebar-color);
 }
+
 body.dark .sidebar li a:hover .icon,
 body.dark .sidebar li a:hover .text{
     color: var(--text-color);
@@ -314,6 +315,11 @@ body.dark .home .text{
 
 .my-menu{
     padding-left: 0px !important;
+}
+
+.active {
+    background-color: var(--primary-color);
+    color: var(--sidebar-color);
 }
 
 

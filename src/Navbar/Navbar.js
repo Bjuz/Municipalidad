@@ -1,3 +1,5 @@
+const { ObtenerFuncionariosEmail } = require(".././util");
+
 const body = document.querySelector('body'),
       sidebar = body.querySelector('nav'),
       toggle = body.querySelector(".toggle"),
@@ -24,3 +26,14 @@ modeSwitch.addEventListener("click" , () =>{
         
     }
 });
+
+window.addEventListener('DOMContentLoaded', async (event) => {
+    var email =  localStorage.getItem('userLoggueado');
+    var result = await ObtenerFuncionariosEmail(email);
+    var name = result.name;
+    var role = result.role;
+    console.log(name + " " + role);
+    console.log(document.getElementById("NombreBar") );
+    document.getElementById("NombreBar").innerHTML = name;
+    document.getElementById("PuestoBar").innerHTML = role;
+  });

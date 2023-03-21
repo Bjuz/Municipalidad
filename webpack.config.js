@@ -8,6 +8,7 @@ module.exports = {
     RegistroFuncionario: './src/RegistroFuncionario.js',
     IngresarDiaFeriado: './src/IngresarDiaFeriado.js',
     EditarFuncionario: './src/EditarFuncionario.js',
+    Navbar: './src/Navbar/Navbar.js',
   },
   // The location of the build folder described above
   output: {

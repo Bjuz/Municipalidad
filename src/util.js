@@ -42,13 +42,14 @@ export async function LoginFb(email, password) {
   const test = await signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       user = userCredential.user;
-      localStorage.setItem("userLoggueado", JSON.stringify(user));
+      localStorage.setItem("userLoggueado", email);
       location.href = "./html/EditarFuncionario.html";
 
       console.log(JSON.stringify(user));
     })
     .catch((error) => {
-      return alert("Correo o contraseña incorrecto.");
+      alert("Correo o contraseña incorrecto.")
+      return "Correo o contraseña incorrecto.";
     });
 
   return test;
@@ -391,3 +392,21 @@ export async function CreateUser(email,password){
   return result;
 }
 
+
+export async function ObtenerFuncionariosEmail(Email) {
+  const VarResponse = await FuncionariosEmail(Email);
+  return VarResponse;
+}
+
+export async function FuncionariosEmail(Email) {
+  const data = await LoadDb();
+  var Identidad = "empty";
+  data.forEach((element) => {
+    if (element.email == Email) {
+      Identidad = element;
+      console.log(element);
+    }
+  });
+  console.log(Identidad);
+  return Identidad;
+}
