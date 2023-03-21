@@ -319,7 +319,6 @@ body.dark .home .text{
 
 .active {
     background-color: var(--primary-color);
-    color: var(--sidebar-color);
 }
 
 
