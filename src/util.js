@@ -9,9 +9,10 @@ import {
   onAuthStateChanged,
   sendPasswordResetEmail,
 } from "firebase/auth";
-import { Firestore, getFirestore, query } from "firebase/firestore";
-import { collection, addDoc, deleteDoc } from "firebase/firestore";
-import { getDocs, updateDoc, docSnap, doc, getDoc } from "firebase/firestore";
+import { Firestore, getFirestore } from "firebase/firestore";
+import { addDoc, deleteDoc } from "firebase/firestore";
+import { getDocs,setDoc , updateDoc, docSnap, doc, getDoc,  collection, query, where } from "firebase/firestore";
+import { identity } from "lodash";
 
 // TODO: Add SDKs for Firebase products that you want to usec
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -38,17 +39,12 @@ export async function loginComplete(email, password) {
 }
 
 export async function LoginFb(email, password) {
-  var user = "";
   const test = await signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      user = userCredential.user;
-      localStorage.setItem("userLoggueado", email);
-      location.href = "./html/EditarFuncionario.html";
-
-      console.log(JSON.stringify(user));
+      return userCredential.user.uid;
     })
     .catch((error) => {
-      alert("Correo o contraseña incorrecto.")
+      console.log(error);
       return "Correo o contraseña incorrecto.";
     });
 
@@ -90,10 +86,12 @@ export async function RegisterUser(
   salary,
   role,
   entryTime,
-  departureTime
+  departureTime,
+  password
 ) {
-  var result = await Funcionarios(id);
+  var result = await Funcionarios(id,email);
   if (result == "empty") {
+    var upn = await CreateANewUser(email,password);
     const VarResponse = await Register(
       id,
       name,
@@ -104,7 +102,8 @@ export async function RegisterUser(
       salary,
       role,
       entryTime,
-      departureTime
+      departureTime,
+      upn
     );
     return VarResponse;
   } else {
@@ -122,9 +121,10 @@ export async function Register(
   salary,
   role,
   entryTime,
-  departureTime
+  departureTime,
+  upn
 ) {
-  const test = await await addDoc(collection(db, "users"), {
+  const test2 =  await setDoc(doc(db, "users", upn), {
     id,
     name,
     email,
@@ -135,23 +135,7 @@ export async function Register(
     role,
     entryTime,
     departureTime,
-  }).catch((error) => {
-    const errorMessage = error.message;
-    return errorMessage;
-  });
-  var ref = doc(db, "users", test.id);
-  await updateDoc(ref, {
-    id,
-    name,
-    email,
-    accumulatedDays,
-    ancient,
-    boss,
-    salary,
-    role,
-    entryTime,
-    departureTime,
-    Ref: test.id,
+    Ref: upn,
   });
   return "Usuario ingresado exitosamente";
 }
@@ -187,16 +171,16 @@ export async function Feriado(date) {
 /*Fin Feriado*/
 
 /*Inicio Busqueda*/
-export async function ObtenerFuncionarios(id) {
-  const VarResponse = await Funcionarios(id);
+export async function ObtenerFuncionarios(id, email) {
+  const VarResponse = await Funcionarios(id, email);
   return VarResponse;
 }
 
-export async function Funcionarios(id) {
+export async function Funcionarios(id, email) {
   const data = await LoadDb();
   var Identidad = "empty";
   data.forEach((element) => {
-    if (element.id == id) {
+    if (element.id == id || element.email == email) {
       Identidad = element;
       console.log(element);
     }
@@ -307,7 +291,7 @@ export async function UpdateInfo(
     })
     .catch((error) => {
       console.log(error);
-      return "error";
+      return error;
     });
   return response;
 }
@@ -382,7 +366,7 @@ export async function CreateANewUser(email, password){
 export async function CreateUser(email,password){
   var result = await createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
-   return "Usuario creado exitosamente"
+   return userCredential.user.uid
   })
   .catch((error) => {
     const errorCode = error.code;
@@ -393,20 +377,29 @@ export async function CreateUser(email,password){
 }
 
 
-export async function ObtenerFuncionariosEmail(Email) {
-  const VarResponse = await FuncionariosEmail(Email);
+export async function ObtenerFuncionariosEmail(UID) {
+  const VarResponse = await GetFuncionario(UID);
   return VarResponse;
 }
 
-export async function FuncionariosEmail(Email) {
-  const data = await LoadDb();
-  var Identidad = "empty";
-  data.forEach((element) => {
-    if (element.email == Email) {
-      Identidad = element;
-      console.log(element);
-    }
-  });
-  console.log(Identidad);
-  return Identidad;
+export async function GetFuncionario(UID) {
+  const docRef = doc(db, "users", UID);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    console.log("Document data:", docSnap.data());
+    return docSnap.data()
+  } else {
+    // doc.data() will be undefined in this case
+    console.log("No such document!");
+    return "No user found"
+  }
+
+
 }
+
+// Comment the code because the btn LoggoutBTn was deleted from the codes in case you need to active again,
+
+
+
+

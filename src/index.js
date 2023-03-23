@@ -17,6 +17,13 @@ async function loggin() {
   var password = document.getElementById("password").value;
   const text = await loginComplete(email, password);
   document.getElementById("loader").style.display = "none";
+  if(text != "Correo o contraseña incorrecto."){
+    localStorage.setItem("userLoggueado", text);
+    location.href = "./html/EditarFuncionario.html";
+  }
+ 
+ alert(text);
+  
 }
 
 

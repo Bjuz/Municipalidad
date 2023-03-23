@@ -1,11 +1,14 @@
 const { ObtenerFuncionariosEmail } = require(".././util");
+const { signOutCurrentUser } = require(".././util");
+
 
 const body = document.querySelector('body'),
       sidebar = body.querySelector('nav'),
       toggle = body.querySelector(".toggle"),
       searchBtn = body.querySelector(".search-box"),
       modeSwitch = body.querySelector(".toggle-switch"),
-      modeText = body.querySelector(".mode-text");
+      modeText = body.querySelector(".mode-text"),
+      LogoutBtn =   body.querySelector(".Logout");
 
 
 toggle.addEventListener("click" , () =>{
@@ -27,6 +30,19 @@ modeSwitch.addEventListener("click" , () =>{
     }
 });
 
+LogoutBtn.addEventListener("click" , async () =>{
+   
+   
+    const test = await signOutCurrentUser();
+    if(test == "Sign out successful"){
+        location.href = "./../index.html";
+        storage.clear();
+    }
+    console.log(text)
+
+})
+
+
 window.addEventListener('DOMContentLoaded', async (event) => {
     var email =  localStorage.getItem('userLoggueado');
     var result = await ObtenerFuncionariosEmail(email);
@@ -37,3 +53,5 @@ window.addEventListener('DOMContentLoaded', async (event) => {
     document.getElementById("NombreBar").innerHTML = name;
     document.getElementById("PuestoBar").innerHTML = role;
   });
+
+  

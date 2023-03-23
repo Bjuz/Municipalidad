@@ -32,18 +32,19 @@ document.getElementById("Search").onclick = async function () {
 
 async function loadInfo() {
   var id = document.getElementById("idlook").value;
-  var test = await ObtenerFuncionarios(id);
+  var test = await ObtenerFuncionarios(id,"empty");
   return test;
 }
 
 document.getElementById("sendData").onclick = function () {
-  alert("Send Data");
   UpdateUser();
 };
 
 
 
 async function UpdateUser() {
+  
+  
   var id = document.getElementById("id").value;
   var name = document.getElementById("name").value;
   var email = document.getElementById("email").value;
@@ -52,10 +53,9 @@ async function UpdateUser() {
   var boss = document.getElementById("boss").value;
   var salary = document.getElementById("salary").value;
   var role = document.getElementById("role").value;
-
   var entryTime = document.getElementById("entryTime").value;
   var departureTime = document.getElementById("departureTime").value;
-  var test = await ObtenerFuncionarios(id);
+  var test = await ObtenerFuncionarios(id,email);
 
   const text = await UpdateUserInfo(
     test.Ref,
@@ -71,6 +71,17 @@ async function UpdateUser() {
     departureTime
   );
   alert(text);
+  document.getElementById("idlook").value = "";
+  document.getElementById("id").value = "";
+  document.getElementById("name").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("accumulatedDays").value = "";
+  document.getElementById("ancient").value = "";
+  document.getElementById("boss").value = "";
+  document.getElementById("salary").value = "";
+  document.getElementById("role").value = "";
+  document.getElementById("entryTime").value = "00:00";
+  document.getElementById("departureTime").value = "00:00";
   return text;
 }
 

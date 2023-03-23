@@ -10,6 +10,7 @@
     "test": "jest --ci  --config=jest.config.json --reporters=default --reporters=jest-junit --forceExit"
   },
   "jest": {
+    "testSequencer": "custom-sequencer.js",
     "collectCoverage": true,
     "reporters": [
       "default",
