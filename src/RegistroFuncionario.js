@@ -41,6 +41,7 @@ async function Register(){
     alert("Favor agregar todos los campos");
   }else{
     const text =  await RegisterUser(id,name,email,accumulatedDays,ancient,boss,salary,role,entryTime,departureTime,generateP());
+    //const text =  await RegisterUser(id,name,email,accumulatedDays,ancient,boss,salary,role,entryTime,departureTime,generateP());
     var resultCreate;
     var resultForget;
     if(text == "Usuario ingresado exitosamente"){

@@ -8,6 +8,7 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   sendPasswordResetEmail,
+  deleteUser,
 } from "firebase/auth";
 import { Firestore, getFirestore } from "firebase/firestore";
 import { addDoc, deleteDoc } from "firebase/firestore";
@@ -302,6 +303,12 @@ export async function DeleteDocumentCreaded(ref) {
 }
 
 export async function DeleteDocu(ref) {
+  var test = deleteUser(ref).then(() => {
+    
+  }).catch((error) => {
+    console.log(error);
+  });
+
   var resut = await deleteDoc(doc(db, "users", ref))
     .then(() => {
       console.log("Deleted");
