@@ -15,7 +15,7 @@
 
 </head>
 <body>
-
+    
     <!--sidebar content-------------------------------------------------------->
     <nav class="sidebar close">
         <header>
@@ -144,16 +144,22 @@
         <input type="text" name="idLook" id="idLook" placeholder="Id de solicitud">
         <button id="search" type="submit" class="btn">Buscar</button>
     </div>
-
-    <div class="input-components">
-        <input type="text" name="id" id="id" placeholder="id" readonly>
-        <input type="date" name="startDate" id="startDate" value="2017-06-01"/>
-        <input type="date" name="finDate" id="finDate" value="2017-06-01"/>
+    <br><br>
+    <div class="input-components components">
+        <input type="text" name="id" id="id" placeholder="id" readonly> <br><br>
+        <div>Fecha de inicio:</div> 
+        <input class="form__input" type="date" name="startDate" id="startDate" value="2017-06-01"/> <br><br>
+        <div>Fecha de finalización:</div> 
+        <input class="form__input" type="date" name="finDate" id="finDate" value="2017-06-01"/><br><br>
         <input type="text" name="motivo" id="motivo" placeholder="Motivo de solicitud">
-        <button id="updateBtn" type="submit">Actualizar solicitud</button>
+        <br><br>
+        <button id="updateBtn" type="submit" class="btn">Actualizar</button>
+        <button id="deleteBtn" type="submit" class="btn">Eliminar</button>
     </div>
 
-    <button id="deleteBtn" type="submit">Eliminar solicitud</button>
+    
+
+    
     
     </div>
 </body>

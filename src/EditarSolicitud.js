@@ -1,8 +1,8 @@
 
 
 document.getElementById("search").onclick = async function() {
-    document.getElementById("loader").style.display = "block";
     let response = await loadInfo();
+    document.getElementById("loader").style.display = "block";
     if(response != "empty"){
         document.getElementById("id").value = response.id;
         document.getElementById("startDate").value = response.startDate;
@@ -16,8 +16,12 @@ document.getElementById("search").onclick = async function() {
 
 async function loadInfo(){
     var id = document.getElementById("idLook").value;
-    var response = await getSolicitudFuncionario(id);
-    return response;
+    if(!isNaN(id)){
+        var response = await getSolicitudFuncionario(id);
+        return response;
+    }else{
+        alert("El id debe ser un valor numérico")
+    } 
 }
 
 document.getElementById("updateBtn").onclick = function () {
