@@ -26,6 +26,14 @@ img.logo {
 	font-size: 1rem;
 }
 
+h2{
+    margin: 0.5em auto;
+	width: 100%;
+	font-size: 25px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
 a {
 	color: black;
 }
@@ -70,6 +78,11 @@ label{
 	font-size: 20px;
     font-weight: 500;
     color: var(--text-color);
+}
+
+select{
+	font-weight: 600;
+	color: var(--text-color);
 }
 
 #role *{
