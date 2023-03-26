@@ -72,6 +72,11 @@ label{
     color: var(--text-color);
 }
 
+#role *{
+    font-weight: 600;
+	background-color: var(--opposite-color);
+}
+
 .btn {
 	transition: all .5s ease;
 	width: 25%;
