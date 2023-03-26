@@ -16,3 +16,11 @@
     position: relative;
     bottom: -1em;
 }
+
+h2{
+    margin: 0.5em auto;
+	width: 100%;
+	font-size: 25px;
+    font-weight: 500;
+    color: var(--text-color);
+}
