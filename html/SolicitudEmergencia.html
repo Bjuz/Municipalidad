@@ -62,7 +62,7 @@
               </a>
             </li>
 
-            <li class="nav-link active">
+            <li class="nav-link">
               <a href="SolicitarVacaciones.html">
                 <i class="bx bx-calendar-plus icon"></i>
                 <span class="text nav-text">Solicitar vacaciones</span>
@@ -71,7 +71,7 @@
 
             <li class="nav-link">
               <a href="DetallesVacaciones.html">
-                <i class="bx bx-calendar-plus icon"></i>
+                <i class="bx bx-edit icon"></i>
                 <span class="text nav-text">Detalle vacaciones</span>
               </a>
             </li>
@@ -118,10 +118,10 @@
               </a>
             </li>
 
-            <li class="nav-link">
-              <a href="/html/SolicitudEmergencia.html">
+            <li class="nav-link active">
+              <a href="SolicitudEmergencia.html">
                 <i class="bx bx-calendar-plus icon"></i>
-                <span class="text nav-text">Solicitud de Emergencia</span>
+                <span class="text nav-text">Solicitar vacaciones</span>
               </a>
             </li>
           </ul>
@@ -163,7 +163,9 @@
       <h1 class="text">Solicitar vacaciones de Emergencia</h1>
       <div class="components">
         <div class="input-components">
-          <h2>Por favor, ingrese las fechas de inicio y fin de sus vacaciones</h2>
+          <h2>
+            Por favor, ingrese las fechas de inicio y fin de sus vacaciones
+          </h2>
           <form id="vacationForm" onsubmit="return getFormData()">
             <label for="firstDate">Fecha de inicio</label>
             <input
@@ -181,7 +183,14 @@
             />
             <br />
             <label for="motivo">Motivo de la emergencia</label>
-            <input class="form__input" type="text" name="motivo" id="motivo" placeholder="Ingrese su motivo"/> <br />
+            <input
+              class="form__input"
+              type="text"
+              name="motivo"
+              id="motivo"
+              placeholder="Ingrese su motivo"
+            />
+            <br />
 
             <button class="btn" id="sendData" type="submit">Solicitar</button>
           </form>
