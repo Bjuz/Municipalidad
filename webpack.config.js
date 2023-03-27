@@ -5,12 +5,16 @@ module.exports = {
 
   entry: {
     index: "./src/index.js",
+    CancelarVacaciones: "./src/CancelarVacaciones.js",
+    DetalleVacaciones: "./src/DetallesVacaciones.js",
+    EditarFuncionario: "./src/EditarFuncionario.js",
+    EditarSolicitud: "./src/EditarSolicitud.js",
     RegistroFuncionario: "./src/RegistroFuncionario.js",
     IngresarDiaFeriado: "./src/IngresarDiaFeriado.js",
-    EditarFuncionario: "./src/EditarFuncionario.js",
     Navbar: "./src/Navbar/Navbar.js",
-    DetalleVacaciones: "./src/DetallesVacaciones.js",
-    CancelarVacaciones: "./src/CancelarVacaciones.js",
+    
+    
+
   },
   // The location of the build folder described above
   output: {
