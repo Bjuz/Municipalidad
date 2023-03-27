@@ -4,21 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Solicitar vacaciones</title>
-
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-      crossorigin="anonymous"
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"
     />
-    <script
-      src="https://kit.fontawesome.com/fabe13b5d4.js"
-      crossorigin="anonymous"
+    <script src="https://kit.fontawesome.com/fabe13b5d4.js" crossorigin="anonymous"
     ></script>
-    <link
-      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
-      rel="stylesheet"
+    <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet"
     />
     <link rel="icon" type="image/x-icon" href="/media/logocanton.png" />
 
@@ -26,8 +16,7 @@
     <link rel="stylesheet" href="/Style/RegistroFuncionario.css" />
     <link rel="stylesheet" href="/Style/style.css" />
 
-    <!-- Calls JQuery-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Detalle de vacaciones</title>
   </head>
   <body>
     <nav class="sidebar close">
@@ -62,7 +51,7 @@
               </a>
             </li>
 
-            <li class="nav-link active">
+            <li class="nav-link">
               <a href="SolicitarVacaciones.html">
                 <i class="bx bx-calendar-plus icon"></i>
                 <span class="text nav-text">Solicitar vacaciones</span>
@@ -70,11 +59,12 @@
             </li>
 
             <li class="nav-link">
-              <a href="DetallesVacaciones.html">
-                <i class="bx bx-calendar-plus icon"></i>
-                <span class="text nav-text">Detalle vacaciones</span>
-              </a>
-            </li>
+                <a href="DetallesVacaciones.html">
+                  <i class="bx bx-calendar-plus icon"></i>
+                  <span class="text nav-text">Detalle vacaciones</span>
+                </a>
+              </li>
+
 
             <li class="nav-link">
               <a href="EditarSolicitud.html">
@@ -97,7 +87,7 @@
               </a>
             </li>
 
-            <li class="nav-link">
+            <li class="nav-link active">
               <a href="EditarFuncionario.html">
                 <i class="bx bx-edit icon"></i>
                 <span class="text nav-text">Editar empleado</span>
@@ -157,40 +147,12 @@
       </div>
     </nav>
 
-    <!--body content------------------------------------------------------------>
 
-    <div class="home">
-      <div class="text">Solicitar vacaciones de Emergencia</div>
-      <div class="components">
-        <div class="input-components">
-          <p>Por favor, ingrese las fechas de inicio y fin de sus vacaciones</p>
-          <form id="vacationForm" onsubmit="return getFormData()">
-            <label for="firstDate">Fecha de inicio</label>
-            <input
-              class="form__input"
-              type="date"
-              name="firstDate"
-              id="firstDate"
-            /><br />
-            <label for="finishDate">Fecha de fin</label>
-            <input
-              class="form__input"
-              type="date"
-              name="finishDate"
-              id="finishDate"
-            />
-            <br />
-            <label for="motivo">Motivo de la emergencia</label>
-            <input type="text" name="motivo" id="motivo" /> <br />
 
-            <button class="btn" id="sendData" type="submit">Solicitar</button>
-          </form>
-        </div>
-      </div>
-    </div>
 
-    <!-- Calls SolicitarVacaciones.js-->
-    <script src="../src/SolicitarVacaciones.js"></script>
+
+
+
     <script type="module" src="../dist/Navbar.bundle.js"></script>
   </body>
 </html>
