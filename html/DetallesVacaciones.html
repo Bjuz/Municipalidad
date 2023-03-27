@@ -4,11 +4,19 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
     />
-    <script src="https://kit.fontawesome.com/fabe13b5d4.js" crossorigin="anonymous"
+    <script
+      src="https://kit.fontawesome.com/fabe13b5d4.js"
+      crossorigin="anonymous"
     ></script>
-    <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet"
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
     />
     <link rel="icon" type="image/x-icon" href="/media/logocanton.png" />
 
@@ -59,12 +67,11 @@
             </li>
 
             <li class="nav-link">
-                <a href="DetallesVacaciones.html">
-                  <i class="bx bx-calendar-plus icon"></i>
-                  <span class="text nav-text">Detalle vacaciones</span>
-                </a>
-              </li>
-
+              <a href="DetallesVacaciones.html">
+                <i class="bx bx-calendar-plus icon"></i>
+                <span class="text nav-text">Detalle vacaciones</span>
+              </a>
+            </li>
 
             <li class="nav-link">
               <a href="EditarSolicitud.html">
@@ -147,12 +154,17 @@
       </div>
     </nav>
 
-
-
-
-
-
+    <div class="home">
+      <div class="text">Bienvenido al sistema SIGEVA</div>
+      <div class="components">
+        <div class="input-components">
+          <ul id="vacationsList"></ul>
+        </div>
+      </div>
+    </div>
 
     <script type="module" src="../dist/Navbar.bundle.js"></script>
+
+    <script src="/src/DetallesVacaciones.js"></script>
   </body>
 </html>
