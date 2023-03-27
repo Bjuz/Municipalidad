@@ -9,12 +9,10 @@ module.exports = {
     DetalleVacaciones: "./src/DetallesVacaciones.js",
     EditarFuncionario: "./src/EditarFuncionario.js",
     EditarSolicitud: "./src/EditarSolicitud.js",
-    RegistroFuncionario: "./src/RegistroFuncionario.js",
     IngresarDiaFeriado: "./src/IngresarDiaFeriado.js",
+    RegistroFuncionario: "./src/RegistroFuncionario.js",
+    SolicitarVacaciones: "./src/SolicitarVacaciones.js",
     Navbar: "./src/Navbar/Navbar.js",
-    
-    
-
   },
   // The location of the build folder described above
   output: {
