@@ -1,4 +1,4 @@
-document.getElementById("actionBtn").onclick = function() {
+document.getElementById("sendData").onclick = function() {
 
     var firstDate = document.getElementById("firstDate").value; 
     var finishDate = document.getElementById("finishDate").value; 

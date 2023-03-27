@@ -2,8 +2,9 @@
 //and the number of vacations an user has
 
 // Then, dinamically put the number of vacations in this variable
-//You can change number of the next value and debug see it working
-var numberOfVacations = 3;
+// You can change number of the next value and debug see it working
+//Remember to run 'npm run build' after changes
+var numberOfVacations = 5;
 
 // In case there are no vacations, alert shows up
 if (numberOfVacations == 0) {
@@ -29,6 +30,7 @@ if (numberOfVacations == 0) {
   }
 }
 
+
 document.getElementById("cancelButton").onclick = function () {
   var confirmation = confirm(
     "¿Está seguro que desea cancelar estas vacaciones"
@@ -45,3 +47,4 @@ document.getElementById("cancelButton").onclick = function () {
       optionSelected
   );
 };
+
