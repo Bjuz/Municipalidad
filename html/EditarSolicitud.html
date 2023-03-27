@@ -16,7 +16,7 @@
 
 </head>
 <body>
-    
+
     <!--sidebar content-------------------------------------------------------->
     <nav class="sidebar close">
         <header>
@@ -44,7 +44,7 @@
                 </li>
 
                 <ul class="menu-links my-menu" >
-                    
+
                     <li class="nav-link">
                         <a href="Inicio.html">
                             <i class='bx bx-home-alt icon' ></i>
@@ -119,14 +119,14 @@
             </div>
 
             <div class="bottom-content">
-                
+
                 <li class="profile">
                     <div class="profile-details">
                         <div class="text nav-text" id="NombreBar">Nombre empleado</div>
                         <div class="text nav-text" id="PuestoBar">Puesto</div>
                     </div>
                 </li>
-                
+
                 <li class="Logout" >
                     <a href="#">
                         <i class='bx bx-log-out icon' ></i>
@@ -145,35 +145,37 @@
                         <span class="switch"></span>
                     </div>
                 </li>
-                
+
             </div>
         </div>
     </nav>
 
     <!-- Page content -->
-    
+
     <div class="home">
 
-    
-    <div class="text">
-        <h2>Modificar Solicitud</h2>
-        <input type="text" name="idLook" id="idLook" placeholder="Id de solicitud">
-        <br>
-        <button id="search" type="submit" class="btn">Buscar</button>
-    </div>
-    <br><br>
-    <div class="input-components components">
-        <input type="text" name="id" id="id" placeholder="id" readonly> <br><br>
-        <h2>Fecha de inicio:</h2> 
-        <input class="form__input" type="date" name="startDate" id="startDate" value="2017-06-01"/> <br><br>
-        <h2>Fecha de finalización:</h2> 
-        <input class="form__input" type="date" name="finDate" id="finDate" value="2017-06-01"/><br><br>
-        <input type="text" name="motivo" id="motivo" placeholder="Motivo de solicitud">
-        <br><br>
-        <button id="updateBtn" type="submit" class="btn">Actualizar</button>
-        <button id="deleteBtn" type="submit" class="btn">Eliminar</button>
-    </div>
-    
+        <h1 class="text">
+            Editar solicitud de vacaciones
+        </h1>
+
+        <div class="components">
+            <div class="input-components">
+                <input class="form__input" type="text" name="idLook" id="idLook" placeholder="Id de solicitud">
+                <button id="search" type="submit" class="btn">Buscar</button>
+                <br><br>
+                <!-- <input class="form__input" type="text" name="id" id="id" placeholder="id" readonly> 
+                <br><br> -->
+                <h2>Fecha de inicio:</h2>
+                <input class="form__input" type="date" name="startDate" id="startDate" value="2017-06-01"/> <br><br>
+                <h2>Fecha de finalización:</h2>
+                <input class="form__input" type="date" name="finDate" id="finDate" value="2017-06-01"/><br><br>
+                <input class="form__input" type="text" name="motivo" id="motivo" placeholder="Motivo de solicitud">
+                <br><br>
+                <button id="updateBtn" type="submit" class="btn">Actualizar</button>
+                <button id="deleteBtn" type="submit" class="btn">Eliminar</button>
+            </div>
+        </div>
+
     </div>
 </body>
 
