@@ -80,6 +80,14 @@ label{
     color: var(--text-color);
 }
 
+ul{
+	margin: 0.5em auto;
+	width: 100%;
+	font-size: 17px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
 select{
 	font-weight: 600;
 	color: var(--text-color);
