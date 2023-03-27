@@ -12,6 +12,7 @@ module.exports = {
     IngresarDiaFeriado: "./src/IngresarDiaFeriado.js",
     RegistroFuncionario: "./src/RegistroFuncionario.js",
     SolicitarVacaciones: "./src/SolicitarVacaciones.js",
+    SolicitudEmergencia: "./src/SolicitudEmergencia.js",
     Navbar: "./src/Navbar/Navbar.js",
   },
   // The location of the build folder described above
