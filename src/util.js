@@ -91,8 +91,7 @@ export async function RegisterUser(
   password
 ) {
   var result = await Funcionarios(id,email);
-  if (result == "empty") {
-    var upn = await CreateANewUser(email,password);
+  if (result == "empty") {  
     const VarResponse = await Register(
       id,
       name,
@@ -104,8 +103,9 @@ export async function RegisterUser(
       role,
       entryTime,
       departureTime,
-      upn
+      id
     );
+    var upn = await CreateANewUser(email,password);
     return VarResponse;
   } else {
     return "El usuario ya existe";
@@ -274,6 +274,7 @@ export async function UpdateInfo(
   departureTime
 ) {
   var ref = doc(db, "users", ref);
+  console.log(ref);
   var response = await updateDoc(ref, {
     id,
     name,
@@ -303,12 +304,25 @@ export async function DeleteDocumentCreaded(ref) {
 }
 
 export async function DeleteDocu(ref) {
-  var test = deleteUser(ref).then(() => {
-    
+  console.log(ref);
+  var VarResponse = await DeleteUserCreaded(ref);
+  return VarResponse;/*
+  var test = await deleteUser(ref).then(async () => {
+   
+    //
   }).catch((error) => {
     console.log(error);
+    return error;
   });
+  return test;*/
+}
 
+export async function DeleteUserCreaded(ref) {
+  const VarResponse = await DeleteUser(ref);
+  return VarResponse;
+}
+
+export async function DeleteUser(ref){
   var resut = await deleteDoc(doc(db, "users", ref))
     .then(() => {
       console.log("Deleted");
@@ -318,8 +332,10 @@ export async function DeleteDocu(ref) {
       console.log(error);
       return error;
     });
-  return resut;
+    return resut;
 }
+
+
 
 export async function DeleteFeriadoCreaded(ref) {
   const VarResponse = await DeleteFer(ref);
@@ -393,15 +409,11 @@ export async function GetFuncionario(UID) {
   const docRef = doc(db, "users", UID);
   const docSnap = await getDoc(docRef);
 
-  if (docSnap.exists()) {
-    console.log("Document data:", docSnap.data());
-    return docSnap.data()
-  } else {
-    // doc.data() will be undefined in this case
+  if (!docSnap.exists()) {
     console.log("No such document!");
     return "No user found"
-  }
-
+  } 
+  return docSnap.data();
 
 }
 
@@ -409,4 +421,18 @@ export async function GetFuncionario(UID) {
 
 
 
+// Add Vacation
 
+export async function AddVacation(firstDate,LastDate,ref){
+  const VarResponse = await addValidVacation(firstDate,LastDate,ref);
+  return VarResponse;
+}
+
+export async function addValidVacation(firstDate1,LastDate1,ref){
+    const test2 =  await setDoc(doc(db, "Vacaciones", ref), {
+      firstDate1,
+      LastDate1,
+      ref
+    });
+    return "Vacation Added";
+}

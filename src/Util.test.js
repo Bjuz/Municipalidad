@@ -71,7 +71,7 @@ test(" Update user no existance ",  async ()=>{
 
 test(" Delete existance user",  async ()=>{
     var test =  await ObtenerFuncionarios("117840064","Jeaustin.rdz@gmail.com");
-
+    console.log(test);
     const result =  await DeleteDocumentCreaded(test.Ref);
     console.log(result)
     expect(result).toBe("Deleted");  // resultado esperado "Deleted"

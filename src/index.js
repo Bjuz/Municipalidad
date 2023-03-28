@@ -20,9 +20,11 @@ async function loggin() {
   if(text != "Correo o contraseña incorrecto."){
     localStorage.setItem("userLoggueado", text);
     location.href = "./html/EditarFuncionario.html";
+  }else{
+    alert(text);
   }
  
- alert(text);
+
   
 }
 

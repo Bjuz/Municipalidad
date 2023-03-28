@@ -18,6 +18,15 @@ if (numberOfVacations == 0) {
     ul.appendChild(li);
 
     // Here, you can add the details of one of the vacations user has
-    li.appendChild(document.createTextNode("Vacation" + i));
+    if(i == 1){
+      li.appendChild(document.createTextNode("Vacacion "+ i +" : " + "Fecha de inicio = 03/27/2023" + "Fecha finalizacion = 03/27/2023"));
+    }else if(i == 2){
+      li.appendChild(document.createTextNode("Vacacion "+ i +" : " + "Fecha de inicio = 03/28/2023" + "Fecha finalizacion = 03/29/2023"));
+    }else{
+      li.appendChild(document.createTextNode("Vacacion "+ i +" : "+ "Fecha de inicio = 03/30/2023" + "Fecha finalizacion = 03/31/2023"));
+    }
+    
   }
 }
+
+
