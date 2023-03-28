@@ -25,12 +25,12 @@ document.getElementById("sendData").onclick = async function () {
 
     var confirmation = confirm("¿Está seguro que desea solicitar vacaciones desde el " + firstDateFormatted.getDate() + " de " + firstDateFormatted.toLocaleString('es-ES', { month: 'long' }) + " hasta el " + finishDateFormatted.getDate() + " de " + finishDateFormatted.toLocaleString('es-ES', { month: 'long' }) + "?");
  
-    /*if (!confirmation) {
+    if (!confirmation) {
         document.getElementById("firstDate").value = "";
         document.getElementById("finishDate").value = "";
         alert("Solicitud cancelada");
         return "Solicitud cancelada";
-    }*/
+    }
    
     var ref = localStorage.getItem('userLoggueado');
     console.log(ref)
