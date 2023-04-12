@@ -422,17 +422,98 @@ export async function GetFuncionario(UID) {
 
 
 // Add Vacation
+export async function AddVacation(firstDate,LastDate,ref) {
+    const VarResponse = await addValidVacation(firstDate,LastDate,ref);
+    return VarResponse;
+}
 
-export async function AddVacation(firstDate,LastDate,ref){
-  const VarResponse = await addValidVacation(firstDate,LastDate,ref);
+export async function addValidVacation(firstDate,LastDate,ref) {
+  var funcionario = await ObtenerFuncionariosEmail(ref);
+  let fecha1 = new Date(firstDate);
+  let fecha2 = new Date(LastDate);
+  let diferencia = fecha2.getTime() - fecha1.getTime();
+  let diasDeDiferencia = diferencia / 1000 / 60 / 60 / 24;
+  console.log(diasDeDiferencia)
+  var Validacion = await RevisarVacaciones(firstDate,LastDate,funcionario,diasDeDiferencia);
+  var accumulatedDays = funcionario.accumulatedDays - diasDeDiferencia;
+  console.log(Validacion);
+  if(Validacion != "Vacaciones solicitadas con éxito"){
+    return Validacion;
+  }
+  let VacacionesActivas = [];
+  const VacacionSolicitada = {
+    firstDate,
+    LastDate
+  }
+
+  if(funcionario.VacacionesActivas){
+    VacacionesActivas = funcionario.VacacionesActivas;
+  }
+  VacacionesActivas.push(VacacionSolicitada);
+
+  var refUser = await doc(db, "users", ref);
+  console.log(refUser);
+  var response = await updateDoc(refUser, {
+    VacacionesActivas,
+    accumulatedDays,
+  })
+    .then(() => {
+      console.log("changes");
+      return "Vacaciones solicitadas con éxito";
+    })
+    .catch((error) => {
+      console.log(error);
+      return error;
+    });
+  return response;
+}
+
+export async function RevisarVacaciones(firstDate,LastDate,funcionario,diasDeDiferencia){
+  const VarResponse = await RevisarVacacionesFuncionario(firstDate,LastDate,funcionario,diasDeDiferencia);
   return VarResponse;
 }
 
-export async function addValidVacation(firstDate1,LastDate1,ref){
-    const test2 =  await setDoc(doc(db, "Vacaciones", ref), {
-      firstDate1,
-      LastDate1,
-      ref
-    });
-    return "Vacation Added";
+export async function VacacionesFuncionario(funcionario){
+  
+  let VacacionesActivas = [];
+  if(funcionario.VacacionesActivas){
+    VacacionesActivas = funcionario.VacacionesActivas;
+  }
+  return VacacionesActivas;
+}
+
+export async function RevisarVacacionesFuncionario(firstDate,LastDate,funcionario,diasDeDiferencia){
+  const Varresponse = await  VacacionesFuncionario(funcionario);
+  var validation;
+  
+  console.log(Varresponse);
+  if(!funcionario.accumulatedDays >= diasDeDiferencia){
+    return "No tienes suficientes vacaciones, Tienes: "+ funcionario.accumulatedDays + " y quieres solicitar "+ diasDeDiferencia;
+  }
+  if(!Varresponse){
+    return "Vacaciones solicitadas con éxito";
+  }
+ 
+
+  Varresponse.forEach(element =>{
+    if(element.firstDate == firstDate || ((element.firstDate <= firstDate) && (element.LastDate >= firstDate)) )
+    validation =  "Las vacaciones estan en un periodo que ya se encuentra como vacacion tomada, del "+ element.firstDate + " hasta "+ element.LastDate;
+  })
+
+  if(!validation){
+    validation =  "Vacaciones solicitadas con éxito";
+  }
+  return validation;
+}
+
+
+export async function RetornarVacaciones(ref){
+  var funcionario = await ObtenerFuncionariosEmail(ref);
+  const VarResponse = await VacacionesFuncionario(funcionario);
+  return VarResponse;
+}
+export async function RetornarCantidadVacaciones(ref){
+  var funcionario = await ObtenerFuncionariosEmail(ref);
+  const VarResponse = funcionario.accumulatedDays
+  return VarResponse;
 }

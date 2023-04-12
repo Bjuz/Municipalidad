@@ -3,30 +3,40 @@
 
 // Then, dinamically put the number of vacations in this variable
 //You can change number of the next value and debug see it working
-var numberOfVacations = 3;
+const { RetornarVacaciones } = require("./util");
+const { RetornarCantidadVacaciones } = require("./util");
 
-// In case there are no vacations, alert shows up
-if (numberOfVacations == 0) {
-  alert("Este usuario no tiene vacaciones solicitadas actualmente.");
-} else {
+
+window.addEventListener('DOMContentLoaded', async (event) => {
   var ul = document.getElementById("vacationsList");
   var li;
-
-  for (var i = 1; i <= numberOfVacations; i++) {
+  document.getElementById("loader").style.display = "block";
+  var ref = localStorage.getItem('userLoggueado');
+  const Vacations = await RetornarVacaciones(ref); // Retorna la cantidad de vacaciones disponibles
+  const CantidadDeVacaciones = await RetornarCantidadVacaciones(ref); // Retorna la lista de vacaciones
+  console.log(Vacations)
+  if (Vacations.length == 0) { //Valida el caso de que no tenga vacaciones
+    alert("Este usuario no tiene vacaciones solicitadas actualmente.");
     li = document.createElement("li");
-    li.setAttribute("id", "vacation" + i);
-    ul.appendChild(li);
-
-    // Here, you can add the details of one of the vacations user has
-    if(i == 1){
-      li.appendChild(document.createTextNode("Vacacion "+ i +" : " + "Fecha de inicio = 03/27/2023" + "Fecha finalizacion = 03/27/2023"));
-    }else if(i == 2){
-      li.appendChild(document.createTextNode("Vacacion "+ i +" : " + "Fecha de inicio = 03/28/2023" + "Fecha finalizacion = 03/29/2023"));
-    }else{
-      li.appendChild(document.createTextNode("Vacacion "+ i +" : "+ "Fecha de inicio = 03/30/2023" + "Fecha finalizacion = 03/31/2023"));
-    }
-    
+      li.setAttribute("id", "vacation" + i);
+      ul.appendChild(li);
+      li.appendChild(document.createTextNode("Este usuario no tiene vacaciones solicitadas actualmente. \n Cantidad de vacaciones actuales: " + CantidadDeVacaciones));
+  }else{//caso de que si tenga
+    var i = 0
+    li = document.createElement("li");
+      li.setAttribute("id", "vacation" + i);
+      ul.appendChild(li);
+      li.appendChild(document.createTextNode(" Cantidad de vacaciones actuales: " + CantidadDeVacaciones)); //Muestra la cantidad de dias acumulados
+    Vacations.forEach(element => { // Navega entre las vacaciones y las muestra
+      i+=1;
+      li = document.createElement("li");
+      li.setAttribute("id", "vacation" + i);
+      ul.appendChild(li);
+      li.appendChild(document.createTextNode("Vacacion "+ i +" : " + "Fecha de inicio = " + element.firstDate + " Fecha finalizacion = " + element.LastDate)); //inserta las vacaciones 
+    });
   }
-}
+ 
+  document.getElementById("loader").style.display = "none";
+});
 
 
