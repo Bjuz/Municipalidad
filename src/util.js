@@ -443,7 +443,8 @@ export async function addValidVacation(firstDate,LastDate,ref) {
   let VacacionesActivas = [];
   const VacacionSolicitada = {
     firstDate,
-    LastDate
+    LastDate,
+    Estado : "Esperando la aprobación del jefe directo"
   }
 
   if(funcionario.VacacionesActivas){

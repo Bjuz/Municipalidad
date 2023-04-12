@@ -32,7 +32,7 @@ window.addEventListener('DOMContentLoaded', async (event) => {
       li = document.createElement("li");
       li.setAttribute("id", "vacation" + i);
       ul.appendChild(li);
-      li.appendChild(document.createTextNode("Vacacion "+ i +" : " + "Fecha de inicio = " + element.firstDate + " Fecha finalizacion = " + element.LastDate)); //inserta las vacaciones 
+      li.appendChild(document.createTextNode("Vacacion "+ i +" : " + "Fecha de inicio = " + element.firstDate + " Fecha finalizacion = " + element.LastDate + " Estado: " + element.Estado)); //inserta las vacaciones 
     });
   }
  
