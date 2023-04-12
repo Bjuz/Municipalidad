@@ -4,47 +4,71 @@
 // Then, dinamically put the number of vacations in this variable
 // You can change number of the next value and debug see it working
 //Remember to run 'npm run build' after changes
-var numberOfVacations = 5;
+const { RetornarCantidadVacaciones } = require("./util");
+const { RetornarVacaciones } = require("./util");
+const { DeleteVacation } = require("./util");
 
-// In case there are no vacations, alert shows up
-if (numberOfVacations == 0) {
-  alert("Este usuario no tiene vacaciones solicitadas actualmente.");
-} else {
-  // If the user has vacations
-  var ul = document.getElementById("vacationsList");
-  var select = document.getElementById("vacationsDropdown");
-  var li, option;
+async function ReloadData(){
+  var ref = localStorage.getItem('userLoggueado');
+  const Vacations = await RetornarVacaciones(ref); // Retorna la cantidad de vacaciones disponibles
+  const CantidadDeVacaciones = await RetornarCantidadVacaciones(ref);
+  document.getElementById("DayAvailability").innerHTML = "";
+  document.getElementById("DayAvailability").innerHTML = "Sus dias disponibles son : " + CantidadDeVacaciones;
 
-  for (var i = 1; i <= numberOfVacations; i++) {
-    // ul element dinamically written
-    li = document.createElement("li");
-    li.setAttribute("id", "vacation" + i);
-    ul.appendChild(li);
-    li.appendChild(document.createTextNode("Vacation" + i));
+    // If the user has vacations
+    document.getElementById("vacationsList").innerHTML = "";
+    document.getElementById("vacationsDropdown").innerHTML = "";
+    var ul = document.getElementById("vacationsList");
 
-    // select element dinamically written
-    option = document.createElement("option");
-    option.setAttribute("id", "vacation" + i);
-    select.appendChild(option);
-    option.innerHTML = "vacation" + i;
-  }
+    var select = document.getElementById("vacationsDropdown");
+
+    var li, option, i=0;
+
+    Vacations.forEach(element => { // Navega entre las vacaciones y las muestra
+      
+      i+=1;
+      li = document.createElement("li");
+      li.setAttribute("id", "vacation" + i);
+      ul.appendChild(li);
+      li.appendChild(document.createTextNode("Vacacion "+ i +" : " + "Fecha de inicio = " + element.firstDate + " Fecha finalizacion = " + element.LastDate + " Estado: " + element.Estado)); //inserta las vacaciones 
+      if(element.Estado == "Cancelada"){
+        return ;
+      }
+      option = document.createElement("option");
+      option.setAttribute("value", element.firstDate + "|" + element.LastDate );
+      select.appendChild(option);
+      option.innerHTML = i +  ") Fecha de inicio = " + element.firstDate + " Fecha finalizacion = " + element.LastDate;
+    });
+  
+
+
 }
 
+window.addEventListener('DOMContentLoaded', async (event) => {
+  const result = await ReloadData();
+  
+})
 
-document.getElementById("cancelButton").onclick = function () {
+
+document.getElementById("cancelButton").onclick = async function () {
+  var optionSelected = document.getElementById("vacationsDropdown").value;
+  const myArray = optionSelected.split("|");
+  console.log(myArray)
+
   var confirmation = confirm(
-    "¿Está seguro que desea cancelar estas vacaciones"
+    "¿Está seguro que desea cancelar las vacaciones del "+ myArray[0] + " hasta "+ myArray[1]
   );
   if (!confirmation) {
-    return;
+    alert("Las vacaciones no fueron canceladas")
   }
-  var optionSelected = document.getElementById("vacationsDropdown").value;
+  
+  var ref = localStorage.getItem('userLoggueado');
+    var result = await DeleteVacation(myArray[0],myArray[1], ref);
+    console.log(result) 
 
   alert(
-    "Ha cancelado sus vacaciones desde " +
-      optionSelected +
-      " hasta " +
-      optionSelected
+    result
   );
+  const resultado = await ReloadData();
 };
 

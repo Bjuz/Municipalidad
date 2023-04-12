@@ -16,19 +16,6 @@ document.getElementById("sendData").onclick = async function () {
         alert("La fecha de inicio no puede ser mayor a la fecha de fin");
         return "La fecha de inicio no puede ser mayor a la fecha de fin";
     }
-
-    //Ask for confirmation from the user showing the dates formatting them to dd of month formatting month in spanish
-    var firstDateFormatted = new Date(firstDate);
-    var finishDateFormatted = new Date(finishDate);
-
-    //var confirmation = confirm("¿Está seguro que desea solicitar vacaciones desde el " + firstDateFormatted.getDate() + " de " + firstDateFormatted.toLocaleString('es-ES', { month: 'long' }) + " hasta el " + finishDateFormatted.getDate() + " de " + finishDateFormatted.toLocaleString('es-ES', { month: 'long' }) + "?");
-   
-    /*if (!confirmation) {
-        document.getElementById("firstDate").value = "";
-        document.getElementById("finishDate").value = "";
-        alert("Solicitud cancelada");
-        return "Solicitud cancelada";
-    }*/
    
     var ref = localStorage.getItem('userLoggueado');
     var result = await AddVacation(firstDate,finishDate, ref);

@@ -435,7 +435,7 @@ export async function addValidVacation(firstDate,LastDate,ref) {
   let diasDeDiferencia = diferencia / 1000 / 60 / 60 / 24;
   console.log(diasDeDiferencia)
   var Validacion = await RevisarVacaciones(firstDate,LastDate,funcionario,diasDeDiferencia);
-  var accumulatedDays = funcionario.accumulatedDays - diasDeDiferencia;
+  var accumulatedDays = funcionario.accumulatedDays - diasDeDiferencia -1;
   console.log(Validacion);
   if(Validacion != "Vacaciones solicitadas con éxito"){
     return Validacion;
@@ -469,10 +469,7 @@ export async function addValidVacation(firstDate,LastDate,ref) {
   return response;
 }
 
-export async function RevisarVacaciones(firstDate,LastDate,funcionario,diasDeDiferencia){
-  const VarResponse = await RevisarVacacionesFuncionario(firstDate,LastDate,funcionario,diasDeDiferencia);
-  return VarResponse;
-}
+
 
 export async function VacacionesFuncionario(funcionario){
   
@@ -481,6 +478,11 @@ export async function VacacionesFuncionario(funcionario){
     VacacionesActivas = funcionario.VacacionesActivas;
   }
   return VacacionesActivas;
+}
+
+export async function RevisarVacaciones(firstDate,LastDate,funcionario,diasDeDiferencia){
+  const VarResponse = await RevisarVacacionesFuncionario(firstDate,LastDate,funcionario,diasDeDiferencia);
+  return VarResponse;
 }
 
 export async function RevisarVacacionesFuncionario(firstDate,LastDate,funcionario,diasDeDiferencia){
@@ -497,7 +499,7 @@ export async function RevisarVacacionesFuncionario(firstDate,LastDate,funcionari
  
 
   Varresponse.forEach(element =>{
-    if(element.firstDate == firstDate || ((element.firstDate <= firstDate) && (element.LastDate >= firstDate)) )
+    if((element.firstDate == firstDate || ((element.firstDate <= firstDate) && (element.LastDate >= firstDate))) && element.Estado != "Cancelada" )
     validation =  "Las vacaciones estan en un periodo que ya se encuentra como vacacion tomada, del "+ element.firstDate + " hasta "+ element.LastDate;
   })
 
@@ -518,3 +520,58 @@ export async function RetornarCantidadVacaciones(ref){
   const VarResponse = funcionario.accumulatedDays
   return VarResponse;
 }
+
+
+
+//Delete Vacation
+export async function DeleteVacation(firstDate,LastDate,ref) {
+  const VarResponse = await DeleteValidVacation(firstDate,LastDate,ref);
+  return VarResponse;
+}
+
+export async function DeleteValidVacation(firstDate,LastDate,ref) {
+var funcionario = await ObtenerFuncionariosEmail(ref);
+let fecha1 = new Date(firstDate);
+  let fecha2 = new Date(LastDate);
+  let diferencia = fecha2.getTime() - fecha1.getTime();
+  let diasDeDiferencia = diferencia / 1000 / 60 / 60 / 24;
+
+var accumulatedDays = funcionario.accumulatedDays + diasDeDiferencia +1 ;
+
+//.splice (index, 1);
+
+let VacacionesActivas = [];
+const VacacionSolicitada = {
+  firstDate,
+  LastDate,
+  Estado : "Cancelada"
+}
+
+
+VacacionesActivas = funcionario.VacacionesActivas;
+const indiceElemento = VacacionesActivas.findIndex(el => el.firstDate == firstDate && el.LastDate == LastDate)
+VacacionesActivas.splice(indiceElemento, 1);
+console.log(VacacionesActivas);
+VacacionesActivas.push(VacacionSolicitada);
+console.log(VacacionesActivas);
+
+var refUser = await doc(db, "users", ref);
+console.log(refUser);
+var response = await updateDoc(refUser, {
+  VacacionesActivas,
+  accumulatedDays,
+})
+  .then(() => {
+    console.log("changes");
+    return "Las vacaciones desde" + firstDate + " hasta " + LastDate + " fueron canceladas con éxito";
+  })
+  .catch((error) => {
+    console.log(error);
+    return error;
+  });
+return response;
+}
+
+
+
+//End Delete Vacation
