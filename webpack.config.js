@@ -1,8 +1,8 @@
 const path = require("path");
+const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
+const webpack = require('webpack');
 
 module.exports = {
-  // The entry point file described above
-
   entry: {
     index: "./src/index.js",
     CancelarVacaciones: "./src/CancelarVacaciones.js",
@@ -15,12 +15,28 @@ module.exports = {
     SolicitudEmergencia: "./src/SolicitudEmergencia.js",
     Navbar: "./src/Navbar/Navbar.js",
   },
-  // The location of the build folder described above
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].bundle.js",
   },
-  // Optional and for development only. This provides the ability to
-  // map the built code back to the original source format when debugging.
   devtool: "eval-source-map",
+  plugins: [
+    new NodePolyfillPlugin(),
+    new webpack.ProvidePlugin({
+      'net': 'net'
+    })
+  ],
+  resolve: {
+    fallback: {
+      "fs": false,
+      "path": false,
+      "crypto": false,
+      "stream": false,
+      "util": false,
+      "assert": false,
+      "net": false,
+      "tls": false,
+      "child_process": false,
+    }
+  }
 };

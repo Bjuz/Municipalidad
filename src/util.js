@@ -13,7 +13,8 @@ import {
 import { Firestore, getFirestore } from "firebase/firestore";
 import { addDoc, deleteDoc } from "firebase/firestore";
 import { getDocs,setDoc , updateDoc, docSnap, doc, getDoc,  collection, query, where } from "firebase/firestore";
-import { identity } from "lodash";
+
+
 
 // TODO: Add SDKs for Firebase products that you want to usec
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -32,6 +33,27 @@ const firebaseApp = initializeApp({
 
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
+
+/*
+export async function DeleteUserAdmin(UID) {
+  const VarResponse = await DeleteUsers(UID);
+  return VarResponse;
+}
+
+export async function DeleteUsers(UID) {
+  const VarResponse = await firebase.auth().deleteUser(UID)
+  .then(() => {
+     console.log("User successfully deleted!");
+     return "User successfully deleted!";
+  })
+  .catch((error) => {
+     console.error("Error deleting user:", error);
+     return "Error deleting user: " + error.message;
+  });
+
+return VarResponse;
+}*/
+
 
 /*Inicio login*/
 export async function loginComplete(email, password) {
@@ -306,7 +328,9 @@ export async function DeleteDocumentCreaded(ref) {
 export async function DeleteDocu(ref) {
   console.log(ref);
   var VarResponse = await DeleteUserCreaded(ref);
-  return VarResponse;/*
+  return VarResponse;
+  
+  /*
   var test = await deleteUser(ref).then(async () => {
    
     //
@@ -575,3 +599,4 @@ return response;
 
 
 //End Delete Vacation
+
