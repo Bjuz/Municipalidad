@@ -156,25 +156,29 @@
 
     <div class="home">
       <h1 class="text">Detalles de Vacaciones</h1>
-      <div class="components">
-        <div class="input-components">
-          <ul id="vacationsList"></ul>
+      <!-- <div class="components">
+            <div class="input-components">
+              <ul id="vacationsList"></ul>
+            </div> -->
+      <cdb-iframe text>
+        <div class="table-responsive text">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th scope="col">N&#186; de Solicitud</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Fecha inicio</th>
+                <th scope="col">Fecha termina</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Añadir <tr> y <th> tags aquí -->
+            </tbody>
+            <caption>Cantidad de vacaciones actuales:</caption>
+          </table>
         </div>
-      </div>
     </div>
-
-    <div class="table-responsive">
-      <table class="table table-striped table-hover">
-        <caption>List of users</caption>
-        <thead>
-          <tr>
-            <th scope="col">N&#186; de Solicitud</th>
-            <th scope="col">Estado</th>
-            <th scope="col">Fecha de inicio</th>
-            <th scope="col">Decha </th>
-          </tr>
-        </thead>
-      </table>
+    </cdb-iframe>
     </div>
 
     <script type="module" src="../dist/Navbar.bundle.js"></script>
