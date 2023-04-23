@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Solicitud</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/fabe13b5d4.js" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" type="image/x-icon" href="/media/logocanton.png">
+
+    <link rel="stylesheet" href="/Style/Navbar.css"/>
+    <link rel="stylesheet" href="/Style/RegistroFuncionario.css"/>
+    <link rel="stylesheet" href="/Style/style.css">
+
+</head>
+<body>
+
+    <!--sidebar content-------------------------------------------------------->
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="/Media/logocanton.png" alt="">
+                </span>
+
+                <div class="text logo-text">
+                    <span class="name">SIGEVA</span>
+                    <span class="profession">Muncipalidad de</span>
+                    <span class="profession"> Santa Barbara</span>
+                </div>
+            </div>
+
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+
+                <li class="search-box">
+                    <i class='bx bx-search icon'></i>
+                    <input type="text" placeholder="Búsqueda...">
+                </li>
+
+                <ul class="menu-links my-menu" >
+
+                    <li class="nav-link">
+                        <a href="Inicio.html">
+                            <i class='bx bx-home-alt icon' ></i>
+                            <span class="text nav-text">Inicio</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="SolicitarVacaciones.html">
+                            <i class='bx bx-calendar-plus icon'></i>
+                            <span class="text nav-text">Solicitar vacaciones</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="DetallesVacaciones.html">
+                          <i class="bx bx-edit icon"></i>
+                          <span class="text nav-text">Detalle vacaciones</span>
+                        </a>
+                      </li>
+
+                    <li class="nav-link active">
+                        <a href="EditarSolicitud.html">
+                            <i class='bx bx-calendar-week icon'></i>
+                            <span class="text nav-text">Editar vacaciones</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="CancelarVacaciones.html">
+                            <i class='bx bx-calendar-x icon'></i>
+                            <span class="text nav-text">Cancelar vacaciones</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="RegistroFuncionario.html">
+                            <i class='bx bxs-user-plus icon'></i>
+                            <span class="text nav-text">Registro empleado</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="EditarFuncionario.html">
+                            <i class='bx bx-edit icon'></i>
+                            <span class="text nav-text">Editar empleado</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bxs-user-minus icon' ></i>
+                            <span class="text nav-text">Eliminar empleado</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="/html/IngresarDiaFeriado.html">
+                            <i class='bx bx-calendar-plus icon'></i>
+                            <span class="text nav-text">Ingresar feriados</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="/html/SolicitudEmergencia.html">
+                            <i class='bx bx-calendar-plus icon'></i>
+                            <span class="text nav-text">Solicitud de Emergencia</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+
+                <li class="profile">
+                    <div class="profile-details">
+                        <div class="text nav-text" id="NombreBar">Nombre empleado</div>
+                        <div class="text nav-text" id="PuestoBar">Puesto</div>
+                    </div>
+                </li>
+
+                <li class="Logout" >
+                    <a href="#">
+                        <i class='bx bx-log-out icon' ></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+
+                <li class="mode">
+                    <div class="sun-moon">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark mode</span>
+
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content -->
+
+    <div class="home">
+
+        <h1 class="text">
+            Editar solicitud de vacaciones
+        </h1>
+
+        <div class="components">
+            <div class="input-components">
+                <input class="form__input" type="text" name="idLook" id="idLook" placeholder="Id de solicitud">
+                <button id="search" type="submit" class="btn">Buscar</button>
+                <br><br>
+                <!-- <input class="form__input" type="text" name="id" id="id" placeholder="id" readonly> 
+                <br><br> -->
+                <h2>Fecha de inicio:</h2>
+                <input class="form__input" type="date" name="startDate" id="startDate" value="2017-06-01"/> <br><br>
+                <h2>Fecha de finalización:</h2>
+                <input class="form__input" type="date" name="finDate" id="finDate" value="2017-06-01"/><br><br>
+                <input class="form__input" type="text" name="motivo" id="motivo" placeholder="Motivo de solicitud">
+                <br><br>
+                <button id="updateBtn" type="submit" class="btn">Actualizar</button>
+                 </div>
+        </div>
+
+    </div>
+</body>
+
+
+<script type="module" src="/src/EditarSolicitud.js"></script>
+<script type="module" src="../dist/Navbar.bundle.js"></script>
+</html>
