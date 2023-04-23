@@ -5,6 +5,9 @@ const { signOutCurrentUser } = require("./util");
 
 
 
+
+
+
 document.getElementById("Search").onclick = async function () {
   //document.getElementById("loader").style.display = "block";
   let test = await loadInfo();
@@ -23,7 +26,6 @@ document.getElementById("Search").onclick = async function () {
   const $select = document.getElementById("role");
   const $options = Array.from($select.options);
   const optionToSelect = $options.find((item) => item.text === text);
-  optionToSelect.selected = true;
   }else{
     alert("usuario no encontrado")
   }
@@ -39,6 +41,7 @@ async function loadInfo() {
 document.getElementById("sendData").onclick = function () {
   UpdateUser();
 };
+
 
 
 
