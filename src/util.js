@@ -12,9 +12,17 @@ import {
 } from "firebase/auth";
 import { Firestore, getFirestore } from "firebase/firestore";
 import { addDoc, deleteDoc } from "firebase/firestore";
-import { getDocs,setDoc , updateDoc, docSnap, doc, getDoc,  collection, query, where } from "firebase/firestore";
-
-
+import {
+  getDocs,
+  setDoc,
+  updateDoc,
+  docSnap,
+  doc,
+  getDoc,
+  collection,
+  query,
+  where,
+} from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to usec
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -54,7 +62,6 @@ export async function DeleteUsers(UID) {
 return VarResponse;
 }*/
 
-
 /*Inicio login*/
 export async function loginComplete(email, password) {
   const login = await LoginFb(email, password);
@@ -73,7 +80,6 @@ export async function LoginFb(email, password) {
 
   return test;
 }
-
 
 /*Fin login*/
 
@@ -112,8 +118,8 @@ export async function RegisterUser(
   departureTime,
   password
 ) {
-  var result = await Funcionarios(id,email);
-  if (result == "empty") {  
+  var result = await Funcionarios(id, email);
+  if (result == "empty") {
     const VarResponse = await Register(
       id,
       name,
@@ -127,7 +133,7 @@ export async function RegisterUser(
       departureTime,
       id
     );
-    var upn = await CreateANewUser(email,password);
+    var upn = await CreateANewUser(email, password);
     return VarResponse;
   } else {
     return "El usuario ya existe";
@@ -147,7 +153,7 @@ export async function Register(
   departureTime,
   upn
 ) {
-  const test2 =  await setDoc(doc(db, "users", upn), {
+  const test2 = await setDoc(doc(db, "users", upn), {
     id,
     name,
     email,
@@ -217,6 +223,15 @@ async function LoadDb() {
   const data = querySnapshot.docs.map((doc) => ({
     ...doc.data(),
   }));
+  return data;
+}
+
+export async function LoadUsers() {
+  const querySnapshot = await getDocs(collection(db, "users"));
+  const data = querySnapshot.docs.map((doc) => ({
+    ...doc.data(),
+  }));
+
   return data;
 }
 
@@ -329,7 +344,7 @@ export async function DeleteDocu(ref) {
   console.log(ref);
   var VarResponse = await DeleteUserCreaded(ref);
   return VarResponse;
-  
+
   /*
   var test = await deleteUser(ref).then(async () => {
    
@@ -346,7 +361,7 @@ export async function DeleteUserCreaded(ref) {
   return VarResponse;
 }
 
-export async function DeleteUser(ref){
+export async function DeleteUser(ref) {
   var resut = await deleteDoc(doc(db, "users", ref))
     .then(() => {
       console.log("Deleted");
@@ -356,10 +371,8 @@ export async function DeleteUser(ref){
       console.log(error);
       return error;
     });
-    return resut;
+  return resut;
 }
-
-
 
 export async function DeleteFeriadoCreaded(ref) {
   const VarResponse = await DeleteFer(ref);
@@ -379,50 +392,47 @@ export async function DeleteFer(ref) {
   return result;
 }
 
-
 export async function signOutCurrentUser() {
   var result = await SignOutUser();
   return result;
 }
 
-export async function SignOutUser(){
+export async function SignOutUser() {
   var result = await signOut(auth)
     .then(() => {
-      return "Sign out successful"
+      return "Sign out successful";
     })
     .catch((error) => {
-      return "Error " + error.message ;
+      return "Error " + error.message;
     });
-    return result;
+  return result;
 }
 
-export async function UserCurrentState(){
+export async function UserCurrentState() {
   const VarResponse = auth.currentUser;
-  if(VarResponse){
+  if (VarResponse) {
     return "Usuario logueado";
   }
   return VarResponse;
 }
 
-
-export async function CreateANewUser(email, password){
+export async function CreateANewUser(email, password) {
   var result = await CreateUser(email, password);
-    return result;
-}
-
-export async function CreateUser(email,password){
-  var result = await createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-   return userCredential.user.uid
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    return errorMessage;
-  });
   return result;
 }
 
+export async function CreateUser(email, password) {
+  var result = await createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      return userCredential.user.uid;
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      return errorMessage;
+    });
+  return result;
+}
 
 export async function ObtenerFuncionariosEmail(UID) {
   const VarResponse = await GetFuncionario(UID);
@@ -435,43 +445,45 @@ export async function GetFuncionario(UID) {
 
   if (!docSnap.exists()) {
     console.log("No such document!");
-    return "No user found"
-  } 
+    return "No user found";
+  }
   return docSnap.data();
-
 }
 
 // Comment the code because the btn LoggoutBTn was deleted from the codes in case you need to active again,
 
-
-
 // Add Vacation
-export async function AddVacation(firstDate,LastDate,ref) {
-    const VarResponse = await addValidVacation(firstDate,LastDate,ref);
-    return VarResponse;
+export async function AddVacation(firstDate, LastDate, ref) {
+  const VarResponse = await addValidVacation(firstDate, LastDate, ref);
+  return VarResponse;
 }
 
-export async function addValidVacation(firstDate,LastDate,ref) {
+export async function addValidVacation(firstDate, LastDate, ref) {
   var funcionario = await ObtenerFuncionariosEmail(ref);
   let fecha1 = new Date(firstDate);
   let fecha2 = new Date(LastDate);
   let diferencia = fecha2.getTime() - fecha1.getTime();
   let diasDeDiferencia = diferencia / 1000 / 60 / 60 / 24;
-  console.log(diasDeDiferencia)
-  var Validacion = await RevisarVacaciones(firstDate,LastDate,funcionario,diasDeDiferencia);
-  var accumulatedDays = funcionario.accumulatedDays - diasDeDiferencia -1;
+  console.log(diasDeDiferencia);
+  var Validacion = await RevisarVacaciones(
+    firstDate,
+    LastDate,
+    funcionario,
+    diasDeDiferencia
+  );
+  var accumulatedDays = funcionario.accumulatedDays - diasDeDiferencia - 1;
   console.log(Validacion);
-  if(Validacion != "Vacaciones solicitadas con éxito"){
+  if (Validacion != "Vacaciones solicitadas con éxito") {
     return Validacion;
   }
   let VacacionesActivas = [];
   const VacacionSolicitada = {
     firstDate,
     LastDate,
-    Estado : "Esperando la aprobación del jefe directo"
-  }
+    Estado: "Esperando la aprobación del jefe directo",
+  };
 
-  if(funcionario.VacacionesActivas){
+  if (funcionario.VacacionesActivas) {
     VacacionesActivas = funcionario.VacacionesActivas;
   }
   VacacionesActivas.push(VacacionSolicitada);
@@ -493,110 +505,135 @@ export async function addValidVacation(firstDate,LastDate,ref) {
   return response;
 }
 
-
-
-export async function VacacionesFuncionario(funcionario){
-  
+export async function VacacionesFuncionario(funcionario) {
   let VacacionesActivas = [];
-  if(funcionario.VacacionesActivas){
+  if (funcionario.VacacionesActivas) {
     VacacionesActivas = funcionario.VacacionesActivas;
   }
   return VacacionesActivas;
 }
 
-export async function RevisarVacaciones(firstDate,LastDate,funcionario,diasDeDiferencia){
-  const VarResponse = await RevisarVacacionesFuncionario(firstDate,LastDate,funcionario,diasDeDiferencia);
+export async function RevisarVacaciones(
+  firstDate,
+  LastDate,
+  funcionario,
+  diasDeDiferencia
+) {
+  const VarResponse = await RevisarVacacionesFuncionario(
+    firstDate,
+    LastDate,
+    funcionario,
+    diasDeDiferencia
+  );
   return VarResponse;
 }
 
-export async function RevisarVacacionesFuncionario(firstDate,LastDate,funcionario,diasDeDiferencia){
-  const Varresponse = await  VacacionesFuncionario(funcionario);
+export async function RevisarVacacionesFuncionario(
+  firstDate,
+  LastDate,
+  funcionario,
+  diasDeDiferencia
+) {
+  const Varresponse = await VacacionesFuncionario(funcionario);
   var validation;
-  
+
   console.log(Varresponse);
-  if(!funcionario.accumulatedDays >= diasDeDiferencia){
-    return "No tienes suficientes vacaciones, Tienes: "+ funcionario.accumulatedDays + " y quieres solicitar "+ diasDeDiferencia;
+  if (!funcionario.accumulatedDays >= diasDeDiferencia) {
+    return (
+      "No tienes suficientes vacaciones, Tienes: " +
+      funcionario.accumulatedDays +
+      " y quieres solicitar " +
+      diasDeDiferencia
+    );
   }
-  if(!Varresponse){
+  if (!Varresponse) {
     return "Vacaciones solicitadas con éxito";
   }
- 
 
-  Varresponse.forEach(element =>{
-    if((element.firstDate == firstDate || ((element.firstDate <= firstDate) && (element.LastDate >= firstDate))) && element.Estado != "Cancelada" )
-    validation =  "Las vacaciones estan en un periodo que ya se encuentra como vacacion tomada, del "+ element.firstDate + " hasta "+ element.LastDate;
-  })
+  Varresponse.forEach((element) => {
+    if (
+      (element.firstDate == firstDate ||
+        (element.firstDate <= firstDate && element.LastDate >= firstDate)) &&
+      element.Estado != "Cancelada"
+    )
+      validation =
+        "Las vacaciones estan en un periodo que ya se encuentra como vacacion tomada, del " +
+        element.firstDate +
+        " hasta " +
+        element.LastDate;
+  });
 
-  if(!validation){
-    validation =  "Vacaciones solicitadas con éxito";
+  if (!validation) {
+    validation = "Vacaciones solicitadas con éxito";
   }
   return validation;
 }
 
-
-export async function RetornarVacaciones(ref){
+export async function RetornarVacaciones(ref) {
   var funcionario = await ObtenerFuncionariosEmail(ref);
   const VarResponse = await VacacionesFuncionario(funcionario);
   return VarResponse;
 }
-export async function RetornarCantidadVacaciones(ref){
+export async function RetornarCantidadVacaciones(ref) {
   var funcionario = await ObtenerFuncionariosEmail(ref);
-  const VarResponse = funcionario.accumulatedDays
+  const VarResponse = funcionario.accumulatedDays;
   return VarResponse;
 }
-
-
 
 //Delete Vacation
-export async function DeleteVacation(firstDate,LastDate,ref) {
-  const VarResponse = await DeleteValidVacation(firstDate,LastDate,ref);
+export async function DeleteVacation(firstDate, LastDate, ref) {
+  const VarResponse = await DeleteValidVacation(firstDate, LastDate, ref);
   return VarResponse;
 }
 
-export async function DeleteValidVacation(firstDate,LastDate,ref) {
-var funcionario = await ObtenerFuncionariosEmail(ref);
-let fecha1 = new Date(firstDate);
+export async function DeleteValidVacation(firstDate, LastDate, ref) {
+  var funcionario = await ObtenerFuncionariosEmail(ref);
+  let fecha1 = new Date(firstDate);
   let fecha2 = new Date(LastDate);
   let diferencia = fecha2.getTime() - fecha1.getTime();
   let diasDeDiferencia = diferencia / 1000 / 60 / 60 / 24;
 
-var accumulatedDays = funcionario.accumulatedDays + diasDeDiferencia +1 ;
+  var accumulatedDays = funcionario.accumulatedDays + diasDeDiferencia + 1;
 
-//.splice (index, 1);
+  //.splice (index, 1);
 
-let VacacionesActivas = [];
-const VacacionSolicitada = {
-  firstDate,
-  LastDate,
-  Estado : "Cancelada"
-}
+  let VacacionesActivas = [];
+  const VacacionSolicitada = {
+    firstDate,
+    LastDate,
+    Estado: "Cancelada",
+  };
 
+  VacacionesActivas = funcionario.VacacionesActivas;
+  const indiceElemento = VacacionesActivas.findIndex(
+    (el) => el.firstDate == firstDate && el.LastDate == LastDate
+  );
+  VacacionesActivas.splice(indiceElemento, 1);
+  console.log(VacacionesActivas);
+  VacacionesActivas.push(VacacionSolicitada);
+  console.log(VacacionesActivas);
 
-VacacionesActivas = funcionario.VacacionesActivas;
-const indiceElemento = VacacionesActivas.findIndex(el => el.firstDate == firstDate && el.LastDate == LastDate)
-VacacionesActivas.splice(indiceElemento, 1);
-console.log(VacacionesActivas);
-VacacionesActivas.push(VacacionSolicitada);
-console.log(VacacionesActivas);
-
-var refUser = await doc(db, "users", ref);
-console.log(refUser);
-var response = await updateDoc(refUser, {
-  VacacionesActivas,
-  accumulatedDays,
-})
-  .then(() => {
-    console.log("changes");
-    return "Las vacaciones desde" + firstDate + " hasta " + LastDate + " fueron canceladas con éxito";
+  var refUser = await doc(db, "users", ref);
+  console.log(refUser);
+  var response = await updateDoc(refUser, {
+    VacacionesActivas,
+    accumulatedDays,
   })
-  .catch((error) => {
-    console.log(error);
-    return error;
-  });
-return response;
+    .then(() => {
+      console.log("changes");
+      return (
+        "Las vacaciones desde" +
+        firstDate +
+        " hasta " +
+        LastDate +
+        " fueron canceladas con éxito"
+      );
+    })
+    .catch((error) => {
+      console.log(error);
+      return error;
+    });
+  return response;
 }
-
-
 
 //End Delete Vacation
-
