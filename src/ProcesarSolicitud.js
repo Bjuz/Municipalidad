@@ -9,24 +9,43 @@ window.addEventListener("DOMContentLoaded", async (event) => {
   // Call the tbody element called 'tableBody'
   const tableBody = document.getElementById("tableBody");
 
-  /* // Creates a 'tr' element 
-    const tr = document.createElement("tr");
-    tableBody.appendChild(tr);
-
-    // Creates a 'td' element
-    const td = document.createElement("td");
-    tr.appendChild(td);
-    // Dummy data 
-    td.innerHTML = "Dummy data";*/
-
-  // Now, some users has an internal array called 'VacacionesActivas'
-  // that contains the vacations that the user has requested
-  // and are waiting for approval
-
   // Verify if the user has this internal array
-  users.forEach((user) => {
+  users.forEach((user) => { 
     if (user.hasOwnProperty("VacacionesActivas")) {
-      const tr = document.createElement("tr");
+      // I need to add a row for each vacation
+      const vacations = user.VacacionesActivas;
+      vacations.forEach((vacation) => {
+        // Create a row
+        const tr = document.createElement("tr");
+        tableBody.appendChild(tr);
+        // Create the columns
+        //const tdNumeroSolcitud = document.createElement("td");
+        const tdNombre = document.createElement("td");
+        const tdEstado = document.createElement("td");
+        const tdFechaInicio = document.createElement("td");
+        const tdFechaFin = document.createElement("td");
+        // Add the columns to the row
+        //tr.appendChild(tdNumeroSolcitud);
+        tr.appendChild(tdNombre);
+        tr.appendChild(tdEstado);
+        tr.appendChild(tdFechaInicio);
+        tr.appendChild(tdFechaFin);
+        // Add the data to the columns
+        //tdNumeroSolcitud.textContent = vacation.id;
+        tdNombre.textContent = user.name;
+        tdEstado.textContent = vacation.Estado;
+        tdFechaInicio.textContent = vacation.firstDate;
+        tdFechaFin.textContent = vacation.LastDate;
+      });
+      
+    }
+
+    
+  });
+});
+
+
+/* const tr = document.createElement("tr");
       tableBody.appendChild(tr);
       //const tdNumeroSolcitud = document.createElement("td");
       const tdNombre = document.createElement("td");
@@ -45,26 +64,23 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         tdEstado.textContent = vacation.Estado;
         tdFechaInicio.textContent = vacation.firstDate;
         tdFechaFin.textContent = vacation.LastDate;
+      }); */
+  
+
+  
+
+  
+
+function getListOfVacations(users){
+  var nVacations = 0;
+
+  users.forEach((user) => {
+    if (user.hasOwnProperty("VacacionesActivas")) {
+      const vacations = user.VacacionesActivas;
+      vacations.forEach((vacation) => {
+        nVacations++;
       });
     }
-
-    /*if (user.hasOwnProperty("VacacionesActivas")) {
-      // If the user has this internal array, I need to verify if it has any vacations waiting for approval
-      // Verify if the user has any vacations waiting for approval
-      const tr = document.createElement("tr");
-      tableBody.appendChild(tr);
-      //const tdNumeroSolcitud = document.createElement("td");
-      const tdNombre = document.createElement("td");
-      const tdEstado = document.createElement("td");
-      const tdFechaInicio = document.createElement("td");
-      const tdFechaFin = document.createElement("td");
-
-      foreach(vacation in user.VacacionesActivas);
-      {
-        tdNombre.innerHTML(user.Nombre);
-        tdEstado.innerHTML(vacation.Estado);
-        tdFechaInicio.innerHTML(vacation.firtDate);
-        tdFechaFin.innerHTML(vacation.LastDate);
-      }*/
   });
-});
+  return nVacations;
+}
