@@ -1,6 +1,6 @@
 const path = require("path");
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
-const webpack = require('webpack');
+const webpack = require("webpack");
 
 module.exports = {
   entry: {
@@ -14,6 +14,7 @@ module.exports = {
     SolicitarVacaciones: "./src/SolicitarVacaciones.js",
     SolicitudEmergencia: "./src/SolicitudEmergencia.js",
     Navbar: "./src/Navbar/Navbar.js",
+    ProcesarSolicitud: "./src/ProcesarSolicitud.js",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -23,20 +24,20 @@ module.exports = {
   plugins: [
     new NodePolyfillPlugin(),
     new webpack.ProvidePlugin({
-      'net': 'net'
-    })
+      net: "net",
+    }),
   ],
   resolve: {
     fallback: {
-      "fs": false,
-      "path": false,
-      "crypto": false,
-      "stream": false,
-      "util": false,
-      "assert": false,
-      "net": false,
-      "tls": false,
-      "child_process": false,
-    }
-  }
+      fs: false,
+      path: false,
+      crypto: false,
+      stream: false,
+      util: false,
+      assert: false,
+      net: false,
+      tls: false,
+      child_process: false,
+    },
+  },
 };
