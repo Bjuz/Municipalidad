@@ -1,0 +1,10 @@
+{
+    "service": "gmail",
+    "auth": {
+      "type": "OAuth2",
+      "user": "notificacion.santabarbara@gmail.com",
+      "clientId": "519309772785-ulnt6odgt2rhjat7pugbv0pf56e5ce5c.apps.googleusercontent.com",
+      "clientSecret": "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",
+      "refreshToken": "1//04hf902hkzzu_CgYIARAAGAQSNwF-L9IrpFTKyb6Z5ls7-yuAgldsg8bmSIMZa7fSl4PUcC1amxiQfK3cTZyagn7eqjt4c5l0_Gs"
+    }
+  }
