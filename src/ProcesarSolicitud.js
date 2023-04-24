@@ -1,5 +1,7 @@
 const { LoadUsers } = require("./util");
 
+
+
 // Global variable that will contain the users with vacations data from the database
 const vacationUsers = [];
 
@@ -10,17 +12,17 @@ window.addEventListener("DOMContentLoaded", async (event) => {
   // Load users
   const users = await LoadUsers();
 
- 
+
 
   // Call the tbody element called 'tableBody'
   const tableBody = document.getElementById("tableBody");
   // Verify if the user has this internal array
   var i = 0;
 
-  users.forEach((user) => { 
+  users.forEach((user) => {
     if (user.hasOwnProperty("VacacionesActivas")) {
 
-      vacationUsers.push(user); 
+      vacationUsers.push(user);
       // Add a row for each vacation
       const vacations = user.VacacionesActivas;
       vacations.forEach((vacation) => {
@@ -36,16 +38,16 @@ window.addEventListener("DOMContentLoaded", async (event) => {
 
         //Finally add two buttons to the row in the last column
         const tdButtons = document.createElement("td");
-        
+
 
         const btnAprobar = document.createElement("button");
-        btnAprobar.setAttribute("id", "btnAprobar"+i);
-        btnAprobar.setAttribute("value", user.id+"|"+vacation.firstDate+"|"+vacation.LastDate);
+        btnAprobar.setAttribute("id", "btnAprobar" + i);
+        btnAprobar.setAttribute("value", user.id + "|" + vacation.firstDate + "|" + vacation.LastDate);
 
         const btnRechazar = document.createElement("button");
-        btnRechazar.setAttribute("id", "btnRechazar"+i);
-        btnAprobar.setAttribute("value", user.id+"|"+vacation.firstDate+"|"+vacation.LastDate);
-        
+        btnRechazar.setAttribute("id", "btnRechazar" + i);
+        btnAprobar.setAttribute("value", user.id + "|" + vacation.firstDate + "|" + vacation.LastDate);
+
 
         btnAprobar.textContent = "Aprobar";
         btnRechazar.textContent = "Rechazar";
@@ -67,7 +69,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         tdFechaInicio.textContent = vacation.firstDate;
         tdFechaFin.textContent = vacation.LastDate;
         i++;
-      }); 
+      });
     }
   });
 });
@@ -79,28 +81,19 @@ window.addEventListener("click", async (event) => {
 
   // If the button id starts with btnAprobar
   if (buttonId.startsWith("btnAprobar")) {
-    // Change the state of the vacation in the database
-    
+    // Get the button value that is the user id, the first date and the last date
+    const userIdAndDates = event.target.value;
 
-  }else{
+    const user = vacationUsers.find((user) => user.id === userIdAndDates.split("|")[0]);
+
+
+
+
+
+  } else if (buttonId.startsWith("btnRechazar")) {
     // If the button id starts with btnRechazar
-    
+
   }
 
 });
 
-  
-/*
-function getListOfVacations(users){
-  var vacations = [];
-
-  users.forEach((user) => {
-    if (user.hasOwnProperty("VacacionesActivas")) {
-      const vacations = user.VacacionesActivas;
-      vacations.forEach((vacation) => {
-        vacations.push(vacation);
-      });
-    }
-  });
-  return nVacations;
-}*/
