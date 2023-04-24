@@ -16,7 +16,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
   users.forEach((user) => { 
     if (user.hasOwnProperty("VacacionesActivas")) {
 
-      // I need to add a row for each vacation
+      // Add a row for each vacation
       const vacations = user.VacacionesActivas;
       vacations.forEach((vacation) => {
         // Create a row
@@ -29,14 +29,14 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         const tdFechaInicio = document.createElement("td");
         const tdFechaFin = document.createElement("td");
 
-        //Finally add to buttons to the row in the last column
+        //Finally add two buttons to the row in the last column
         const tdButtons = document.createElement("td");
-        const btnAprobar = document.createElement("button");
-        const btnRechazar = document.createElement("button");
 
-        // Also, this buttons need to have an id, the 'i' variable will help us to identify the row
-        btnAprobar.id = "btnAprobar" + i;
-        btnRechazar.id = "btnRechazar" + i;
+        const btnAprobar = document.createElement("button");
+        btnAprobar.setAttribute("id", "btnAprobar"+i);
+
+        const btnRechazar = document.createElement("button");
+        btnRechazar.setAttribute("id", "btnRechazar"+i);
 
         btnAprobar.textContent = "Aprobar";
         btnRechazar.textContent = "Rechazar";
@@ -57,14 +57,29 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         tdEstado.textContent = vacation.Estado;
         tdFechaInicio.textContent = vacation.firstDate;
         tdFechaFin.textContent = vacation.LastDate;
+        i++;
       }); 
     }
   });
 });
 
+// When a button is clicked
+window.addEventListener("click", async (event) => {
+  // Get the button id
+  const buttonId = event.target.id;
+
+  // If the button id starts with btnAprobar
+  if (buttonId.startsWith("btnAprobar")) {
+
+  }else{
+    // If the button id starts with btnRechazar
+    
+  }
+
+});
 
   
-
+/*
 function getListOfVacations(users){
   var vacations = [];
 
@@ -77,4 +92,4 @@ function getListOfVacations(users){
     }
   });
   return nVacations;
-}
+}*/
