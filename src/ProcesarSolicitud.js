@@ -1,5 +1,7 @@
 const { LoadUsers } = require("./util");
 
+// Global variable that will contain the users with vacations data from the database
+const vacationUsers = [];
 
 // Load users data and generates the table
 window.addEventListener("DOMContentLoaded", async (event) => {
@@ -7,6 +9,8 @@ window.addEventListener("DOMContentLoaded", async (event) => {
 
   // Load users
   const users = await LoadUsers();
+
+ 
 
   // Call the tbody element called 'tableBody'
   const tableBody = document.getElementById("tableBody");
@@ -16,6 +20,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
   users.forEach((user) => { 
     if (user.hasOwnProperty("VacacionesActivas")) {
 
+      vacationUsers.push(user); 
       // Add a row for each vacation
       const vacations = user.VacacionesActivas;
       vacations.forEach((vacation) => {
@@ -31,12 +36,16 @@ window.addEventListener("DOMContentLoaded", async (event) => {
 
         //Finally add two buttons to the row in the last column
         const tdButtons = document.createElement("td");
+        
 
         const btnAprobar = document.createElement("button");
         btnAprobar.setAttribute("id", "btnAprobar"+i);
+        btnAprobar.setAttribute("value", user.id+"|"+vacation.firstDate+"|"+vacation.LastDate);
 
         const btnRechazar = document.createElement("button");
         btnRechazar.setAttribute("id", "btnRechazar"+i);
+        btnAprobar.setAttribute("value", user.id+"|"+vacation.firstDate+"|"+vacation.LastDate);
+        
 
         btnAprobar.textContent = "Aprobar";
         btnRechazar.textContent = "Rechazar";
@@ -70,6 +79,8 @@ window.addEventListener("click", async (event) => {
 
   // If the button id starts with btnAprobar
   if (buttonId.startsWith("btnAprobar")) {
+    // Change the state of the vacation in the database
+    
 
   }else{
     // If the button id starts with btnRechazar
