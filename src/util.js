@@ -119,7 +119,8 @@ export async function RegisterUser(
   password
 ) {
   var result = await Funcionarios(id, email);
-  if (result == "empty") {
+  var upn = await CreateANewUser(email, password);
+  if (result == "empty" && upn != "Usuario ya existe") {
     const VarResponse = await Register(
       id,
       name,
@@ -131,9 +132,9 @@ export async function RegisterUser(
       role,
       entryTime,
       departureTime,
-      id
+      upn,
     );
-    var upn = await CreateANewUser(email, password);
+    
     return VarResponse;
   } else {
     return "El usuario ya existe";
@@ -429,7 +430,7 @@ export async function CreateUser(email, password) {
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      return errorMessage;
+      return "Usuario ya existe";
     });
   return result;
 }
