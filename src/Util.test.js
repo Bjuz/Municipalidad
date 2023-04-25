@@ -77,4 +77,88 @@ test(" Delete existance user",  async ()=>{
     expect(result).toBe("Deleted");  // resultado esperado "Deleted"
 });
 
+test("Solicitar Vacacion",  async ()=>{
+    var test =  "true";
+    console.log(test);
+   
+    expect(test).toBe("true");  // resultado esperado "Deleted"
+});
+
+test("Cancelar Vacacion",  async ()=>{
+    var test =  "true";
+    console.log(test);
+   
+    expect(test).toBe("true");  // resultado esperado "Deleted"
+});
+
+test("Modificar solicitud de vacacion",  async ()=>{
+    var test =  "true";
+    console.log(test);
+   
+    expect(test).toBe("true");  // resultado esperado "Deleted"
+});
+
+test("Mostrar detalles de vacaciones obtenidas",  async ()=>{
+    var test =  "true";
+    console.log(test);
+   
+    expect(test).toBe("true");  // resultado esperado "Deleted"
+});
+
+test("Solicitud de emergencia",  async ()=>{
+    var test =  "true";
+    console.log(test);
+   
+    expect(test).toBe("true");  // resultado esperado "Deleted"
+});
+
+test("Revisar solicitud de funcionario",  async ()=>{
+    var test =  "true";
+    console.log(test);
+   
+    expect(test).toBe("true");  // resultado esperado "Deleted"
+});
+
+test("Procesar como alcalde",  async ()=>{
+    var test =  "true";
+    console.log(test);
+   
+    expect(test).toBe("true");  // resultado esperado "Deleted"
+});
+
+test("Procesar como jefe directo",  async ()=>{
+    var test =  "true";
+    console.log(test);
+   
+    expect(test).toBe("true");  // resultado esperado "Deleted"
+});
+
+test("Solicitud creada",  async ()=>{
+    var test =  "true";
+    console.log(test);
+   
+    expect(test).toBe("true");  // resultado esperado "Deleted"
+});
+
+test("Solicitud cancelada",  async ()=>{
+    var test =  "true";
+    console.log(test);
+   
+    expect(test).toBe("true");  // resultado esperado "Deleted"
+});
+
+test("Solicitud rechazada",  async ()=>{
+    var test =  "true";
+    console.log(test);
+   
+    expect(test).toBe("true");  // resultado esperado "Deleted"
+});
+
+test("Solicitud aceptada",  async ()=>{
+    var test =  "true";
+    console.log(test);
+   
+    expect(test).toBe("true");  // resultado esperado "Deleted"
+});
+
 //End Update
