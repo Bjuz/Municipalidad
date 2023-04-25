@@ -637,3 +637,107 @@ export async function DeleteValidVacation(firstDate, LastDate, ref) {
 }
 
 //End Delete Vacation
+
+
+export async function UpdateVacation(firstDate, LastDate, ref, estado) {
+  const VarResponse = await UpdateValidVacation(firstDate, LastDate, ref,estado);
+  return VarResponse;
+}
+
+export async function UpdateValidVacation(firstDate, LastDate, ref,estado) {
+  var funcionario = await ObtenerFuncionariosEmail(ref);
+  let fecha1 = new Date(firstDate);
+  let fecha2 = new Date(LastDate);
+  let diferencia = fecha2.getTime() - fecha1.getTime();
+  let diasDeDiferencia = diferencia / 1000 / 60 / 60 / 24;
+  let VacacionesActivas = [];
+  var VacacionSolicitada
+  VacacionesActivas = funcionario.VacacionesActivas;
+  const indiceElemento = VacacionesActivas.findIndex(
+    (el) => el.firstDate == firstDate && el.LastDate == LastDate
+  );
+  var accumulatedDays = funcionario.accumulatedDays;
+  
+  if(estado == "Aprobado"){
+    if(VacacionesActivas[indiceElemento].Estado == "Esperando la aprobación del jefe directo"){
+      VacacionSolicitada = {
+        firstDate,
+        LastDate,
+        Estado: "Esperando la aprobación del alcalde",
+      };
+
+    }else if(VacacionesActivas[indiceElemento].Estado == "Esperando la aprobación del alcalde"){
+      VacacionSolicitada = {
+        firstDate,
+        LastDate,
+        Estado: "Esperando la revisión de recursos humanos",
+      };
+
+    }else{
+      VacacionSolicitada = {
+        firstDate,
+        LastDate,
+        Estado: "Aprobada",
+      };
+    }
+      
+    
+
+  }else if(estado == "Rechazado"){
+    if(VacacionesActivas[indiceElemento].Estado == "Esperando la aprobación del jefe directo"){
+      VacacionSolicitada = {
+        firstDate,
+        LastDate,
+        Estado: "Rechazada por jefe directo",
+      };
+
+    }else if(VacacionesActivas[indiceElemento].Estado == "Esperando la aprobación del alcalde"){
+      VacacionSolicitada = {
+        firstDate,
+        LastDate,
+        Estado: "Rechazada por alcalde",
+      };
+
+    }else{
+      VacacionSolicitada = {
+        firstDate,
+        LastDate,
+        Estado: "Rechazada por recursos humanos",
+      };
+    }
+    accumulatedDays = accumulatedDays +  diasDeDiferencia + 1;
+  }
+
+
+
+  
+
+  //.splice (index, 1);
+    VacacionesActivas.splice(indiceElemento, 1);
+    console.log(VacacionesActivas);
+    VacacionesActivas.push(VacacionSolicitada);
+    console.log(VacacionesActivas);
+
+  console.log(accumulatedDays)
+  var refUser = await doc(db, "users", ref);
+  console.log(refUser);
+  var response = await updateDoc(refUser, {
+    VacacionesActivas,
+    accumulatedDays,
+  })
+    .then(() => {
+      console.log("changes");
+      return (
+        "Las vacaciones desde" +
+        firstDate +
+        " hasta " +
+        LastDate +
+        " fueron procesadas con éxito" + "el estado actual es: " + VacacionSolicitada.Estado
+      );
+    })
+    .catch((error) => {
+      console.log(error);
+      return error;
+    });
+  return response;
+}

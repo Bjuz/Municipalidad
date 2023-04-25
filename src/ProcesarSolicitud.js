@@ -1,5 +1,5 @@
-const { LoadUsers } = require("./util");
-
+const { LoadUsers } = require("./util"); 
+const { UpdateVacation } = require("./util");
 
 
 // Global variable that will contain the users with vacations data from the database
@@ -26,6 +26,9 @@ window.addEventListener("DOMContentLoaded", async (event) => {
       // Add a row for each vacation
       const vacations = user.VacacionesActivas;
       vacations.forEach((vacation) => {
+        if(vacation.Estado == "Cancelada" || vacation.Estado == "Rechazada por jefe directo" || vacation.Estado == "Rechazada por alcalde" || vacation.Estado == "Rechazada por recursos humanos"){
+           return
+        }
         // Create a row
         const tr = document.createElement("tr");
         tableBody.appendChild(tr);
@@ -78,22 +81,29 @@ window.addEventListener("DOMContentLoaded", async (event) => {
 window.addEventListener("click", async (event) => {
   // Get the button id
   const buttonId = event.target.id;
+  var response
+  const userIdAndDates = event.target.value;
 
+  const user = vacationUsers.find((user) => user.id === userIdAndDates.split("|")[0]);
+
+  var id =  userIdAndDates.split("|")[0];
+  var firstDateVac =  userIdAndDates.split("|")[1]
+  var LastDateVac =  userIdAndDates.split("|")[2]
   // If the button id starts with btnAprobar
   if (buttonId.startsWith("btnAprobar")) {
     // Get the button value that is the user id, the first date and the last date
-    const userIdAndDates = event.target.value;
 
-    const user = vacationUsers.find((user) => user.id === userIdAndDates.split("|")[0]);
-
-
+     response  = await UpdateVacation(firstDateVac,LastDateVac, user.Ref,"Aprobado");
+     console.log(response)
 
 
 
   } else if (buttonId.startsWith("btnRechazar")) {
     // If the button id starts with btnRechazar
+    response  = await UpdateVacation(firstDateVac,LastDateVac, user.Ref,"Rechazado");
+    console.log(response)
 
   }
-
+  alert(response);
 });
 
