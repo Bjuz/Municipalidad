@@ -471,7 +471,10 @@ export async function addValidVacation(firstDate, LastDate, ref) {
     funcionario,
     diasDeDiferencia
   );
-  var accumulatedDays = funcionario.accumulatedDays - diasDeDiferencia - 1;
+  var accumulatedDays = funcionario.accumulatedDays - diasDeDiferencia - 1; 
+  if(accumulatedDays < 0){
+    accumulatedDays = 0;
+  }
   console.log(Validacion);
   if (Validacion != "Vacaciones solicitadas con éxito") {
     return Validacion;
