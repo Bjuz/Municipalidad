@@ -24,6 +24,7 @@ document.getElementById("sendData").onclick = async function () {
   // Check if the user has enough days to request vacations
   var acumulatedDays = await RetornarCantidadVacaciones(ref);
 
+  // If all the conditions are met, the request is sent to the database
   if (acumulatedDays <= 0) {
     alert(
       "En este momento no puede solicitar vacaciones ya que no tiene dias acumulados."
