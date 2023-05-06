@@ -18,7 +18,28 @@ window.addEventListener("DOMContentLoaded", async (event) => {
   const Vacations = await RetornarVacaciones(ref); // Retorna la cantidad de vacaciones disponibles
   const CantidadDeVacaciones = await RetornarCantidadVacaciones(ref); // Retorna la lista de vacaciones
   console.log(Vacations);
+  const Listas = document.getElementById('Listas');
+  const CantVacaciones = document.getElementById('CantVacaciones');
   if (Vacations.length == 0) {
+    Listas.innerHTML =`<p>No hay vacaciones registradas</p>`
+  }else {
+    var i = 0;
+    
+    CantVacaciones.innerHTML =  " Cantidad de vacaciones actuales: " + CantidadDeVacaciones;
+    Vacations.forEach((element) => {
+      i += 1;
+      Listas.innerHTML +=`<tr>
+      <td>${i}</td>
+      <td>${element.firstDate}</td>
+      <td>${element.LastDate}</td>
+      <td>${element.Estado}</td>
+     
+      </tr>`
+    })
+    
+  }
+
+  /*if (Vacations.length == 0) {
     //Valida el caso de que no tenga vacaciones
     alert("Este usuario no tiene vacaciones solicitadas actualmente.");
     li = document.createElement("li");
@@ -68,7 +89,9 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     ul.appendChild(div);
     div.innerHTML =
       '<button id="downloadButton" class="btn btn-primary" onclick="download()">Descargar</button>';
-  }
+  }*/
+
+
 
   // This function is called when the user clicks on the download button
   // It creates a xlsx file with the vacations and downloads it

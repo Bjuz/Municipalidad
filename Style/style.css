@@ -175,3 +175,7 @@ select{
 	display: none;
 	text-align: center;
   }
+
+  .table{
+	font-size: 15px;
+  }
