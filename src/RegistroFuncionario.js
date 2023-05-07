@@ -1,13 +1,13 @@
-const { RegisterUser } = require('./util');
-const { ForgetPassword } = require("./util");
-const { CreateANewUser } = require("./util");
+//const { RegisterUser } = require('./util');
+//const { ForgetPassword } = require("./util");
+//const { CreateANewUser } = require("./util");
 
 
-document.getElementById("sendData").onclick = function () {
-  document.getElementById("loader").style.display = "block";
-  Register();
+//document.getElementById("sendData").onclick = function () {
+ //// document.getElementById("loader").style.display = "block";
+  //Register();
 
-};
+//};
 
 function generateP() {
   var pass = '';
@@ -59,12 +59,12 @@ async function Register(){
     var role = document.getElementById("role").value = "";
 
   }
-  document.getElementById("loader").style.display = "none";
+ // document.getElementById("loader").style.display = "none";
 
  
   }
 
-  window.addEventListener('DOMContentLoaded', async (event) => {
-    document.getElementById("loader").style.display = "none";
+  //window.addEventListener('DOMContentLoaded', async (event) => {
+   //document.getElementById("loader").style.display = "none";
   
-  });
+ // });
