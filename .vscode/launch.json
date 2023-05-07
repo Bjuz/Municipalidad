@@ -7,7 +7,7 @@
         {
             "type": "msedge",
             "request": "launch",
-            "name": "Open IngresarDiaFeriado.html",
+            "name": "Run project",
             "url":"http://localhost:8081"
             
         }
