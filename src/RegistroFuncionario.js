@@ -48,18 +48,7 @@ async function Register() {
   ) {
     alert("Favor agregar todos los campos");
   } else {
-    const text = await RegisterUser(
-      id,
-      name,
-      email,
-      accumulatedDays,
-      ancient,
-      boss,
-      salary,
-      role,
-      entryTime,
-      departureTime,
-      generateP()
+    const text = await RegisterUser(id, name, email, accumulatedDays, ancient, boss, salary, role, entryTime, departureTime, generateP()
     );
     //const text =  await RegisterUser(id,name,email,accumulatedDays,ancient,boss,salary,role,entryTime,departureTime,generateP());
     var resultCreate;
@@ -68,7 +57,7 @@ async function Register() {
       resultForget = await ForgetPassword(email);
     }
 
-    alert(resultForget);
+    alert(text);
     var id = (document.getElementById("id").value = "");
     var name = (document.getElementById("name").value = "");
     var email = (document.getElementById("email").value = "");
