@@ -105,8 +105,8 @@ async function UpdateSolicitud() {
     // We need to re-format it in two variables like YYYY-MM-DD for the database
 
     //*************************This is for the original date *******************/
-    var firstDate = option.split(" hasta ")[0];
-    var finishDate = option.split(" hasta ")[1];
+    var firstDate = optionText.split(" hasta ")[0];
+    var finishDate = optionText.split(" hasta ")[1];
 
     firstDate = firstDate.split("/");
     firstDate = firstDate[2] + "-" + firstDate[1] + "-" + firstDate[0];
@@ -151,6 +151,10 @@ async function UpdateSolicitud() {
         if (!confirmation) {
           return;
         }
+
+        //**************************** Filter finished ******************************/
+
+        /*****************************DATABASE METHOD *******************************/
 
         // Get the id of the vacation that is the same that in the database
         var optionValue = select.options[select.selectedIndex].value;
