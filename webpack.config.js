@@ -15,6 +15,7 @@ module.exports = {
     SolicitudEmergencia: "./src/SolicitudEmergencia.js",
     Navbar: "./src/Navbar/Navbar.js",
     ProcesarSolicitud: "./src/ProcesarSolicitud.js",
+    Inicio: "./src/Inicio.js",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
