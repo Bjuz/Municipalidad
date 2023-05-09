@@ -49,7 +49,7 @@
                     <div class="nav__items">
                         <h3 class="nav__subtitle">Personal</h3>
 
-                        <a href="InicioAdmin.html" class="nav__link active">
+                        <a  id="Home" href="InicioAdmin.html" class="nav__link active">
                             <i class='bx bx-home nav__icon'></i>
                             <span class="nav__name">Inicio</span>
                         </a>
@@ -63,11 +63,11 @@
 
                             <div class="nav__dropdown-collapse">
                                 <div class="nav__dropdown-content">
-                                    <a href="SolicitarVacaciones.html" class="nav__dropdown-item">Solicitar
+                                    <a  id="SolicitarVacaciones" href="SolicitarVacaciones.html" class="nav__dropdown-item">Solicitar
                                         vacaciones</a>
-                                    <a href="DetalleVacaciones.html" class="nav__dropdown-item">Detalle vacaciones</a>
-                                    <a href="EditarVacaciones.html" class="nav__dropdown-item">Editar vacaciones</a>
-                                    <a href="SolicitudEmergencia.html" class="nav__dropdown-item">Solicitud
+                                    <a id="DetallesVacaciones" href="DetalleVacaciones.html" class="nav__dropdown-item">Detalle vacaciones</a>
+                                    <a  id="EditarVacaciones" href="EditarVacaciones.html" class="nav__dropdown-item">Editar vacaciones</a>
+                                    <a  id="SolicitudEmergencia" href="SolicitudEmergencia.html" class="nav__dropdown-item">Solicitud
                                         emergencia</a>
                                 </div>
                             </div>
@@ -87,14 +87,14 @@
 
                             <div class="nav__dropdown-collapse" id="adminDiv">
                                 <div class="nav__dropdown-content">
-                                    <a href="ProcesarSolicitud.html" class="nav__dropdown-item">Revisar solicitudes</a>
-                                    <a href="RegistroFuncionario.html" class="nav__dropdown-item"
+                                    <a id="ProcesarSolicitud" href="ProcesarSolicitud.html" class="nav__dropdown-item">Revisar solicitudes</a>
+                                    <a id="RegistroFuncionario" href="RegistroFuncionario.html" class="nav__dropdown-item"
                                         id="registerLink">Registro empleado</a>
-                                    <a href="EditarFuncionario.html" class="nav__dropdown-item" 
+                                    <a  id="EditarFuncionario" href="EditarFuncionario.html" class="nav__dropdown-item" 
                                         id="editLink">Editar empleado</a>
-                                    <a href="EliminarEmpleado.html" class="nav__dropdown-item"
+                                    <a  id="EliminarFuncionario" href="EliminarEmpleado.html" class="nav__dropdown-item"
                                         id="deleteLink">Eliminar empleado</a>
-                                    <a href="IngresarFeriado.html" class="nav__dropdown-item"
+                                    <a id="IngresarDiaFeriado" href="IngresarFeriado.html" class="nav__dropdown-item"
                                         id="feriadoLink">Ingresar feriado</a>
                                 </div>
                             </div>
@@ -103,7 +103,9 @@
                     </div>
                 </div>
             </div>
-
+            
+                
+             
             <a href="#" class="nav__link nav__logout">
                 <i class='bx bx-log-out nav__icon'></i>
                 <span class="nav__name">Log Out</span>
@@ -123,6 +125,7 @@
     <!--========== MAIN JS ==========-->
     <script src="../../dist/Inicio.bundle.js"></script>
     <script src="/Javascript/Sidebar.js"></script>
+    <script type="module" src="../../dist/Navbar.bundle.js"></script>
 </body>
 
 </html>

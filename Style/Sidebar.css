@@ -225,6 +225,7 @@ img {
   font-size: var(--smaller-font-size);
   font-weight: var(--font-medium);
   color: var(--text-color);
+  display: none;
 }
 
 .nav__dropdown-item:hover {

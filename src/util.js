@@ -745,3 +745,17 @@ export async function UpdateValidVacation(firstDate, LastDate, ref,estado) {
     });
   return response;
 }
+
+export async function IsLoggedIn() {
+
+  const auth = await getAuth();
+  console.log(auth)
+  const user = auth.currentUser;
+  console.log(user)
+ 
+  if (user) {
+    return true
+  } else {
+    return false
+  }
+}

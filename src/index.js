@@ -18,11 +18,13 @@ async function loggin() {
   document.getElementById("loader").style.display = "none";
   if (text != "Correo o contraseña incorrecto.") {
     localStorage.setItem("userLoggueado", text);
-
-    var user = await GetFuncionario(text);
-
+    window.location.href = "../html/inicio.html"
+  }else{
+    alert(text);
+  }
+    //var user = await GetFuncionario(text);
     // There are 3 types of users: Funcionario, Jefe Directo, Encargado de recursos humanos, Alcalde
-    if (user.role == "Funcionario") {
+    /*if (user.role == "Funcionario") {
       //window.location.href = "../html/InicioFuncionario.html";
       window.location.href = "../role/Funcionario/InicioFuncionario.html";
     } else if (user.role == "Jefe Directo") {
@@ -36,7 +38,7 @@ async function loggin() {
     }
   } else {
     alert(text);
-  }
+  }*/
 }
 
 async function PasswordReset() {
@@ -50,7 +52,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
   document.getElementById("loader").style.display = "none";
   var result = await UserCurrentState();
   console.log(result);
-  fetch("/hello")
+  /*fetch("/hello")
     .then((response) => console.log(response))
-    .catch((error) => console.error(error));
-});
+    .catch((error) => console.error(error));*/
+})

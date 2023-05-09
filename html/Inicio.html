@@ -1,179 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SIGEVA</title>
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://kit.fontawesome.com/fabe13b5d4.js"
-      crossorigin="anonymous"
-    ></script>
-    <link
-      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/fabe13b5d4.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="icon" type="image/x-icon" href="/media/logocanton.png" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="/Style/Navbar.css" />
-    <link rel="stylesheet" href="/Style/RegistroFuncionario.css" />
-    <link rel="stylesheet" href="/Style/style.css" />
-  </head>
+    <!--========== BOX ICONS ==========-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 
-  <body>
-    <!--sidebar content-------------------------------------------------------->
-    <nav class="sidebar close">
-      <header>
-        <div class="image-text">
-          <span class="image">
-            <img src="/Media/logocanton.png" alt="" />
-          </span>
+    <!--========== BOOTSTRAP ==========-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
 
-          <div class="text logo-text">
-            <span class="name">SIGEVA</span>
-            <span class="profession">Muncipalidad de</span>
-            <span class="profession"> Santa Barbara</span>
-          </div>
-        </div>
+    <!--========== CSS ==========-->
+    <link rel="stylesheet" href="../Style/Sidebar.css">
 
-        <i class="bx bx-chevron-right toggle"></i>
-      </header>
+    <title>Sistema Gestión Vacaciones</title>
+</head>
 
-      <div class="menu-bar">
-        <div class="menu">
-          <li class="search-box">
-            <i class="bx bx-search icon"></i>
-            <input type="text" placeholder="Búsqueda..." />
-          </li>
+<body>
+    <!--========== HEADER ==========-->
+    <header class="header">
+        <div class="header__container">
+            <img src="/Media/logocanton.png" alt="" class="header__img">
 
-          <ul class="menu-links my-menu">
-            <li class="nav-link active">
-              <a href="Inicio.html">
-                <i class="bx bx-home-alt icon"></i>
-                <span class="text nav-text">Inicio</span>
-              </a>
-            </li>
+            <a href="https://www.santabarbara.go.cr" class="header__logo"> Municipalidad Santa Bárbara</a>
 
-            <li class="nav-link">
-              <a href="SolicitarVacaciones.html">
-                <i class="bx bx-calendar-plus icon"></i>
-                <span class="text nav-text">Solicitar vacaciones</span>
-              </a>
-            </li>
-
-            <li class="nav-link">
-              <a href="DetallesVacaciones.html">
-                <i class="bx bx-edit icon"></i>
-                <span class="text nav-text">Detalle vacaciones</span>
-              </a>
-            </li>
-
-            <li class="nav-link">
-              <a href="EditarSolicitud.html">
-                <i class="bx bx-calendar-week icon"></i>
-                <span class="text nav-text">Editar vacaciones</span>
-              </a>
-            </li>
-
-            <li class="nav-link">
-              <a href="CancelarVacaciones.html">
-                <i class="bx bx-calendar-x icon"></i>
-                <span class="text nav-text">Cancelar vacaciones</span>
-              </a>
-            </li>
-
-            <li class="nav-link">
-              <a href="RegistroFuncionario.html">
-                <i class="bx bxs-user-plus icon"></i>
-                <span class="text nav-text">Registro empleado</span>
-              </a>
-            </li>
-
-            <li class="nav-link">
-              <a href="EditarFuncionario.html">
-                <i class="bx bx-edit icon"></i>
-                <span class="text nav-text">Editar empleado</span>
-              </a>
-            </li>
-
-            <li class="nav-link">
-              <a href="#">
-                <i class="bx bxs-user-minus icon"></i>
-                <span class="text nav-text">Eliminar empleado</span>
-              </a>
-            </li>
-
-            <li class="nav-link">
-              <a href="/html/IngresarDiaFeriado.html">
-                <i class="bx bx-calendar-plus icon"></i>
-                <span class="text nav-text">Ingresar feriados</span>
-              </a>
-            </li>
-
-            <li class="nav-link">
-              <a href="/html/SolicitudEmergencia.html">
-                <i class="bx bx-calendar-plus icon"></i>
-                <span class="text nav-text">Solicitud de Emergencia</span>
-              </a>
-            </li>
-            <li class="nav-link">
-              <a href="/html/ProcesarSolicitud.html">
-                <i class="bx bx-calendar-plus icon"></i>
-                <span class="text nav-text">Procesar Solicitud</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="bottom-content">
-          <li class="profile">
-            <div class="profile-details">
-              <div class="text nav-text" id="NombreBar">Nombre empleado</div>
-              <div class="text nav-text" id="PuestoBar">Puesto</div>
+            <div class="header__search">
+                <input type="search" placeholder="Search" class="header__input">
+                <i class='bx bx-search header__icon'></i>
             </div>
-          </li>
 
-          <li class="Logout">
-            <a href="#">
-              <i class="bx bx-log-out icon"></i>
-              <span class="text nav-text">Logout</span>
+            <div class="header__toggle">
+                <i class='bx bx-menu' id="header-toggle"></i>
+            </div>
+        </div>
+    </header>
+
+    <!--========== NAV ==========-->
+    <div class="nav" id="navbar">
+        <nav class="nav__container">
+            <div>
+                <a href="#" class="nav__link nav__logo">
+                    <i class='bx bxs-disc nav__icon'></i>
+                    <span class="nav__logo-name">SIGEVA</span>
+                </a>
+
+                <div class="nav__list">
+                    <div class="nav__items">
+                        <h3 class="nav__subtitle">Personal</h3>
+
+                        <a  id="Home" href="InicioAdmin.html" class="nav__link">
+                            <i class='bx bx-home nav__icon'></i>
+                            <span class="nav__name">Inicio</span>
+                        </a>
+
+                        <div class="nav__dropdown">
+                            <a href="#" class="nav__link">
+                                <i class='bx bx-user nav__icon'></i>
+                                <span class="nav__name">Vacaciones</span>
+                                <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                            </a>
+
+                            <div class="nav__dropdown-collapse">
+                                <div class="nav__dropdown-content">
+                                    <a  id="SolicitarVacaciones" href="SolicitarVacaciones.html" class="nav__dropdown-item">Solicitar
+                                        vacaciones</a>
+                                    <a id="DetallesVacaciones" href="DetalleVacaciones.html" class="nav__dropdown-item">Detalle vacaciones</a>
+                                    <a  id="EditarVacaciones" href="EditarVacaciones.html" class="nav__dropdown-item">Editar vacaciones</a>
+                                    <a  id="SolicitudEmergencia" href="SolicitudEmergencia.html" class="nav__dropdown-item">Solicitud
+                                        emergencia</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="nav__items">
+                        <h3 class="nav__subtitle">Gestión</h3>
+
+                        <div class="nav__dropdown">
+                            <a href="#" class="nav__link">
+                                <i class='bx bx-bell nav__icon'></i>
+                                <span class="nav__name">Administrativa</span>
+                                <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                            </a>
+
+                            <div class="nav__dropdown-collapse" id="adminDiv">
+                                <div class="nav__dropdown-content">
+                                    <a id="ProcesarSolicitud" href="ProcesarSolicitud.html" class="nav__dropdown-item">Revisar solicitudes</a>
+                                    <a id="RegistroFuncionario" href="RegistroFuncionario.html" class="nav__dropdown-item"
+                                        id="registerLink">Registro empleado</a>
+                                    <a  id="EditarFuncionario" href="EditarFuncionario.html" class="nav__dropdown-item" 
+                                        id="editLink">Editar empleado</a>
+                                    <a  id="EliminarFuncionario" href="EliminarEmpleado.html" class="nav__dropdown-item"
+                                        id="deleteLink">Eliminar empleado</a>
+                                    <a id="IngresarDiaFeriado" href="IngresarFeriado.html" class="nav__dropdown-item"
+                                        id="feriadoLink">Ingresar feriado</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+                
+             
+            <a href="#" class="nav__link nav__logout">
+                <i class='bx bx-log-out nav__icon'></i>
+                <span class="nav__name">Log Out</span>
             </a>
-          </li>
-
-          <li class="mode">
-            <div class="sun-moon">
-              <i class="bx bx-moon icon moon"></i>
-              <i class="bx bx-sun icon sun"></i>
-            </div>
-            <span class="mode-text text">Dark mode</span>
-
-            <div class="toggle-switch">
-              <span class="switch"></span>
-            </div>
-          </li>
-        </div>
-      </div>
-    </nav>
-
-    <!--body content------------------------------------------------------------>
-    <div class="home">
-      <div class="text">Bienvenido al sistema SIGEVA</div>
-      <div class="components">
-        <div class="input-components"></div>
-      </div>
+        </nav>
     </div>
 
+    <!--========== CONTENTS ==========-->
+    <main>
+        <section>
+            <br><br>
+            <h3 class="text-center">Bienvenido al Sistema de Gestión de Vacaciones</h1><br>
+                <h5 class="text-center">Municipalidad Santa Bárbara</h5><br>
+        </section>
+    </main>
+
+    <!--========== MAIN JS ==========-->
+    <script src="../dist/Inicio.bundle.js"></script>
+    <script src="../Javascript/Sidebar.js"></script>
     <script type="module" src="../dist/Navbar.bundle.js"></script>
-  </body>
+</body>
+
 </html>
