@@ -176,7 +176,8 @@ export async function RegisterUser(
   role,
   entryTime,
   departureTime,
-  password
+  password,
+  bosscorreo
 ) {
   var result = await Funcionarios(id, email);
   var upn = await CreateANewUser(email, password);
@@ -193,6 +194,7 @@ export async function RegisterUser(
       entryTime,
       departureTime,
       upn,
+      bosscorreo
     );
     
     return VarResponse;
@@ -212,7 +214,8 @@ export async function Register(
   role,
   entryTime,
   departureTime,
-  upn
+  upn,
+  bosscorreo
 ) {
   const test2 = await setDoc(doc(db, "users", upn), {
     id,
@@ -226,6 +229,7 @@ export async function Register(
     entryTime,
     departureTime,
     Ref: upn,
+    bosscorreo
   });
   return "Usuario ingresado exitosamente";
 }
@@ -665,7 +669,7 @@ export async function DeleteValidVacation(firstDate, LastDate, ref) {
 //End Delete Vacation
 
 //Resta dos fechas sin contar fines de semana 
-function Restadias(dia1 , dia2){
+export function Restadias(dia1 , dia2){
   var unDia = 24 * 60 * 60 * 1000; // Cantidad de milisegundos en un día
   var inicio = new Date(dia1);
   var fin = new Date(dia2);

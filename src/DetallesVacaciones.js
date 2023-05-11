@@ -22,6 +22,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
   const CantVacaciones = document.getElementById('CantVacaciones');
   if (Vacations.length == 0) {
     Listas.innerHTML =`<p>No hay vacaciones registradas</p>`
+    CantVacaciones.innerHTML =  " Cantidad de vacaciones actuales: " + CantidadDeVacaciones;
   }else {
     var i = 0;
     
