@@ -93,14 +93,14 @@ window.addEventListener("click", async (event) => {
   if (buttonId.startsWith("btnAprobar")) {
     // Get the button value that is the user id, the first date and the last date
 
-     response  = await UpdateVacation(firstDateVac,LastDateVac, user.Ref,"Aprobado");
+     response  = await UpdateVacation(firstDateVac,LastDateVac, user.Ref,"Aprobado","Aprobado");
      console.log(response)
 
 
 
   } else if (buttonId.startsWith("btnRechazar")) {
     // If the button id starts with btnRechazar
-    response  = await UpdateVacation(firstDateVac,LastDateVac, user.Ref,"Rechazado");
+    response  = await UpdateVacation(firstDateVac,LastDateVac, user.Ref,"Rechazado","Rechazado");
     console.log(response)
 
   }

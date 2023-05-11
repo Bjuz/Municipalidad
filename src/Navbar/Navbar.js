@@ -1,5 +1,5 @@
 const { options } = require("jest-junit/utils/getOptions");
-const { ObtenerFuncionariosEmail } = require(".././util");
+const { ObtenerFuncionariosUID } = require(".././util");
 const { signOutCurrentUser } = require(".././util");
 const { IsLoggedIn } = require(".././util");
 
@@ -104,12 +104,12 @@ document.querySelector('.nav__logout').addEventListener("click", async function 
 
 window.addEventListener('DOMContentLoaded', async (event) => {
  
-    var email =  localStorage.getItem('userLoggueado');
-    if(email){
-      var result = await ObtenerFuncionariosEmail(email);
+    var UID =  localStorage.getItem('userLoggueado');
+    if(UID){
+      var result = await ObtenerFuncionariosUID(UID);
       var name = result.name;
       var role = result.role;
-      Rol('Funcionario');
+      Rol(role);
       console.log(name + " " + role);
       console.log(document.getElementById("NombreBar") );
       /*document.getElementById("NombreBar").innerHTML = name;
