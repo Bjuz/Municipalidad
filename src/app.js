@@ -1,10 +1,19 @@
 const express = require( 'express');
 const morgan = require('morgan');
-const cors = require('cors');
-const path = require('path');
 
-const app = express()
+const { db } = require("./utilAdmin");
+
+const app = express();
+
 app.use(morgan('dev'))
-app.use(cors());
+
+app.get('/', async (req,res)=>{
+    const querySnapshot = await db.collection('users').get()
+
+    console.log(querySnapshot);
+    
+    res.send('Hello World');
+})
+
 module.exports = app;
 

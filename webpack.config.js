@@ -5,6 +5,7 @@ const webpack = require("webpack");
 module.exports = {
   entry: {
     index: "./src/index.js",
+    login: "./src/login.js",
     CancelarVacaciones: "./src/CancelarVacaciones.js",
     DetalleVacaciones: "./src/DetallesVacaciones.js",
     EditarFuncionario: "./src/EditarFuncionario.js",
