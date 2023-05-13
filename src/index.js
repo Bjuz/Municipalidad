@@ -1,6 +1,8 @@
-const app = require('./app')
+const { loginComplete } = require("./util");
+const { ForgetPassword } = require("./util");
+const { UserCurrentState } = require("./util");
+const { GetFuncionario } = require("./util");
 
-<<<<<<< HEAD
 document.getElementById("Loggin").onclick = function () {
   document.getElementById("loader").style.display = "block";
   loggin();
@@ -39,7 +41,3 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     .then((response) => console.log(response))
     .catch((error) => console.error(error));
 });
-=======
-app.listen( 4000);
-console. log( 'Server is running on port 4000');
->>>>>>> bf60230fb5f261e1f4f913e0c89e521f5c9b1696

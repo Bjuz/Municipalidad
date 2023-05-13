@@ -1,18 +1,9 @@
 const { RetornarVacaciones } = require("./util");
-<<<<<<< HEAD
 const { GetFuncionario } = require("./util");
 const { roleDisplay } = require("./util");
 
 
 var userId = localStorage.getItem("userLoggueado");
-=======
-const { UpdateVacationWithRazon } = require("./util");
-const { ObtenerFuncionariosUID } = require("./util");
-var userId = localStorage.getItem("userLoggueado"),
- select = document.getElementById("vacationId"),
- startDate = document.getElementById("startDate"),
- finDate = document.getElementById("finDate");
->>>>>>> bf60230fb5f261e1f4f913e0c89e521f5c9b1696
 
 // When the windows load, I would like to load the information of the user
 window.onload = async function () {
@@ -26,7 +17,7 @@ window.onload = async function () {
 
   // Variables
   var firstDate, finishDate;
-
+  var select = document.getElementById("vacationId");
 
   // If the vacations are empty, then we will show a message
   if (vacations.length == 0) {
@@ -101,8 +92,8 @@ async function loadInfo(id) {
   }
 }
 
-document.getElementById("updateBtn").onclick = async function () {
- var response = await  UpdateSolicitud();
+document.getElementById("updateBtn").onclick = function () {
+  UpdateSolicitud();
 };
 
 async function UpdateSolicitud() {
@@ -177,13 +168,9 @@ async function UpdateSolicitud() {
         // Get the id of the vacation that is the same that in the database
         var optionValue = select.options[select.selectedIndex].value;
         // With this you will get vacation info from the database
-       // var vacationInfo = loadInfo(optionValue);
+        var vacationInfo = loadInfo(optionValue);
         // Database method to update the vacation
-        var user = await ObtenerFuncionariosUID(userId);
-        const response = await UpdateVacationWithRazon(firstDate,finishDate,firstDateNew, finishDateNew,user.Ref, motivo);
-
-        alert(response)
-
+        const response = await (id, firstDateFormatted, finishDateFormatted, motivo);
 
 
 
@@ -251,23 +238,4 @@ function validateDate(firstDate, finishDate, firstDateNew, finishDateNew) {
     return false;
   }
   return true;
-}
-
-select.onclick = function () {
-  var optionText = select.options[select.selectedIndex].text;
-  var firstDate = optionText.split(" hasta ")[0];
-  var finishDate = optionText.split(" hasta ")[1];
-
-  firstDate = firstDate.split("/");
-  firstDate = firstDate[2] + "-" + firstDate[1] + "-" + firstDate[0];
-
-  finishDate = finishDate.split("/");
-  finishDate = finishDate[2] + "-" + finishDate[1] + "-" + finishDate[0];
-
-  console.log(firstDate + " " + finishDate);
-
-  startDate.value = firstDate;
-  finDate.value = finishDate;
-
-
 }
