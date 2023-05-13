@@ -1,10 +1,15 @@
 const express = require( 'express');
 const morgan = require('morgan');
-const cors = require('cors');
-const path = require('path');
+const path = require('path')
 
-const app = express()
+
+
+const app = express();
+
 app.use(morgan('dev'))
-app.use(cors());
+
+app.use(require("./routes/index"));
+app.use(express.static(path.join(__dirname, '../html')))
+
 module.exports = app;
 

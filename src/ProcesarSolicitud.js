@@ -23,13 +23,19 @@ window.addEventListener("DOMContentLoaded", async (event) => {
 
   // Load users
   const users = await LoadUsers();
-
+  var ref = localStorage.getItem("userLoggueado");
 
 
   // Call the tbody element called 'tableBody'
   const tableBody = document.getElementById("tableBody");
   // Verify if the user has this internal array
   var i = 0;
+  var UsuarioAcctual;
+  users.forEach((user) => {
+    if(user.Ref == ref){
+      UsuarioAcctual = user;
+    }
+  });
 
   users.forEach((user) => {
     if (user.hasOwnProperty("VacacionesActivas")) {
@@ -40,6 +46,19 @@ window.addEventListener("DOMContentLoaded", async (event) => {
       vacations.forEach((vacation) => {
         if(vacation.Estado == "Cancelada" || vacation.Estado == "Rechazada por jefe directo" || vacation.Estado == "Rechazada por alcalde" || vacation.Estado == "Rechazada por recursos humanos"){
            return
+        }
+        if(user.bosscorreo != UsuarioAcctual.email && UsuarioAcctual.role !="Encargado de recursos humanos"){
+          return
+        }
+
+        if(UsuarioAcctual.role =="Alcalde" && vacation.Estado != "Esperando la aprobación del alcalde" ){
+          return
+        }
+        if(UsuarioAcctual.role =="Jefe directo" && vacation.Estado != "Esperando la aprobación del jefe directo" ){
+          return
+        }
+        if(UsuarioAcctual.role =="Funcionario" ){
+          return
         }
         // Create a row
         const tr = document.createElement("tr");
@@ -105,14 +124,14 @@ window.addEventListener("click", async (event) => {
   if (buttonId.startsWith("btnAprobar")) {
     // Get the button value that is the user id, the first date and the last date
 
-     response  = await UpdateVacation(firstDateVac,LastDateVac, user.Ref,"Aprobado");
+     response  = await UpdateVacation(firstDateVac,LastDateVac, user.Ref,"Aprobado","Aprobado");
      console.log(response)
 
 
 
   } else if (buttonId.startsWith("btnRechazar")) {
     // If the button id starts with btnRechazar
-    response  = await UpdateVacation(firstDateVac,LastDateVac, user.Ref,"Rechazado");
+    response  = await UpdateVacation(firstDateVac,LastDateVac, user.Ref,"Rechazado","Rechazado");
     console.log(response)
 
   }
