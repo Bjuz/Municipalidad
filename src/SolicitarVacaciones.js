@@ -1,7 +1,6 @@
 const { async } = require("@firebase/util");
 const { AddVacation, RetornarCantidadVacaciones } = require("./util");
 const { ObtenerFuncionariosEmail } = require("./util");
-<<<<<<< HEAD
 const { roleDisplay } = require("./util");
 const { GetFuncionario } = require("./util");
 
@@ -14,9 +13,6 @@ window.onload = async function () {
 
   roleDisplay(funcionario.role);
 }
-=======
-const { Restadias } = require("./util");
->>>>>>> bf60230fb5f261e1f4f913e0c89e521f5c9b1696
 
 document.getElementById("sendData").onclick = async function () {
   //Get values from the form on SolicitarVacaciones.html
@@ -35,7 +31,8 @@ document.getElementById("sendData").onclick = async function () {
   var ref = localStorage.getItem("userLoggueado");
 
   // Calculate the difference between the dates
-  var daysDifference = Restadias(firstDate, finishDate);
+  var daysDifference =
+    (new Date(finishDate) - new Date(firstDate)) / (1000 * 60 * 60 * 24);
   // Check if the user has enough days to request vacations
   var acumulatedDays = await RetornarCantidadVacaciones(ref);
 

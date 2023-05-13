@@ -69,9 +69,6 @@ body.dark{
     align-items: center;
     margin-top: 10px;
 }
-.sidebar li:not(.mode):not(.profile):not(.Logout) {
-    display: none;
-  }
 
 .sidebar header .image,
 .sidebar .icon{
@@ -89,16 +86,11 @@ body.dark{
     font-size: 20px;
 }
 
- i:not(.active) ,
- span:not(.active){
+.sidebar .text,
+.sidebar .icon{
     color: var(--text-color);
     transition: var(--tran-03);
 }
-
-a.active{
-    background-color: var(--primary-color);
-}
-
 
 .sidebar .text{
     font-size: 17px;
@@ -327,9 +319,8 @@ body.dark .home .text{
     padding-left: 0px !important;
 }
 
-.active  {
+.active {
     background-color: var(--primary-color);
-    color: white !important;
 }
 
 
