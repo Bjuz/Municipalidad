@@ -1,6 +1,18 @@
 const { async } = require("@firebase/util");
 const { AddVacation, RetornarCantidadVacaciones } = require("./util");
 const { ObtenerFuncionariosEmail } = require("./util");
+const { roleDisplay } = require("./util");
+const { GetFuncionario } = require("./util");
+
+
+// On window load
+window.onload = async function () {
+  var userId = localStorage.getItem("userLoggueado");
+
+  var funcionario = await GetFuncionario(userId);
+
+  roleDisplay(funcionario.role);
+}
 
 document.getElementById("sendData").onclick = async function () {
   //Get values from the form on SolicitarVacaciones.html
@@ -33,10 +45,10 @@ document.getElementById("sendData").onclick = async function () {
   } else if (daysDifference > acumulatedDays) {
     alert(
       "No tienes dias suficientes para solicitar vacaciones. Tienes " +
-        acumulatedDays +
-        " dias acumulados e intentas solicitar " +
-        daysDifference +
-        " dias."
+      acumulatedDays +
+      " dias acumulados e intentas solicitar " +
+      daysDifference +
+      " dias."
     );
     return (
       "No tienes dias suficientes para solicitar vacaciones. Tienes " +

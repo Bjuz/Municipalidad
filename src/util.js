@@ -134,7 +134,7 @@ export async function RegisterUser(
       departureTime,
       upn,
     );
-    
+
     return VarResponse;
   } else {
     return "El usuario ya existe";
@@ -472,8 +472,8 @@ export async function addValidVacation(firstDate, LastDate, ref) {
     funcionario,
     diasDeDiferencia
   );
-  var accumulatedDays = funcionario.accumulatedDays - diasDeDiferencia - 1; 
-  if(accumulatedDays < 0){
+  var accumulatedDays = funcionario.accumulatedDays - diasDeDiferencia - 1;
+  if (accumulatedDays < 0) {
     accumulatedDays = 0;
   }
   console.log(Validacion);
@@ -644,11 +644,11 @@ export async function DeleteValidVacation(firstDate, LastDate, ref) {
 
 
 export async function UpdateVacation(firstDate, LastDate, ref, estado) {
-  const VarResponse = await UpdateValidVacation(firstDate, LastDate, ref,estado);
+  const VarResponse = await UpdateValidVacation(firstDate, LastDate, ref, estado);
   return VarResponse;
 }
 
-export async function UpdateValidVacation(firstDate, LastDate, ref,estado) {
+export async function UpdateValidVacation(firstDate, LastDate, ref, estado) {
   var funcionario = await ObtenerFuncionariosEmail(ref);
   let fecha1 = new Date(firstDate);
   let fecha2 = new Date(LastDate);
@@ -661,66 +661,66 @@ export async function UpdateValidVacation(firstDate, LastDate, ref,estado) {
     (el) => el.firstDate == firstDate && el.LastDate == LastDate
   );
   var accumulatedDays = funcionario.accumulatedDays;
-  
-  if(estado == "Aprobado"){
-    if(VacacionesActivas[indiceElemento].Estado == "Esperando la aprobación del jefe directo"){
+
+  if (estado == "Aprobado") {
+    if (VacacionesActivas[indiceElemento].Estado == "Esperando la aprobación del jefe directo") {
       VacacionSolicitada = {
         firstDate,
         LastDate,
         Estado: "Esperando la aprobación del alcalde",
       };
 
-    }else if(VacacionesActivas[indiceElemento].Estado == "Esperando la aprobación del alcalde"){
+    } else if (VacacionesActivas[indiceElemento].Estado == "Esperando la aprobación del alcalde") {
       VacacionSolicitada = {
         firstDate,
         LastDate,
         Estado: "Esperando la revisión de recursos humanos",
       };
 
-    }else{
+    } else {
       VacacionSolicitada = {
         firstDate,
         LastDate,
         Estado: "Aprobada",
       };
     }
-      
-    
 
-  }else if(estado == "Rechazado"){
-    if(VacacionesActivas[indiceElemento].Estado == "Esperando la aprobación del jefe directo"){
+
+
+  } else if (estado == "Rechazado") {
+    if (VacacionesActivas[indiceElemento].Estado == "Esperando la aprobación del jefe directo") {
       VacacionSolicitada = {
         firstDate,
         LastDate,
         Estado: "Rechazada por jefe directo",
       };
 
-    }else if(VacacionesActivas[indiceElemento].Estado == "Esperando la aprobación del alcalde"){
+    } else if (VacacionesActivas[indiceElemento].Estado == "Esperando la aprobación del alcalde") {
       VacacionSolicitada = {
         firstDate,
         LastDate,
         Estado: "Rechazada por alcalde",
       };
 
-    }else{
+    } else {
       VacacionSolicitada = {
         firstDate,
         LastDate,
         Estado: "Rechazada por recursos humanos",
       };
     }
-    accumulatedDays = accumulatedDays +  diasDeDiferencia + 1;
+    accumulatedDays = accumulatedDays + diasDeDiferencia + 1;
   }
 
 
 
-  
+
 
   //.splice (index, 1);
-    VacacionesActivas.splice(indiceElemento, 1);
-    console.log(VacacionesActivas);
-    VacacionesActivas.push(VacacionSolicitada);
-    console.log(VacacionesActivas);
+  VacacionesActivas.splice(indiceElemento, 1);
+  console.log(VacacionesActivas);
+  VacacionesActivas.push(VacacionSolicitada);
+  console.log(VacacionesActivas);
 
   console.log(accumulatedDays)
   var refUser = await doc(db, "users", ref);
@@ -744,4 +744,30 @@ export async function UpdateValidVacation(firstDate, LastDate, ref,estado) {
       return error;
     });
   return response;
+}
+
+
+export function roleDisplay(role) {
+  if (role == "Alcalde" || role == "Jefe directo" || role == "Funcionario") {
+    if (role == "Funcionario") {
+      document.getElementById("adminDiv").style.display = "none";
+      document.getElementById("adminDiv").style.visibility = "hidden";
+    } else {
+      // Hide the <a> element with id="registerLink"
+      document.getElementById("registerLink").style.display = "none";
+      document.getElementById("registerLink").style.visibility = "hidden";
+
+      // Hide the <a> element with id="editLink"
+      document.getElementById("editLink").style.display = "none";
+      document.getElementById("editLink").style.visibility = "hidden";
+
+      // Hide the <a> element with id="deleteLink"
+      document.getElementById("deleteLink").style.display = "none";
+      document.getElementById("deleteLink").style.visibility = "hidden";
+
+      // Hide the <a> element with id="feriadoLink"
+      document.getElementById("feriadoLink").style.display = "none";
+      document.getElementById("feriadoLink").style.visibility = "hidden";
+    }
+  }
 }

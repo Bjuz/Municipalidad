@@ -5,9 +5,21 @@
 //You can change number of the next value and debug see it working
 const { RetornarVacaciones } = require("./util");
 const { RetornarCantidadVacaciones } = require("./util");
+const { roleDisplay } = require("./util");
+const { GetFuncionario } = require("./util");
 
 // adds xlsx library to the project
 var XLSX = require("xlsx");
+
+
+// On window load
+window.onload = async function () {
+  var userId = localStorage.getItem("userLoggueado");
+
+  var funcionario = await GetFuncionario(userId);
+
+  roleDisplay(funcionario.role);
+}
 
 window.addEventListener("DOMContentLoaded", async (event) => {
   var ul = document.getElementById("vacationsList");
@@ -21,14 +33,14 @@ window.addEventListener("DOMContentLoaded", async (event) => {
   const Listas = document.getElementById('Listas');
   const CantVacaciones = document.getElementById('CantVacaciones');
   if (Vacations.length == 0) {
-    Listas.innerHTML =`<p>No hay vacaciones registradas</p>`
-  }else {
+    Listas.innerHTML = `<p>No hay vacaciones registradas</p>`
+  } else {
     var i = 0;
-    
-    CantVacaciones.innerHTML =  " Cantidad de vacaciones actuales: " + CantidadDeVacaciones;
+
+    CantVacaciones.innerHTML = " Cantidad de vacaciones actuales: " + CantidadDeVacaciones;
     Vacations.forEach((element) => {
       i += 1;
-      Listas.innerHTML +=`<tr>
+      Listas.innerHTML += `<tr>
       <td>${i}</td>
       <td>${element.firstDate}</td>
       <td>${element.LastDate}</td>
@@ -36,7 +48,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
      
       </tr>`
     })
-    
+
   }
 
   /*if (Vacations.length == 0) {

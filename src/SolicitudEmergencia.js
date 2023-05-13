@@ -1,7 +1,20 @@
-document.getElementById("sendData").onclick = function() {
+const { roleDisplay } = require("./util");
+const { GetFuncionario } = require("./util");
 
-    var firstDate = document.getElementById("firstDate").value; 
-    var finishDate = document.getElementById("finishDate").value; 
+
+// On window load
+window.onload = async function () {
+    var userId = localStorage.getItem("userLoggueado");
+
+    var funcionario = await GetFuncionario(userId);
+
+    roleDisplay(funcionario.role);
+}
+
+document.getElementById("sendData").onclick = function () {
+
+    var firstDate = document.getElementById("firstDate").value;
+    var finishDate = document.getElementById("finishDate").value;
     var motivo = document.getElementById("motivo").value;
 
     //Check if the dates are valid

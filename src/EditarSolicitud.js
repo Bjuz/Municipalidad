@@ -1,9 +1,18 @@
 const { RetornarVacaciones } = require("./util");
+const { GetFuncionario } = require("./util");
+const { roleDisplay } = require("./util");
+
 
 var userId = localStorage.getItem("userLoggueado");
 
 // When the windows load, I would like to load the information of the user
 window.onload = async function () {
+
+  var funcionario = await GetFuncionario(userId);
+
+  roleDisplay(funcionario.role)
+
+  // Let's get the vacations of the user
   const vacations = await RetornarVacaciones(userId);
 
   // Variables

@@ -20,20 +20,7 @@ async function loggin() {
     localStorage.setItem("userLoggueado", text);
 
     var user = await GetFuncionario(text);
-
-    // There are 3 types of users: Funcionario, Jefe Directo, Encargado de recursos humanos, Alcalde
-    if (user.role == "Funcionario") {
-      //window.location.href = "../html/InicioFuncionario.html";
-      window.location.href = "../role/Funcionario/InicioFuncionario.html";
-    } else if (user.role == "Jefe Directo") {
-      //window.location.href = "../html/InicioJefeDirecto.html";
-      window.location.href = "../role/Admin/InicioAdmin.html";
-    } else if (user.role == "Encargado de recursos humanos") {
-      window.location.href = "../role/Admin/InicioAdmin.html";
-    } else if (user.role == "Alcalde") {
-      //window.location.href = "../role/Alcalde/InicioAlcalde.html";
-      window.location.href = "../role/Admin/InicioAdmin.html";
-    }
+    window.location.href = "../html/Inicio.html";
   } else {
     alert(text);
   }

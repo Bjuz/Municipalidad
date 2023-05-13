@@ -1,6 +1,18 @@
 const { RegisterUser } = require("./util");
 const { ForgetPassword } = require("./util");
 const { CreateANewUser } = require("./util");
+const { roleDisplay } = require("./util");
+const { GetFuncionario } = require("./util");
+
+
+// On window load
+window.onload = async function () {
+  var userId = localStorage.getItem("userLoggueado");
+
+  var funcionario = await GetFuncionario(userId);
+
+  roleDisplay(funcionario.role);
+}
 
 document.getElementById("sendData").onclick = function () {
   //document.getElementById("loader").style.display = "block";
