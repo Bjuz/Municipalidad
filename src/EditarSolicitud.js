@@ -55,7 +55,7 @@ window.onload = async function () {
         var finDate = document.getElementById("finDate");
 
         // Let's add the dates to the inputs
-        startDate.value = firstDate;
+        startDate.value = firstDate; 
         finDate.value = finishDate;
 
         //The dates come like YYYY-MM-DD
