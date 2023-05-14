@@ -114,7 +114,71 @@
 
     <!--========== CONTENTS ==========-->
     <main>
+        <div class="container my-5">
+            <h3 class="text-left">Solicitar vacaciones de emergencia</h3>
+            <br />
+            <div class="border p-3 bg-white">
 
+                <h5>Ingrese las fechas de inicio y fin de sus vacaciones de emergencia</h5><br>
+                <br />
+                <div class="row">
+                    <!--derecha-->
+                    <div class="col-md-6">
+                        <div class="home">
+                            <div class="components">
+                                <div class="input-components">
+
+                                    <div class="form-group">
+                                        <label for="firstDate">Fecha de inicio</label>
+                                        <input class="form-control" type="date" name="firstDate" id="firstDate" /><br />
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--izquierda-->
+                    <div class="col-md-6">
+                        <div class="home">
+                            <div class="components">
+                                <div class="input-components">
+
+                                    <div class="form-group">
+                                        <label for="finishDate">Fecha de fin</label>
+                                        <input class="form-control" type="date" name="finishDate" id="finishDate" />
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Campo de texto de Motivo de vacaciones -->
+                <h5>Ingrese el motivo de sus vacaciones de emergencia</h5><br>
+                <div class="home">
+                    <div class="components">
+                        <div class="input-components">
+
+                            <div class="form-group">
+                                <label for="finishDate">Motivo:</label>
+                                <input class="form-control" type="text" name="motivo" id="motivo" required />
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                </div>
+
+                <hr class="my-4" />
+                <div class="text-center">
+                    <button class="btn btn-primary" id="sendData" type="submit">Solicitar</button>
+                </div>
+            </div>
+        </div>
     </main>
 
     <!--========== MAIN JS ==========-->
