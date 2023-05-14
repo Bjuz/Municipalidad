@@ -47,7 +47,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
       <td>${element.firstDate}</td>
       <td>${element.LastDate}</td>
       <td>${element.Estado}</td>
-      <td>${element.razon}</td>
+      <td>${element.Razon}</td>
      
       </tr>`
     })

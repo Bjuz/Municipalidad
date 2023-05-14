@@ -115,116 +115,6 @@
 
   <!--========== CONTENTS ==========-->
     <main>
-        <!-- <div class="text-left">
-          <h3>Modificar información de un funcionario en el sistema</h3>
-        </div>
-        <div class="components">
-          <div class="input-components">
-            <input
-              type="text"
-              name="idlook"
-              id="idlook"
-              class="form__input"
-              placeholder="Funcionario a buscar"
-            />
-            <button id="Search" type="submit" class="btn">Buscar</button>
-          </div>
-  
-          <div class="input-components">
-            <input
-              type="text"
-              name="id"
-              id="id"
-              class="form__input"
-              placeholder="Cedula"
-              readonly
-            />
-  
-            <input
-              type="text"
-              name="completeName"
-              id="name"
-              class="form__input"
-              placeholder="Nombre completo"
-            />
-  
-            <input
-              type="text"
-              name="email"
-              id="email"
-              class="form__input"
-              placeholder="Correo electronico"
-            />
-  
-            <input
-              type="text"
-              name="accumulatedDays"
-              id="accumulatedDays"
-              class="form__input"
-              placeholder="Dias acumulados"
-            />
-  
-            <input
-              type="text"
-              name="ancient"
-              id="ancient"
-              class="form__input"
-              placeholder="Antiguedad"
-            />
-  
-            <input
-              type="text"
-              name="boss"
-              id="boss"
-              class="form__input"
-              placeholder="Jefe directo"
-            />
-  
-            <input
-              type="text"
-              name="salary"
-              id="salary"
-              class="form__input"
-              placeholder="Salario"
-            />
-  
-            <label for="role">Rol</label>
-            <select name="role" id="role" class="form__input">
-              <option value="Funcionario">Funcionario</option>
-              <option value="Jefe directo">Jefe directo</option>
-              <option value="Encargado de recursos humanos">
-                Encargado de recursos humanos
-              </option>
-              <option value="Alcalde">Alcalde</option>
-            </select>
-  
-            <div class="input-select">
-              <h2>Horario laboral</h2>
-  
-              <label for="entryTime">Hora entrada</label>
-              <input
-                type="time"
-                name="entryTime"
-                id="entryTime"
-                class="form__input"
-                placeholder="Hora entrada"
-              />
-  
-              <label for="departureTime">Hora salida</label>
-              <input
-                type="time"
-                name="departureTime"
-                id="departureTime"
-                class="form__input"
-                placeholder="Hora salida"
-              />
-            </div>
-            
-            <button id="sendData" type="submit" class="btn">Actualizar</button>
-            <button id="sendDataDelete" type="submit" class="btn">Eliminar</button>
-          </div>
-        </div>
-      </div> -->
       <div class="container my-5">
         <h3 class="text-left">Editar funcionario</h3>
         <br />
@@ -232,11 +122,11 @@
 
           <div class="input-components">
             <div class="form-group">
-              <label for="idlook">Funcionario a buscar</label>
+              <label for="idlook">Buscar funcionario por cédula</label>
               <input type="text" name="idlook" id="idlook" class="form-control"/>
               <br>
               <div class="text-center">
-                <button id="Search" type="submit" class="btn btn-primary">Buscar</button>
+                <button id="Search" name="Search" type="submit" class="btn btn-primary">Buscar</button>
               </div>
           </div>
 
@@ -253,7 +143,7 @@
   
                     <div class="form-group">
                       <label for="name">Nombre completo</label>
-                      <input type="text" name="completeName" id="name" class="form-control" />
+                      <input type="text" name="name" id="name" class="form-control" />
                     </div>
   
                     <div class="form-group">
@@ -327,7 +217,8 @@
   
           <hr class="my-4" />
           <div class="text-center">
-            <button id="sendData" type="submit" class="btn btn-primary">Agregar</button>
+            <button id="sendData" type="submit" class="btn btn-primary">Actualizar</button>
+            <button id="sendDataDelete" type="submit" class="btn btn-danger">Eliminar</button>
           </div>
         </div>
       </div>
