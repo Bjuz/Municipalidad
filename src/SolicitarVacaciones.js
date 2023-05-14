@@ -3,6 +3,7 @@ const { AddVacation, RetornarCantidadVacaciones } = require("./util");
 const { ObtenerFuncionariosEmail } = require("./util");
 const { roleDisplay } = require("./util");
 const { GetFuncionario } = require("./util");
+const { RetornarVacaciones } = require("./util");
 
 
 // On window load
@@ -11,6 +12,19 @@ window.onload = async function () {
 
   var funcionario = await GetFuncionario(userId);
 
+  // Get the mainDiv
+  var mainDiv = document.getElementById("mainDiv");
+
+  const acumulatedDays = funcionario.accumulatedDays;
+
+  // Create an span with the ammount of vacations
+  var span = document.createElement("span");
+  span.innerHTML = "Cantidad de vacaciones: " + acumulatedDays;
+
+  // Append as a child to mainDiv
+  mainDiv.appendChild(span);
+
+
   roleDisplay(funcionario.role);
 }
 
@@ -18,6 +32,12 @@ document.getElementById("sendData").onclick = async function () {
   //Get values from the form on SolicitarVacaciones.html
   var firstDate = document.getElementById("firstDate").value;
   var finishDate = document.getElementById("finishDate").value;
+
+  // If 'motivo' is empty, then it is not valid
+  if (document.getElementById("motivo").value == "") {
+    alert("Debe ingresar un motivo");
+    return "Debe ingresar un motivo";
+  }
 
   //If the date is less than the current date, then it is not valid
   if (firstDate < new Date().toISOString().split("T")[0]) {
