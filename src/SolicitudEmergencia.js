@@ -1,4 +1,4 @@
-const { roleDisplay } = require("./util");
+const { roleDisplay } = require("./NavBar/Display");
 const { GetFuncionario } = require("./util");
 
 

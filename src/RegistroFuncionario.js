@@ -1,7 +1,7 @@
 const { RegisterUser } = require("./util");
 const { ForgetPassword } = require("./util");
 const { CreateANewUser } = require("./util");
-const { roleDisplay } = require("./util");
+const { roleDisplay } = require("./NavBar/Display");
 const { GetFuncionario } = require("./util");
 
 

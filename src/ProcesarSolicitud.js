@@ -1,6 +1,6 @@
 const { LoadUsers } = require("./util");
 const { UpdateVacation } = require("./util");
-const { roleDisplay } = require("./util");
+const { roleDisplay } = require("./NavBar/Display");
 const { GetFuncionario } = require("./util");
 
 
@@ -40,7 +40,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     trHeaders.appendChild(th);
     th.textContent = header;
   });
-  
+
 
   users.forEach((user) => {
     if (user.hasOwnProperty("VacacionesActivas")) {

@@ -7,7 +7,7 @@
 const { RetornarCantidadVacaciones } = require("./util");
 const { RetornarVacaciones } = require("./util");
 const { DeleteVacation } = require("./util");
-const { roleDisplay } = require("./util");
+const { roleDisplay } = require("./NavBar/Display");
 const { GetFuncionario } = require("./util");
 
 

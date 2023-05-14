@@ -2,7 +2,7 @@ const { method } = require("lodash");
 const { ObtenerFuncionarios, signOut } = require("./util");
 const { UpdateUserInfo } = require("./util");
 const { signOutCurrentUser } = require("./util");
-const { roleDisplay } = require("./util");
+const { roleDisplay } = require("./NavBar/Display");
 const { GetFuncionario } = require("./util");
 
 

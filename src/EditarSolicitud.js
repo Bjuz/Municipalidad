@@ -1,6 +1,6 @@
 const { RetornarVacaciones } = require("./util");
 const { GetFuncionario } = require("./util");
-const { roleDisplay } = require("./util");
+const { roleDisplay } = require("./NavBar/Display");
 
 
 var userId = localStorage.getItem("userLoggueado");

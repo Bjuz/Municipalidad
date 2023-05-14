@@ -5,7 +5,7 @@
 //You can change number of the next value and debug see it working
 const { RetornarVacaciones } = require("./util");
 const { RetornarCantidadVacaciones } = require("./util");
-const { roleDisplay } = require("./util");
+const { roleDisplay } = require("./NavBar/Display");
 const { GetFuncionario } = require("./util");
 
 // adds xlsx library to the project

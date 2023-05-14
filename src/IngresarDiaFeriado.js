@@ -1,6 +1,6 @@
 const { RegisterFeriado } = require("./util");
 const { GetFuncionario } = require("./util");
-const { roleDisplay } = require("./util");
+const { roleDisplay } = require("./NavBar/Display");
 
 
 // On window load
