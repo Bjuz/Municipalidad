@@ -19,6 +19,13 @@ document.getElementById("sendData").onclick = async function () {
   var firstDate = document.getElementById("firstDate").value;
   var finishDate = document.getElementById("finishDate").value;
 
+  //If the date is less than the current date, then it is not valid
+  if (firstDate < new Date().toISOString().split("T")[0]) {
+    alert("La fecha de inicio no puede ser menor o igual a la fecha actual");
+    return "La fecha de inicio no puede ser menor o igual a la fecha actual";
+  }
+
+
   //Check if the dates are valid values for checking the difference
   if (firstDate == "" || finishDate == "") {
     alert("Debe ingresar ambas fechas");
