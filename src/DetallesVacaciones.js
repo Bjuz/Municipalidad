@@ -12,23 +12,15 @@ const { GetFuncionario } = require("./util");
 var XLSX = require("xlsx");
 
 
-// On window load
-window.onload = async function () {
-  var userId = localStorage.getItem("userLoggueado");
 
-  var funcionario = await GetFuncionario(userId);
-
-  roleDisplay(funcionario.role);
-}
 
 window.addEventListener("DOMContentLoaded", async (event) => {
-  var ul = document.getElementById("vacationsList");
-  var li;
-  var div;
-  document.getElementById("loader").style.display = "block";
+
   var ref = localStorage.getItem("userLoggueado");
+  var funcionario = await GetFuncionario(ref);
+  roleDisplay(funcionario.role);
   const Vacations = await RetornarVacaciones(ref); // Retorna la cantidad de vacaciones disponibles
-  const CantidadDeVacaciones = await RetornarCantidadVacaciones(ref); // Retorna la lista de vacaciones
+  const CantidadDeVacaciones = Vacations.length; // Retorna la lista de vacaciones
   console.log(Vacations);
   const Listas = document.getElementById('Listas');
   const CantVacaciones = document.getElementById('CantVacaciones');
@@ -51,58 +43,6 @@ window.addEventListener("DOMContentLoaded", async (event) => {
 
   }
 
-  /*if (Vacations.length == 0) {
-    //Valida el caso de que no tenga vacaciones
-    alert("Este usuario no tiene vacaciones solicitadas actualmente.");
-    li = document.createElement("li");
-    li.setAttribute("id", "vacation" + i);
-    ul.appendChild(li);
-    li.appendChild(
-      document.createTextNode(
-        "Este usuario no tiene vacaciones solicitadas actualmente. \n Cantidad de vacaciones actuales: " +
-          CantidadDeVacaciones
-      )
-    );
-  } else {
-    //caso de que si tenga
-    var i = 0;
-
-    li = document.createElement("li");
-    li.setAttribute("id", "vacation" + i);
-    ul.appendChild(li);
-    li.appendChild(
-      document.createTextNode(
-        " Cantidad de vacaciones actuales: " + CantidadDeVacaciones
-      )
-    ); //Muestra la cantidad de dias acumulados
-    Vacations.forEach((element) => {
-      // Navega entre las vacaciones y las muestra
-      i += 1;
-      li = document.createElement("li");
-      li.setAttribute("id", "vacation" + i);
-      ul.appendChild(li);
-      li.appendChild(
-        document.createTextNode(
-          "Vacacion " +
-            i +
-            " : " +
-            "Fecha de nicio = " +
-            element.firstDate +
-            " Fecha finalizacion = " +
-            element.LastDate +
-            " Estado: " +
-            element.Estado
-        )
-      ); //inserta las vacaciones
-    });
-    //After the list is created, we add the button to download as xlsx file
-    div = document.createElement("div");
-    div.setAttribute("id", "downloadButton");
-    ul.appendChild(div);
-    div.innerHTML =
-      '<button id="downloadButton" class="btn btn-primary" onclick="download()">Descargar</button>';
-  }*/
-
 
 
   // This function is called when the user clicks on the download button
@@ -121,5 +61,4 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     XLSX.writeFile(wb, "Vacaciones.xlsx");
   };
 
-  document.getElementById("loader").style.display = "none";
 });
