@@ -19,7 +19,7 @@ window.onload = async function () {
 
   // Create an span with the ammount of vacations
   var span = document.createElement("span");
-  span.innerHTML = "Cantidad de vacaciones: " + acumulatedDays;
+  span.innerHTML = "Vacaciones acumuladas: " + acumulatedDays;
 
   // Append as a child to mainDiv
   mainDiv.appendChild(span);
