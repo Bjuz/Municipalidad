@@ -49,7 +49,20 @@ window.addEventListener("DOMContentLoaded", async (event) => {
       // Add a row for each vacation
       const vacations = user.VacacionesActivas;
       vacations.forEach((vacation) => {
-        if (vacation.Estado == "Cancelada" || vacation.Estado == "Rechazada por jefe directo" || vacation.Estado == "Rechazada por alcalde" || vacation.Estado == "Rechazada por recursos humanos") {
+        if (vacation.Estado == "Cancelada" || vacation.Estado == "Rechazada por jefe directo" || vacation.Estado == "Rechazada por alcalde" || vacation.Estado == "Rechazada por recursos humanos" || vacation.Estado == "Aprobado") {
+          return
+        }
+        if(user.bosscorreo != UsuarioAcctual.email && UsuarioAcctual.role !="Encargado de recursos humanos"){
+          return
+        }
+
+        if(UsuarioAcctual.role =="Alcalde" && vacation.Estado != "Esperando la aprobación del alcalde" ){
+          return
+        }
+        if(UsuarioAcctual.role =="Jefe directo" && vacation.Estado != "Esperando la aprobación del jefe directo" ){
+          return
+        }
+        if(UsuarioAcctual.role =="Funcionario" ){
           return
         }
         // Create a row
