@@ -1,124 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editar funcionario</title>
 
-    <!--========== BOX ICONS ==========-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/fabe13b5d4.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/x-icon" href="/media/logocanton.png" />
 
-    <!--========== BOOTSTRAP ==========-->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/Style/Navbar.css" />
+    <link rel="stylesheet" href="/Style/RegistroFuncionario.css" />
+    <link rel="stylesheet" href="/Style/style.css" />
 
-    <!--========== CSS ==========-->
-    <link rel="stylesheet" href="/Style/Sidebar.css" />
+      <!--========== BOX ICONS ==========-->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 
-    <title>Sistema Gestión Vacaciones</title>
-</head>
+      <!--========== BOOTSTRAP ==========-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+  
+      <!--========== CSS ==========-->
+      <link rel="stylesheet" href="../Style/Sidebar.css">
+  </head>
+  <body>
+    <!--<div id="loader"></div>-->
+   <!--========== HEADER ==========-->
+   <header class="header">
+    <div class="header__container">
+        <img src="/Media/logocanton.png" alt="" class="header__img">
 
-<body>
-    <!--========== HEADER ==========-->
-    <header class="header">
-        <div class="header__container">
-            <img src="/Media/logocanton.png" alt="" class="header__img" />
+        <a href="https://www.santabarbara.go.cr" class="header__logo"> Municipalidad Santa Bárbara</a>
 
-            <a href="https://www.santabarbara.go.cr" class="header__logo">
-                Municipalidad Santa Bárbara</a>
-
-            <div class="header__search">
-                <input type="search" placeholder="Search" class="header__input" />
-                <i class="bx bx-search header__icon"></i>
-            </div>
-
-            <div class="header__toggle">
-                <i class="bx bx-menu" id="header-toggle"></i>
-            </div>
+        <div class="header__search">
+            <input type="search" placeholder="Search" class="header__input">
+            <i class='bx bx-search header__icon'></i>
         </div>
-    </header>
 
-    <!--========== NAV ==========-->
-    <div class="nav" id="navbar">
-        <nav class="nav__container">
-            <div>
-                <a href="#" class="nav__link nav__logo">
-                    <i class="bx bxs-disc nav__icon"></i>
-                    <span class="nav__logo-name">SIGEVA</span>
-                </a>
+        <div class="header__toggle">
+            <i class='bx bx-menu' id="header-toggle"></i>
+        </div>
+    </div>
+</header>
 
-                <div class="nav__list">
-                    <div class="nav__items">
-                        <h3 class="nav__subtitle">Personal</h3>
+<!--========== NAV ==========-->
+<div class="nav" id="navbar">
+    <nav class="nav__container">
+        <div>
+            <a href="#" class="nav__link nav__logo">
+                <i class='bx bxs-disc nav__icon'></i>
+                <span class="nav__logo-name">SIGEVA</span>
+            </a>
 
-                        <a href="Inicio.html" class="nav__link active">
-                            <i class="bx bx-home nav__icon"></i>
-                            <span class="nav__name">Inicio</span>
+            <div class="nav__list">
+                <div class="nav__items">
+                    <h3 class="nav__subtitle">Personal</h3>
+
+                    <a  id="Home" href="InicioAdmin.html" class="nav__link">
+                        <i class='bx bx-home nav__icon'></i>
+                        <span class="nav__name">Inicio</span>
+                    </a>
+
+                    <div class="nav__dropdown">
+                        <a href="#" class="nav__link">
+                            <i class='bx bx-user nav__icon'></i>
+                            <span class="nav__name">Vacaciones</span>
+                            <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
                         </a>
 
-                        <div class="nav__dropdown">
-                            <a href="#" class="nav__link">
-                                <i class="bx bx-user nav__icon"></i>
-                                <span class="nav__name">Vacaciones</span>
-                                <i class="bx bx-chevron-down nav__icon nav__dropdown-icon"></i>
-                            </a>
-
-                            <div class="nav__dropdown-collapse">
-                                <div class="nav__dropdown-content">
-                                    <a href="SolicitarVacaciones.html" class="nav__dropdown-item">Solicitar
-                                        vacaciones</a>
-                                    <a href="DetalleVacaciones.html" class="nav__dropdown-item">Detalle vacaciones</a>
-                                    <a href="EditarVacaciones.html" class="nav__dropdown-item">Editar vacaciones</a>
-                                    <a href="SolicitudEmergencia.html" class="nav__dropdown-item">Solicitud
-                                        emergencia</a>
-                                </div>
+                        <div class="nav__dropdown-collapse">
+                            <div class="nav__dropdown-content">
+                                <a  id="SolicitarVacaciones" href="SolicitarVacaciones.html" class="nav__dropdown-item">Solicitar
+                                    vacaciones</a>
+                                <a id="DetallesVacaciones" href="DetalleVacaciones.html" class="nav__dropdown-item">Detalle vacaciones</a>
+                                <a  id="EditarVacaciones" href="EditarVacaciones.html" class="nav__dropdown-item">Editar vacaciones</a>
+                                <a  id="SolicitudEmergencia" href="SolicitudEmergencia.html" class="nav__dropdown-item">Solicitud
+                                    emergencia</a>
                             </div>
                         </div>
                     </div>
-                    <div class="nav__items" id="adminDiv" style="display: none;">
-                        <h3 class="nav__subtitle">Gestión</h3>
-                        <br>
-                        <div class="nav__dropdown">
-                            <a href="#" class="nav__link">
-                                <i class="bx bx-bell nav__icon"></i>
-                                <span class="nav__name">Administrativa</span>
-                                <i class="bx bx-chevron-down nav__icon nav__dropdown-icon"></i>
-                            </a>
 
-                            <div class="nav__dropdown-collapse">
-                                <div class="nav__dropdown-content">
-                                    <a href="ProcesarSolicitud.html" class="nav__dropdown-item" id="processLink">Revisar
-                                        solicitudes</a>
-                                    <a href="RegistroFuncionario.html" class="nav__dropdown-item"
-                                        id="registerLink">Registro empleado</a>
-                                    <a href="EditarFuncionario.html" class="nav__dropdown-item" id="editLink">Editar
-                                        empleado</a>
-                                    <a href="EliminarEmpleado.html" class="nav__dropdown-item" id="deleteLink">Eliminar
-                                        empleado</a>
-                                    <a href="IngresarFeriado.html" class="nav__dropdown-item" id="feriadoLink">Ingresar
-                                        feriado</a>
-                                </div>
+                </div>
+
+                <div class="nav__items">
+                    <h3 class="nav__subtitle">Gestión</h3>
+
+                    <div class="nav__dropdown">
+                        <a href="#" class="nav__link">
+                            <i class='bx bx-bell nav__icon'></i>
+                            <span class="nav__name">Administrativa</span>
+                            <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                        </a>
+
+                        <div class="nav__dropdown-collapse" id="adminDiv">
+                            <div class="nav__dropdown-content">
+                                <a id="ProcesarSolicitud" href="ProcesarSolicitud.html" class="nav__dropdown-item">Revisar solicitudes</a>
+                                <a id="RegistroFuncionario" href="RegistroFuncionario.html" class="nav__dropdown-item"
+                                    id="registerLink">Registro empleado</a>
+                                <a  id="EditarFuncionario" href="EditarFuncionario.html" class="nav__dropdown-item" 
+                                    id="editLink">Editar empleado</a>
+                                <a  id="EliminarFuncionario" href="EliminarEmpleado.html" class="nav__dropdown-item"
+                                    id="deleteLink">Eliminar empleado</a>
+                                <a id="IngresarDiaFeriado" href="IngresarFeriado.html" class="nav__dropdown-item"
+                                    id="feriadoLink">Ingresar feriado</a>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
+        </div>
+        
+            
+         
+        <a href="#" class="nav__link nav__logout">
+            <i class='bx bx-log-out nav__icon'></i>
+            <span class="nav__name">Log Out</span>
+        </a>
+    </nav>
+</div>
 
-            <a href="../index.html" class="nav__link nav__logout">
-                <i class="bx bx-log-out nav__icon"></i>
-                <span class="nav__name">Log Out</span>
-            </a>
-        </nav>
+
+    <!--body content------------------------------------------------------------>
+
+    <div class="home">
+      <div class="text">
+        Modificar información de un funcionario en el sistema
+      </div>
+      <div class="components">
+        <div class="input-components">
+          <input
+            type="text"
+            name="idlook"
+            id="idlook"
+            class="form__input"
+            placeholder="Funcionario a buscar"
+          />
+          <button id="Search" type="submit" class="btn">Buscar</button>
+        </div>
+
+        <div class="input-components">
+          <input
+            type="text"
+            name="id"
+            id="id"
+            class="form__input"
+            placeholder="Cedula"
+            readonly
+          />
+
+          <input
+            type="text"
+            name="completeName"
+            id="name"
+            class="form__input"
+            placeholder="Nombre completo"
+          />
+
+          <input
+            type="text"
+            name="email"
+            id="email"
+            class="form__input"
+            placeholder="Correo electronico"
+          />
+
+          <input
+            type="text"
+            name="accumulatedDays"
+            id="accumulatedDays"
+            class="form__input"
+            placeholder="Dias acumulados"
+          />
+
+          <input
+            type="text"
+            name="ancient"
+            id="ancient"
+            class="form__input"
+            placeholder="Antiguedad"
+          />
+
+          <input
+            type="text"
+            name="boss"
+            id="boss"
+            class="form__input"
+            placeholder="Jefe directo"
+          />
+
+          <input
+            type="text"
+            name="salary"
+            id="salary"
+            class="form__input"
+            placeholder="Salario"
+          />
+
+          <label for="role">Rol</label>
+          <select name="role" id="role" class="form__input">
+            <option value="Funcionario">Funcionario</option>
+            <option value="Jefe directo">Jefe directo</option>
+            <option value="Encargado de recursos humanos">
+              Encargado de recursos humanos
+            </option>
+            <option value="Alcalde">Alcalde</option>
+          </select>
+
+          <div class="input-select">
+            <h2>Horario laboral</h2>
+
+            <label for="entryTime">Hora entrada</label>
+            <input
+              type="time"
+              name="entryTime"
+              id="entryTime"
+              class="form__input"
+              placeholder="Hora entrada"
+            />
+
+            <label for="departureTime">Hora salida</label>
+            <input
+              type="time"
+              name="departureTime"
+              id="departureTime"
+              class="form__input"
+              placeholder="Hora salida"
+            />
+          </div>
+          
+          <button id="sendData" type="submit" class="btn">Actualizar</button>
+          <button id="sendDataDelete" type="submit" class="btn">Eliminar</button>
+        </div>
+      </div>
     </div>
-
-    <!--========== CONTENTS ==========-->
-    <main>
-
-    </main>
-
-    <!--========== MAIN JS ==========-->
-    <script type="module" src="../../dist/EditarFuncionario.bundle.js"></script>
-    <script type="module" src="../../dist/navbar.bundle.js"></script>
-</body>
-
+  </body>
+  <script type="module" src="../dist/EditarFuncionario.bundle.js"></script>
+  <script type="module" src="../dist/Navbar.bundle.js"></script>
+  <!-- <script src="../src/Navbar/Navbar.js"></script>-->
 </html>

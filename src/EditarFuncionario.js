@@ -4,6 +4,9 @@ const { UpdateUserInfo } = require("./util");
 const { signOutCurrentUser } = require("./util");
 const { roleDisplay } = require("./NavBar/Display");
 const { GetFuncionario } = require("./util");
+const { DeleteUserCreaded } = require("./util");
+
+
 
 
 // On window load
@@ -16,6 +19,7 @@ window.onload = async function () {
 }
 
 document.getElementById("Search").onclick = async function () {
+  console.log("Seach")
   //document.getElementById("loader").style.display = "block";
   let test = await loadInfo();
   if (test != "empty") {
@@ -47,6 +51,15 @@ async function loadInfo() {
 
 document.getElementById("sendData").onclick = function () {
   UpdateUser();
+};
+
+document.getElementById("sendDataDelete").onclick = async function () {
+
+  var id = document.getElementById("id").value;
+  var email = document.getElementById("email").value;
+  var test = await ObtenerFuncionarios(id, email);
+  var deleteUser = await DeleteUserCreaded(test.Ref);
+  alert(deleteUser)
 };
 
 
