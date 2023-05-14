@@ -45,7 +45,7 @@ async function Register() {
   var bosscorreo = document.getElementById*("bosscorreo").value;
   var entryTime = document.getElementById("entryTime").value;
   var departureTime = document.getElementById("departureTime").value;
-
+  var bosscorreo = document.getElementById("bosscorreo").value;
   if (
     !id ||
     !name ||
@@ -59,6 +59,7 @@ async function Register() {
     !departureTime||
     !bosscorreo
   ) {
+    console.log("Favor agregar todos los campos");
     alert("Favor agregar todos los campos");
   } else {
     const text = await RegisterUser(id, name, email, accumulatedDays, ancient, boss, salary, role, entryTime, departureTime, generateP(),bosscorreo);

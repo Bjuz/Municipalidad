@@ -154,7 +154,8 @@ export async function Register(
   role,
   entryTime,
   departureTime,
-  upn
+  upn,
+  bosscorreo
 ) {
   const test2 = await setDoc(doc(db, "users", upn), {
     id,

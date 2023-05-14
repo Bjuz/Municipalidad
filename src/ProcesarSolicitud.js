@@ -57,7 +57,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
       // Add a row for each vacation
       const vacations = user.VacacionesActivas;
       vacations.forEach((vacation) => {
-        if (vacation.Estado == "Cancelada" || vacation.Estado == "Rechazada por jefe directo" || vacation.Estado == "Rechazada por alcalde" || vacation.Estado == "Rechazada por recursos humanos" || vacation.Estado == "Aprobado") {
+        if (vacation.Estado == "Cancelada" || vacation.Estado == "Aprobada" || vacation.Estado == "Rechazada por jefe directo" || vacation.Estado == "Rechazada por alcalde" || vacation.Estado == "Rechazada por recursos humanos" || vacation.Estado == "Aprobado") {
           return
         }
         if(user.bosscorreo != UsuarioAcctual.email && UsuarioAcctual.role !="Encargado de recursos humanos"){
