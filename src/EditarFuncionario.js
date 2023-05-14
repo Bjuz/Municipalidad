@@ -46,6 +46,16 @@ document.getElementById("Search").onclick = async function () {
 async function loadInfo() {
   var id = document.getElementById("idlook").value;
   var test = await ObtenerFuncionarios(id, "empty");
+  if(test){
+    if(test.Status == "Deleted"){
+      alert("El usuario que esta buscando se encuentra borrado, en caso de querer restaurarlo favor usar el boton de restaurar");
+      document.getElementById("sendDataDelete").value = "Restaurar"
+      document.getElementById("sendDataDelete").innerText = "Restaurar"
+    }else{
+      document.getElementById("sendDataDelete").value = "Eliminar"
+      document.getElementById("sendDataDelete").innerText = "Eliminar"
+    }
+  }
   return test;
 }
 
@@ -58,8 +68,28 @@ document.getElementById("sendDataDelete").onclick = async function () {
   var id = document.getElementById("id").value;
   var email = document.getElementById("email").value;
   var test = await ObtenerFuncionarios(id, email);
-  var deleteUser = await DeleteUserCreaded(test.Ref);
+  if( document.getElementById("sendDataDelete").value == "Restaurar"){
+    var deleteUser = await DeleteUserCreaded(test.Ref, "Restaurar");
+  }else{
+    var deleteUser = await DeleteUserCreaded(test.Ref, "Deleted");
+    
+  }
+  document.getElementById("sendDataDelete").value = "Eliminar"
+  document.getElementById("sendDataDelete").innerText = "Eliminar"
   alert(deleteUser)
+
+
+  document.getElementById("idlook").value = "";
+  document.getElementById("id").value = "";
+  document.getElementById("name").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("accumulatedDays").value = "";
+  document.getElementById("ancient").value = "";
+  document.getElementById("boss").value = "";
+  document.getElementById("salary").value = "";
+  document.getElementById("role").value = "";
+  document.getElementById("entryTime").value = "00:00";
+  document.getElementById("departureTime").value = "00:00";
 };
 
 

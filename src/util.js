@@ -361,15 +361,15 @@ export async function DeleteDocu(ref) {
 return resut;
 }
 
-export async function DeleteUserCreaded(ref) {
-  const VarResponse = await DeleteUser(ref);
+export async function DeleteUserCreaded(ref, Status) {
+  const VarResponse = await DeleteUser(ref, Status);
   return VarResponse;
 }
 
-export async function DeleteUser(ref) {
+export async function DeleteUser(ref,Status) {
   var ref = doc(db, "users", ref);
   var response = await updateDoc(ref, {
-    Status: "Deleted",
+    Status,
   })
     .then(() => {
       console.log("changes");
