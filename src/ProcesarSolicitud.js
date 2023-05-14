@@ -134,11 +134,13 @@ window.addEventListener("click", async (event) => {
   var firstDateVac = userIdAndDates.split("|")[1]
   var LastDateVac = userIdAndDates.split("|")[2]
   // If the button id starts with btnAprobar
+  var tipo;
   if (buttonId.startsWith("btnAprobar")) {
     // Get the button value that is the user id, the first date and the last date
 
      response  = await UpdateVacation(firstDateVac,LastDateVac, user.Ref,"Aprobado","Aprobado");
      console.log(response)
+     
 
 
 
@@ -147,6 +149,36 @@ window.addEventListener("click", async (event) => {
     response  = await UpdateVacation(firstDateVac,LastDateVac, user.Ref,"Rechazado","Rechazado");
     console.log(response)
 
+  }
+  if(response){
+    response = response.split(":")[1];
+    console.log( firstDateVac + " " +
+      LastDateVac + " "+
+      response + " "+
+      user.email)
+    const data = {
+      firstDate: firstDateVac,
+      finishDate: LastDateVac,
+      Estado: response,
+      user: user.email,
+    };
+
+    fetch('/send-email-Process', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+      console.log('Response:', result);
+      // Handle the response data here
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      // Handle any errors that occurred during the request
+    });
   }
   alert(response);
 });

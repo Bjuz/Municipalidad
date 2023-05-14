@@ -3,7 +3,7 @@ const { GetFuncionario } = require("./util");
 const { roleDisplay } = require("./NavBar/Display");
 const { UpdateVacationWithRazon } = require("./util");
 const { ObtenerFuncionariosUID } = require("./util");
- select = document.getElementById("vacationId"),
+const  select = document.getElementById("vacationId"),
  startDate = document.getElementById("startDate"),
  finDate = document.getElementById("finDate");
 
