@@ -90,6 +90,31 @@ document.getElementById("sendData").onclick = async function () {
   } else {
     // Send the request to the database
     var result = await AddVacation(firstDate, finishDate, ref, motivo);
+    if (result == "Vacaciones solicitadas con éxito") {
+      const data = {
+        firstDate: firstDate,
+        finishDate: finishDate,
+        motivo:motivo,
+      };
+
+      fetch('/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(result => {
+        console.log('Response:', result);
+        // Handle the response data here
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        // Handle any errors that occurred during the request
+      });
+
+    }
     alert(result);
     return result;
   }

@@ -37,7 +37,23 @@ window.addEventListener("DOMContentLoaded", async (event) => {
   document.getElementById("loader").style.display = "none";
   var result = await UserCurrentState();
   console.log(result);
-  fetch("/")
-    .then((response) => console.log(response))
-    .catch((error) => console.error(error));
+  //renderUsers();
 });
+/*
+async function renderUsers() {
+  let users = await getUsers();
+  users.forEach(user => {
+      console.log(user)
+  });
+
+}
+
+async function getUsers() {
+  let url = '../Test.json';
+  try {
+      let res = await fetch(url);
+      return await res.json();
+  } catch (error) {
+      console.log(error);
+  }
+}*/

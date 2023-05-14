@@ -1,10 +1,10 @@
 {
-    "service": "gmail",
-    "auth": {
-      "type": "OAuth2",
-      "user": "notificacion.santabarbara@gmail.com",
-      "clientId": "519309772785-ulnt6odgt2rhjat7pugbv0pf56e5ce5c.apps.googleusercontent.com",
-      "clientSecret": "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",
-      "refreshToken": "1//04yX9-gc1ro7lCgYIARAAGAQSNwF-L9IrAJFPtOp1lWvMs7Q65dDpSizzrlahGKiwEw9SXnbM4sIZfsJdWDdRKSh6-1i6qOk6lR0"
-    }
+  "service": "gmail",
+  "auth": {
+    "type": "OAuth2",
+    "user": "jeaustin.rdz@gmail.com",
+    "clientId": "430734355108-fl9hprsrkvc61esta32hvll2v6tfccd7.apps.googleusercontent.com",
+    "clientSecret": "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",
+    "refreshToken": "1//04j8uvxg4mfj_CgYIARAAGAQSNwF-L9IrY2cGxiS_kr4rE6dHyQjsRucYu-0y7cFZ3eq2DpsB7k2QHaLLbpiN-IaAxmDU9XDG5rU"
   }
+}
