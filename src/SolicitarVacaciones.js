@@ -22,6 +22,7 @@ window.onload = async function () {
   // Create an span with the ammount of vacations
   var span = document.createElement("span");
   span.innerHTML = "Vacaciones acumuladas: " + acumulatedDays;
+  console.log(acumulatedDays)
 
   // Append as a child to mainDiv
   mainDiv.appendChild(span);
@@ -34,6 +35,7 @@ document.getElementById("sendData").onclick = async function () {
   //Get values from the form on SolicitarVacaciones.html
   var firstDate = document.getElementById("firstDate").value;
   var finishDate = document.getElementById("finishDate").value;
+  var motivo = document.getElementById("motivo").value;
 
   // If 'motivo' is empty, then it is not valid
   if (document.getElementById("motivo").value == "") {
@@ -87,7 +89,7 @@ document.getElementById("sendData").onclick = async function () {
     );
   } else {
     // Send the request to the database
-    var result = await AddVacation(firstDate, finishDate, ref);
+    var result = await AddVacation(firstDate, finishDate, ref, motivo);
     alert(result);
     return result;
   }

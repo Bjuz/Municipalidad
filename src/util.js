@@ -448,26 +448,17 @@ export async function ObtenerFuncionariosEmail(UID) {
   return VarResponse;
 }
 
-export async function GetFuncionario(UID) {
-  const docRef = doc(db, "users", UID);
-  const docSnap = await getDoc(docRef);
 
-  if (!docSnap.exists()) {
-    console.log("No such document!");
-    return "No user found";
-  }
-  return docSnap.data();
-}
 
 // Comment the code because the btn LoggoutBTn was deleted from the codes in case you need to active again,
 
 // Add Vacation
-export async function AddVacation(firstDate, LastDate, ref) {
-  const VarResponse = await addValidVacation(firstDate, LastDate, ref);
+export async function AddVacation(firstDate, LastDate, ref,Razon) {
+  const VarResponse = await addValidVacation(firstDate, LastDate, ref,Razon);
   return VarResponse;
 }
 
-export async function addValidVacation(firstDate, LastDate, ref) {
+export async function addValidVacation(firstDate, LastDate, ref,Razon) {
   var funcionario = await ObtenerFuncionariosEmail(ref);
   let fecha1 = new Date(firstDate);
   let fecha2 = new Date(LastDate);
@@ -493,6 +484,7 @@ export async function addValidVacation(firstDate, LastDate, ref) {
     firstDate,
     LastDate,
     Estado: "Esperando la aprobación del jefe directo",
+    Razon,
   };
 
   if (funcionario.VacacionesActivas) {
@@ -516,6 +508,67 @@ export async function addValidVacation(firstDate, LastDate, ref) {
     });
   return response;
 }
+
+//Emergency vacation
+
+export async function AddVacationEmergency(firstDate, LastDate, ref, Razon) {
+  const VarResponse = await addValidVacationEme(firstDate, LastDate, ref,Razon );
+  return VarResponse;
+}
+
+export async function addValidVacationEme(firstDate, LastDate, ref,Razon) {
+  var funcionario = await ObtenerFuncionariosEmail(ref);
+  let fecha1 = new Date(firstDate);
+  let fecha2 = new Date(LastDate);
+  let diferencia = Restadias(firstDate,LastDate);
+  let diasDeDiferencia = diferencia;
+  console.log(diasDeDiferencia);
+  var Validacion = await RevisarVacaciones(
+    firstDate,
+    LastDate,
+    funcionario,
+    diasDeDiferencia
+  );
+  var accumulatedDays = funcionario.accumulatedDays - diasDeDiferencia - 1;
+  if (accumulatedDays < 0) {
+    accumulatedDays = 0;
+  }
+  console.log(Validacion);
+  if (Validacion != "Vacaciones solicitadas con éxito") {
+    return Validacion;
+  }
+  let VacacionesActivas = [];
+  const VacacionSolicitada = {
+    firstDate,
+    LastDate,
+    Estado: "Vacacion de Emergencia",
+    Razon,
+
+  };
+
+  if (funcionario.VacacionesActivas) {
+    VacacionesActivas = funcionario.VacacionesActivas;
+  }
+  VacacionesActivas.push(VacacionSolicitada);
+
+  var refUser = await doc(db, "users", ref);
+  console.log(refUser);
+  var response = await updateDoc(refUser, {
+    VacacionesActivas,
+    accumulatedDays,
+  })
+    .then(() => {
+      console.log("changes");
+      return "Vacaciones solicitadas con alta urgencia";  
+    })
+    .catch((error) => {
+      console.log(error);
+      return error;
+    });
+  return response;
+}
+
+//End emergency vacation
 
 export async function VacacionesFuncionario(funcionario) {
   let VacacionesActivas = [];

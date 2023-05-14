@@ -1,5 +1,7 @@
 const { roleDisplay } = require("./NavBar/Display");
 const { GetFuncionario } = require("./util");
+const { AddVacationEmergency } = require("./util");
+
 
 
 // On window load
@@ -11,11 +13,12 @@ window.onload = async function () {
     roleDisplay(funcionario.role);
 }
 
-document.getElementById("sendData").onclick = function () {
+document.getElementById("sendData").onclick = async function () {
 
     var firstDate = document.getElementById("firstDate").value;
     var finishDate = document.getElementById("finishDate").value;
     var motivo = document.getElementById("motivo").value;
+    var ref = localStorage.getItem("userLoggueado");
 
     //Ask for confirmation from the user showing the dates formatting them to dd of month formatting month in spanish
     var firstDateFormatted = new Date(firstDate);
@@ -29,10 +32,10 @@ document.getElementById("sendData").onclick = function () {
     if (!confirmation) {
         return;
     }
-
+    
     //There is no any database functionality yet, so we just show an alert
-
-    alert("Vacaciones solicitadas con alta prioridad");
+    var result = await AddVacationEmergency(firstDate, finishDate, ref, motivo);
+    alert(result);
 
 }
 
@@ -47,7 +50,7 @@ function validateDates(firstDate, finishDate, motivo) {
         return false;
     } // Check if the first date is greater than the current date
     else if (new Date(firstDate) < new Date()) {
-        alert("La fecha de inicio no puede ser menor o igual a la fecha actual");
+        alert("La fecha de inicio no puede ser menor a la fecha actual");
         return false;
     }
     // Check if the reason is empty
