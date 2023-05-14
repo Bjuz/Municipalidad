@@ -37,7 +37,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     <th>Fecha de inicio</th>
     <th>Fecha de finalizacion</th>
     <th>Estado</th>
-    <th>Razon</th>
+    <th>Motivo</th>
     </tr>`;
 
     Vacations.forEach((element) => {
