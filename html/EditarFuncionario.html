@@ -232,11 +232,11 @@
 
           <div class="input-components">
             <div class="form-group">
-              <label for="idlook">Funcionario a buscar</label>
+              <label for="idlook">Buscar funcionario por cédula</label>
               <input type="text" name="idlook" id="idlook" class="form-control"/>
               <br>
               <div class="text-center">
-                <button id="Search" type="submit" class="btn btn-primary">Buscar</button>
+                <button id="Search" name="Search" type="submit" class="btn btn-primary">Buscar</button>
               </div>
           </div>
 
@@ -253,7 +253,7 @@
   
                     <div class="form-group">
                       <label for="name">Nombre completo</label>
-                      <input type="text" name="completeName" id="name" class="form-control" />
+                      <input type="text" name="name" id="name" class="form-control" />
                     </div>
   
                     <div class="form-group">
@@ -327,7 +327,8 @@
   
           <hr class="my-4" />
           <div class="text-center">
-            <button id="sendData" type="submit" class="btn btn-primary">Agregar</button>
+            <button id="sendData" type="submit" class="btn btn-primary">Actualizar</button>
+            <button id="sendDataDelete" type="submit" class="btn btn-danger">Eliminar</button>
           </div>
         </div>
       </div>

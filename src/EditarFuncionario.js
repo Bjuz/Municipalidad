@@ -29,6 +29,7 @@ document.getElementById("Search").onclick = async function () {
     document.getElementById("accumulatedDays").value = test.accumulatedDays;
     document.getElementById("ancient").value = test.ancient;
     document.getElementById("boss").value = test.boss;
+    document.getElementById("bosscorreo").value = test.bosscorreo;
     document.getElementById("salary").value = test.salary;
     document.getElementById("entryTime").value = test.entryTime;
     document.getElementById("departureTime").value = test.departureTime;
