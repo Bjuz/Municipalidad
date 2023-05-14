@@ -20,6 +20,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
 
   // Load users
   const users = await LoadUsers();
+  var ref = localStorage.getItem("userLoggueado");
 
 
 
@@ -27,6 +28,13 @@ window.addEventListener("DOMContentLoaded", async (event) => {
   const tableBody = document.getElementById("tableBody");
   // Verify if the user has this internal array
   var i = 0;
+  var UsuarioAcctual;
+  users.forEach((user) => {
+    if(user.Ref == ref){
+      UsuarioAcctual = user;
+    }
+  });
+
 
   // Headers for the table
   const headers = ["Nombre", "Estado", "Fecha Inicio", "Fecha Fin", "Acciones"];
@@ -129,14 +137,14 @@ window.addEventListener("click", async (event) => {
   if (buttonId.startsWith("btnAprobar")) {
     // Get the button value that is the user id, the first date and the last date
 
-    response = await UpdateVacation(firstDateVac, LastDateVac, user.Ref, "Aprobado");
-    console.log(response)
+     response  = await UpdateVacation(firstDateVac,LastDateVac, user.Ref,"Aprobado","Aprobado");
+     console.log(response)
 
 
 
   } else if (buttonId.startsWith("btnRechazar")) {
     // If the button id starts with btnRechazar
-    response = await UpdateVacation(firstDateVac, LastDateVac, user.Ref, "Rechazado");
+    response  = await UpdateVacation(firstDateVac,LastDateVac, user.Ref,"Rechazado","Rechazado");
     console.log(response)
 
   }
