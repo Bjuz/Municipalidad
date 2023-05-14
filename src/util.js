@@ -471,8 +471,8 @@ export async function addValidVacation(firstDate, LastDate, ref) {
   var funcionario = await ObtenerFuncionariosEmail(ref);
   let fecha1 = new Date(firstDate);
   let fecha2 = new Date(LastDate);
-  let diferencia = fecha2.getTime() - fecha1.getTime();
-  let diasDeDiferencia = diferencia / 1000 / 60 / 60 / 24;
+  let diferencia = Restadias(firstDate,LastDate);
+  let diasDeDiferencia = diferencia;
   console.log(diasDeDiferencia);
   var Validacion = await RevisarVacaciones(
     firstDate,
