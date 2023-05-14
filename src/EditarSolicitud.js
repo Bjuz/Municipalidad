@@ -1,7 +1,11 @@
 const { RetornarVacaciones } = require("./util");
 const { GetFuncionario } = require("./util");
 const { roleDisplay } = require("./NavBar/Display");
-
+const { UpdateVacationWithRazon } = require("./util");
+const { ObtenerFuncionariosUID } = require("./util");
+ select = document.getElementById("vacationId"),
+ startDate = document.getElementById("startDate"),
+ finDate = document.getElementById("finDate");
 
 var userId = localStorage.getItem("userLoggueado");
 
@@ -92,8 +96,8 @@ async function loadInfo(id) {
   }
 }
 
-document.getElementById("updateBtn").onclick = function () {
-  UpdateSolicitud();
+document.getElementById("updateBtn").onclick = async function () {
+  var response = await  UpdateSolicitud();
 };
 
 async function UpdateSolicitud() {
@@ -168,9 +172,12 @@ async function UpdateSolicitud() {
         // Get the id of the vacation that is the same that in the database
         var optionValue = select.options[select.selectedIndex].value;
         // With this you will get vacation info from the database
-        var vacationInfo = loadInfo(optionValue);
+        //var vacationInfo = loadInfo(optionValue);
         // Database method to update the vacation
-        const response = await (id, firstDateFormatted, finishDateFormatted, motivo);
+        var user = await ObtenerFuncionariosUID(userId);
+        const response = await UpdateVacationWithRazon(firstDate,finishDate,firstDateNew, finishDateNew,user.Ref, motivo);
+
+        alert(response)
 
 
 

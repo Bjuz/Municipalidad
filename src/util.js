@@ -873,3 +873,21 @@ export async function IsLoggedIn() {
     return false
   }
 }
+
+/*inicio obtener funcionario basado en la UID*/
+export async function ObtenerFuncionariosUID(UID) {
+  const VarResponse = await GetFuncionario(UID);
+  return VarResponse;
+}
+
+export async function GetFuncionario(UID) {
+  const docRef = doc(db, "users", UID);
+  const docSnap = await getDoc(docRef);
+
+  if (!docSnap.exists()) {
+    console.log("No such document!");
+    return "No user found";
+  }
+  return docSnap.data();
+}
+/* fin obtener funcionario basado en la UID*/
