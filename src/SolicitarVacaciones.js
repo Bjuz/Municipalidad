@@ -1,7 +1,7 @@
 const { async } = require("@firebase/util");
 const { AddVacation, RetornarCantidadVacaciones } = require("./util");
 const { ObtenerFuncionariosEmail } = require("./util");
-const { roleDisplay } = require("./util");
+const { roleDisplay } = require("./NavBar/Display");
 const { GetFuncionario } = require("./util");
 const { RetornarVacaciones } = require("./util");
 

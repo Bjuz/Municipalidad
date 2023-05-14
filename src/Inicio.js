@@ -1,6 +1,6 @@
 const { doc } = require("firebase/firestore");
 const { GetFuncionario } = require("./util");
-const { roleDisplay } = require("./util");
+const { roleDisplay } = require("./NavBar/Display");
 
 
 // On window load

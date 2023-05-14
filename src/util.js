@@ -745,29 +745,3 @@ export async function UpdateValidVacation(firstDate, LastDate, ref, estado) {
     });
   return response;
 }
-
-
-export function roleDisplay(role) {
-  if (role == "Alcalde" || role == "Jefe directo" || role == "Funcionario") {
-    if (role == "Funcionario") {
-      document.getElementById("adminDiv").style.display = "none";
-      document.getElementById("adminDiv").style.visibility = "hidden";
-    } else {
-      // Hide the <a> element with id="registerLink"
-      document.getElementById("registerLink").style.display = "none";
-      document.getElementById("registerLink").style.visibility = "hidden";
-
-      // Hide the <a> element with id="editLink"
-      document.getElementById("editLink").style.display = "none";
-      document.getElementById("editLink").style.visibility = "hidden";
-
-      // Hide the <a> element with id="deleteLink"
-      document.getElementById("deleteLink").style.display = "none";
-      document.getElementById("deleteLink").style.visibility = "hidden";
-
-      // Hide the <a> element with id="feriadoLink"
-      document.getElementById("feriadoLink").style.display = "none";
-      document.getElementById("feriadoLink").style.visibility = "hidden";
-    }
-  }
-}
