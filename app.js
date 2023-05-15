@@ -100,7 +100,7 @@ app.post('/send-email', (req, res) => {
           {
             from: "Check <notificacion.santabarbara@gmail.com>",
             to: "CHECK <jeaustin.rdz@gmail.com>",
-            subject: "Test",
+            subject: "Solicitud de vacacion",
             html: htmlcont,
           },
           (err, info) => {
@@ -118,26 +118,27 @@ app.post('/send-email', (req, res) => {
 
     const firstDate = req.body.firstDate;
     const finishDate = req.body.finishDate;
-    const motivo = req.body.motivo;
-  
+    const Estado = req.body.Estado;
+    const user = req.body.user;
     const htmlcont = `<html>
     <body>
-      <h1>Vacacion Solicitada con exito</h1>
+      <h1>Su solicitud fue procesada</h1>
       <p>Detalles:</p>
       <p>Dia de inicio: ${firstDate}</p>
       <p>Dia de finalizacion: ${finishDate}</p>
-      <p>Motivo: ${motivo}</p>
+      <p>Estado: ${Estado}</p>
+      
     </body>
   </html>`;
-    console.log(firstDate,finishDate,motivo)
+    console.log(firstDate,finishDate)
     console.log(req.body)
       EviarEmail(function (emailTransporter) {
           // Send mail
           emailTransporter.sendMail(
             {
               from: "Check <notificacion.santabarbara@gmail.com>",
-              to: "CHECK <jeaustin.rdz@gmail.com>",
-              subject: "Test",
+              to: user,
+              subject: "Su solicitud fue actualizada",
               html: htmlcont,
             },
             (err, info) => {
