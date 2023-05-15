@@ -24,6 +24,11 @@ document.getElementById("sendData").onclick = async function () {
     var firstDateFormatted = new Date(firstDate);
     var finishDateFormatted = new Date(finishDate);
 
+    // Add one date to firstDate and finishDate to avoid the problem of the date being one day less than the one selected
+    firstDateFormatted.setDate(firstDateFormatted.getDate() + 1);
+    finishDateFormatted.setDate(finishDateFormatted.getDate() + 1);
+
+
     if (!validateDates(firstDate, finishDate, motivo)) {
         return;
     }
@@ -32,7 +37,7 @@ document.getElementById("sendData").onclick = async function () {
     if (!confirmation) {
         return;
     }
-    
+
     //There is no any database functionality yet, so we just show an alert
     var result = await AddVacationEmergency(firstDate, finishDate, ref, motivo);
     alert(result);
@@ -41,15 +46,22 @@ document.getElementById("sendData").onclick = async function () {
 
 // Function to validate the dates
 function validateDates(firstDate, finishDate, motivo) {
+
+    // Get the current date
+    var currentDate = new Date();
+    // Format the current date to mm/dd/yyyy
+    currentDate = currentDate.toLocaleDateString('en-CA');
+
+    // 'firstDate' comes correctly, but 
     //Check if the dates are valid
     if (firstDate == "" || finishDate == "") {
         alert("Debe ingresar ambas fechas");
         return false;
-    } else if (firstDate > finishDate || firstDate == finishDate) {
-        alert("La fecha de inicio no puede ser mayor o igual a la fecha de fin");
+    } else if (firstDate > finishDate) {
+        alert("La fecha de inicio no puede ser mayor a la fecha de fin");
         return false;
     } // Check if the first date is greater than the current date
-    else if (new Date(firstDate) < new Date()) {
+    else if (firstDate < currentDate) {
         alert("La fecha de inicio no puede ser menor a la fecha actual");
         return false;
     }
