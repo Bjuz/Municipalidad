@@ -93,7 +93,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
 
         const btnRechazar = document.createElement("button");
         btnRechazar.setAttribute("id", "btnRechazar" + i);
-        btnAprobar.setAttribute("value", user.id + "|" + vacation.firstDate + "|" + vacation.LastDate);
+        btnRechazar.setAttribute("value", user.id + "|" + vacation.firstDate + "|" + vacation.LastDate);
 
 
         btnAprobar.textContent = "Aprobar";
