@@ -55,6 +55,10 @@ app.get('/SolicitudEmergencia', (req, res) => {
   res.sendFile(__dirname + '/html/SolicitudEmergencia.html'); // Serve your HTML file
 });
 
+app.get('/EliminarEmpleado', (req, res) => {
+  res.sendFile(__dirname + '/html/EliminarEmpleado.html'); // Serve your HTML file
+});
+
 
 const EviarEmail = async (callback) => {
   const OAuth2 = google.auth.OAuth2;

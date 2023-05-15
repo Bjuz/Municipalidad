@@ -16,6 +16,7 @@ module.exports = {
     Navbar: "./src/Navbar/Navbar.js",
     ProcesarSolicitud: "./src/ProcesarSolicitud.js",
     Inicio: "./src/Inicio.js",
+    EliminarEmpleado: "./src/EliminarEmpleado.js",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
