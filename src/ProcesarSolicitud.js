@@ -94,10 +94,12 @@ window.addEventListener("DOMContentLoaded", async (event) => {
 
         const btnAprobar = document.createElement("button");
         btnAprobar.setAttribute("id", "btnAprobar" + i);
+        btnAprobar.setAttribute("class", "btn btn-primary");
         btnAprobar.setAttribute("value", user.id + "|" + vacation.firstDate + "|" + vacation.LastDate);
 
         const btnRechazar = document.createElement("button");
         btnRechazar.setAttribute("id", "btnRechazar" + i);
+        btnRechazar.setAttribute("class", "btn btn-danger");
         btnRechazar.setAttribute("value", user.id + "|" + vacation.firstDate + "|" + vacation.LastDate);
 
 
