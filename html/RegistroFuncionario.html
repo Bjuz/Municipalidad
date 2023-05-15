@@ -111,98 +111,107 @@
   <!--========== CONTENTS ==========-->
   <main>
     <div class="container my-5">
-      <h3 class="text-left">Registro de nuevo funcionario</h3>
-      <br />
+      
       <div class="border p-3 bg-white">
-        <div class="row">
-          <!--derecha-->
-          <div class="col-md-6">
-            <div class="home">
-              <div class="components">
-                <div class="input-components">
-                  <div class="form-group">
-                    <label for="id">Cedula</label>
-                    <input type="number" name="id" id="id" class="form-control" />
-                  </div>
 
-                  <div class="form-group">
-                    <label for="name">Nombre completo</label>
-                    <input type="text" name="name" id="name" class="form-control" />
-                  </div>
-
-                  <div class="form-group">
-                    <label for="email">Correo electronico</label>
-                    <input type="email" name="email" id="email" class="form-control" />
-                  </div>
-
-                  <div class="form-group">
-                    <label for="accumulatedDays">Dias de vacaciones acumuladas</label>
-                    <input type="text" name="accumulatedDays" id="accumulatedDays" class="form-control" />
-                  </div>
-
-                  <div class="form-group">
-                    <label for="accumulatedDays">Antiguedad en meses</label>
-                    <input type="text" name="ancient" id="ancient" class="form-control" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!--izquierda-->
-          <div class="col-md-6">
-            <div class="home">
-              <div class="components">
-                <div class="input-components">
-                  <div class="form-group">
-                    <label for="accumulatedDays">Jefe Directo</label>
-                    <input type="text" name="boss" id="boss" class="form-control" />
-                  </div>
-
-                  <div class="form-group">
-                    <label for="accumulatedDays">Correo del jefe Directo</label>
-                    <input type="text" name="bosscorreo" id="bosscorreo" class="form-control" />
-
-                  </div>
-
-                 
-
-                  <div class="form-group">
-                    <label for="accumulatedDays">Salario neto</label>
-                    <input type="number" name="salary" id="salary" class="form-control" />
-                  </div>
-
-                  <div class="form-group">
-                    <label for="role">Rol</label>
-                    <select name="role" id="role" class="form-control">
-                      <option value="Funcionario">Funcionario</option>
-                      <option value="Jefe Directo">Jefe directo</option>
-                      <option value="Encargado de recursos humanos">
-                        Encargado de recursos humanos
-                      </option>
-                      <option value="Alcalde">Alcalde</option>
-                    </select>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="accumulatedDays">Hora entrada</label>
-                    <input type="time" name="entryTime" id="entryTime" class="form-control" />
-                  </div>
-
-                  <div class="form-group">
-                    <label for="accumulatedDays">Hora salida</label>
-                    <input type="time" name="departureTime" id="departureTime" class="form-control" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="d-flex justify-content-center">
+          <h3 class="text-left">Registro de nuevo funcionario</h3>
         </div>
 
         <hr class="my-4" />
-        <div class="text-center">
-          <button id="sendData" type="submit" class="btn btn-primary">Agregar</button>
+
+        <div class="container my-5">
+          <div class="row">
+            <!--derecha-->
+            <div class="col-md-6">
+              <div class="home">
+                <div class="components">
+                  <div class="input-components">
+                    <div class="form-group">
+                      <label for="id">Cedula</label>
+                      <input type="number" name="id" id="id" class="form-control" />
+                    </div>
+  
+                    <div class="form-group">
+                      <label for="name">Nombre completo</label>
+                      <input type="text" name="name" id="name" class="form-control" />
+                    </div>
+  
+                    <div class="form-group">
+                      <label for="email">Correo electronico</label>
+                      <input type="email" name="email" id="email" class="form-control" />
+                    </div>
+  
+                    <div class="form-group">
+                      <label for="accumulatedDays">Dias de vacaciones acumuladas</label>
+                      <input type="text" name="accumulatedDays" id="accumulatedDays" class="form-control" />
+                    </div>
+  
+                    <div class="form-group">
+                      <label for="accumulatedDays">Antiguedad en meses</label>
+                      <input type="text" name="ancient" id="ancient" class="form-control" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <!--izquierda-->
+            <div class="col-md-6">
+              <div class="home">
+                <div class="components">
+                  <div class="input-components">
+                    <div class="form-group">
+                      <label for="accumulatedDays">Jefe Directo</label>
+                      <input type="text" name="boss" id="boss" class="form-control" />
+                    </div>
+  
+                    <div class="form-group">
+                      <label for="accumulatedDays">Correo del jefe Directo</label>
+                      <input type="text" name="bosscorreo" id="bosscorreo" class="form-control" />
+  
+                    </div>
+  
+                   
+  
+                    <div class="form-group">
+                      <label for="accumulatedDays">Salario neto</label>
+                      <input type="number" name="salary" id="salary" class="form-control" />
+                    </div>
+  
+                    <div class="form-group">
+                      <label for="role">Rol</label>
+                      <select name="role" id="role" class="form-control">
+                        <option value="Funcionario">Funcionario</option>
+                        <option value="Jefe Directo">Jefe directo</option>
+                        <option value="Encargado de recursos humanos">
+                          Encargado de recursos humanos
+                        </option>
+                        <option value="Alcalde">Alcalde</option>
+                      </select>
+                    </div>
+  
+                    <div class="form-group">
+                      <label for="accumulatedDays">Hora entrada</label>
+                      <input type="time" name="entryTime" id="entryTime" class="form-control" />
+                    </div>
+  
+                    <div class="form-group">
+                      <label for="accumulatedDays">Hora salida</label>
+                      <input type="time" name="departureTime" id="departureTime" class="form-control" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="text-center">
+            <button id="sendData" type="submit" class="btn btn-primary">Agregar</button>
+          </div>
+
         </div>
+
       </div>
     </div>
   </main>
