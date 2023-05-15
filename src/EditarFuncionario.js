@@ -36,8 +36,7 @@ document.getElementById("Search").onclick = async function () {
 
     const text = test.role;
     const $select = document.getElementById("role");
-    const $options = Array.from($select.options);
-    const optionToSelect = $options.find((item) => item.text === text);
+    $select.value = text;
   } else {
     alert("usuario no encontrado")
   }
