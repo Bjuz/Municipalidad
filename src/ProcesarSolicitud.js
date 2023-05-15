@@ -2,6 +2,7 @@ const { LoadUsers } = require("./util");
 const { UpdateVacation } = require("./util");
 const { roleDisplay } = require("./NavBar/Display");
 const { GetFuncionario } = require("./util");
+var XLSX = require("xlsx");
 
 
 
@@ -50,12 +51,16 @@ window.addEventListener("DOMContentLoaded", async (event) => {
   });
 
 
+
   users.forEach((user) => {
     if (user.hasOwnProperty("VacacionesActivas")) {
 
       vacationUsers.push(user);
       // Add a row for each vacation
       const vacations = user.VacacionesActivas;
+      if(UsuarioAcctual.role =="Jefe directo" || UsuarioAcctual.role =="Encargado de recursos humanos"){  
+        document.getElementById("download").innerHTML = `<button class="btn btn-primary" onclick="download()">Descargar</button>`
+        }
       vacations.forEach((vacation) => {
         if (vacation.Estado == "Cancelada" || vacation.Estado == "Aprobada" || vacation.Estado == "Rechazada por jefe directo" || vacation.Estado == "Rechazada por alcalde" || vacation.Estado == "Rechazada por recursos humanos" || vacation.Estado == "Aprobado") {
           return
@@ -183,3 +188,15 @@ window.addEventListener("click", async (event) => {
   alert(response);
 });
 
+
+window.download = function () {
+  // Create a new workbook and a new worksheet
+  var wb = XLSX.utils.book_new();
+  var ws = XLSX.utils.table_to_sheet(document.getElementById("tableBody"));
+
+  // Add the worksheet to the workbook
+  XLSX.utils.book_append_sheet(wb, ws, "Vacaciones");
+
+  // Save the workbook as a xlsx file
+  XLSX.writeFile(wb, "Procesar.xlsx");
+};
