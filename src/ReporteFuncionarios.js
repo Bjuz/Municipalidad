@@ -3,6 +3,9 @@ const { roleDisplay } = require("./NavBar/Display");
 const { GetFuncionario } = require("./util");
 const { LoadUsers } = require("./util");
 
+// adds xlsx library to the project
+var XLSX = require("xlsx");
+
 
 window.onload = async function () {
     // Get the <table> 'Listas'
@@ -23,6 +26,7 @@ window.onload = async function () {
     <th>Fecha de inicio</th>
     <th>Fecha de finalizacion</th>
     <th>Motivo</th>
+    <th>Estado</th>
     </tr>`;
         // For each user in the array 'VacacionesActivas'
         users.forEach(function (user) {
@@ -37,6 +41,7 @@ window.onload = async function () {
             <td>${vacation.firstDate}</td>
             <td>${vacation.LastDate}</td>
             <td>${vacation.Razon}</td>
+            <td>${vacation.Estado}</td>
             </tr>`;
 
                     }
@@ -54,3 +59,20 @@ window.onload = async function () {
 
 }
 
+//When the 'download' button is clicked, download the table as an excel file
+document.getElementById("download").onclick = function () {
+    // Create a new workbook and a new worksheet
+    var wb = XLSX.utils.book_new();
+    var table = document.getElementById('Listas');
+    //Print the table content in the console
+    console.log(table.innerHTML);
+
+    var ws = XLSX.utils.table_to_sheet(document.getElementById('Listas'));
+
+    // Add the worksheet to the workbook
+    XLSX.utils.book_append_sheet(wb, ws, "Vacaciones");
+
+    // Save the workbook as a xlsx file
+    XLSX.writeFile(wb, "Reporte.xlsx");
+
+}
