@@ -87,15 +87,59 @@ app.post('/send-email', (req, res) => {
   const finishDate = req.body.finishDate;
   const motivo = req.body.motivo;
 
-  const htmlcont = `<html>
+  const htmlcont = `<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="UTF-8">
+      <title>Confirmación de Vacaciones</title>
+      <style>
+          body {
+              font-family: Arial, sans-serif;
+              color: #333333;
+          }
+          .container {
+              width: 100%;
+              max-width: 600px;
+              margin: 0 auto;
+          }
+          .header {
+              background-color: #f2f2f2;
+              padding: 20px;
+              text-align: center;
+          }
+          .content {
+              padding: 20px;
+          }
+          .footer {
+              background-color: #f2f2f2;
+              padding: 20px;
+              text-align: center;
+          }
+      </style>
+  </head>
   <body>
-    <h1>Vacacion Solicitada con exito</h1>
-    <p>Detalles:</p>
-    <p>Dia de inicio: ${firstDate}</p>
-    <p>Dia de finalizacion: ${finishDate}</p>
-    <p>Motivo: ${motivo}</p>
+      <div class="container">
+          <div class="header">
+              <h1>Confirmación de Vacaciones</h1>
+          </div>
+          <div class="content">
+              <p>Estimado/a funcionario,<!--Aquí se puede ingresar nombre del funcionario--></p>
+              <p>Nos complace confirmar su próxima reserva de vacaciones.</p>
+              <p><strong>Detalles de la Reserva:</strong></p>
+              <ul>
+                <li><strong>Fecha de inicio:</strong>${firstDate} <!--Aquí se puede ingresar fecha inicio--> </li>
+                <li><strong>Fecha final:</strong>${finishDate} <!--Aquí se puede ingresar fecha final--> </li>
+                <li><strong>Motivo :</strong>${motivo} <!--Aquí se puede ingresar fecha inicio--> </li>
+              </ul>
+              <p>¡Disfrute sus vacaciones!</p>
+          </div>
+          <div class="footer">
+              <p>Este es un correo electrónico automatizado. Por favor, no responda.</p>
+          </div>
+      </div>
   </body>
-</html>`;
+  </html>
+  `;
   console.log(firstDate,finishDate,motivo)
   console.log(req.body)
     EviarEmail(function (emailTransporter) {
@@ -124,16 +168,59 @@ app.post('/send-email', (req, res) => {
     const finishDate = req.body.finishDate;
     const Estado = req.body.Estado;
     const user = req.body.user;
-    const htmlcont = `<html>
+    const htmlcont = `<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Confirmación de Vacaciones</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                color: #333333;
+            }
+            .container {
+                width: 100%;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+            .header {
+                background-color: #f2f2f2;
+                padding: 20px;
+                text-align: center;
+            }
+            .content {
+                padding: 20px;
+            }
+            .footer {
+                background-color: #f2f2f2;
+                padding: 20px;
+                text-align: center;
+            }
+        </style>
+    </head>
     <body>
-      <h1>Su solicitud fue procesada</h1>
-      <p>Detalles:</p>
-      <p>Dia de inicio: ${firstDate}</p>
-      <p>Dia de finalizacion: ${finishDate}</p>
-      <p>Estado: ${Estado}</p>
-      
+        <div class="container">
+            <div class="header">
+                <h1>Confirmación de Vacaciones</h1>
+            </div>
+            <div class="content">
+                <p>Estimado/a funcionario,<!--Aquí se puede ingresar nombre del funcionario--></p>
+                <p>Su estado de vacaciones ha sido actualizado.</p>
+                <p><strong>Detalles de la Reserva:</strong></p>
+                <ul>
+                    <li><strong>Fecha de inicio:</strong>${firstDate} <!--Aquí se puede ingresar fecha inicio--> </li>
+                    <li><strong>Fecha final:</strong>${finishDate} <!--Aquí se puede ingresar fecha final--> </li>
+                    <li><strong>Estado:</strong>${Estado} <!--Aquí se puede ingresar fecha inicio--> </li>
+                </ul>
+                <p>¡Disfrute sus vacaciones!</p>
+            </div>
+            <div class="footer">
+                <p>Este es un correo electrónico automatizado. Por favor, no responda.</p>
+            </div>
+        </div>
     </body>
-  </html>`;
+    </html>
+    `;
     console.log(firstDate,finishDate)
     console.log(req.body)
       EviarEmail(function (emailTransporter) {
