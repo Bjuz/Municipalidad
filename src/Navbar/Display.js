@@ -3,6 +3,11 @@ export function roleDisplay(role) {
         if (role == "Funcionario") {
             // Do nothing
         } else {
+            if(role == "Alcalde"){
+            // Hide the <a> element with id="reporteLink"
+            document.getElementById("reporteLink").style.display = "none";
+            document.getElementById("reporteLink").style.visibility = "hidden";
+            }
             document.getElementById("adminDiv").style.display = "block";
             // Hide the <a> element with id="registerLink"
             document.getElementById("registerLink").style.display = "none";
