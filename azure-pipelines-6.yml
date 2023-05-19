@@ -13,7 +13,6 @@ pool:
 stages:
 - stage:  Install_and_Build #The Stage do you prefer
   #condition: eq(variables['Build.SourceBranch'], 'refs/heads/Testing') #If the change is from development branch the following job will be executed 
-  pool: Default
   jobs: 
     - job: Install
       steps:
@@ -30,7 +29,6 @@ stages:
 
 - stage:  Deploy #The Stage do you prefer
   #condition: eq(variables['Build.SourceBranch'], 'refs/heads/Testing') #If the change is from development branch the following job will be executed 
-  pool: Default
   jobs: #Chose the prefer job
     - job: Deploy
       steps:
