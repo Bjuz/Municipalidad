@@ -128,5 +128,20 @@ function validarVacaciones(firstDate, finishDate) {
     return "La fecha de inicio no puede ser mayor a la fecha de fin";
   }
 
-  
+  // Check if the dates are not in the weekend (saturday or sunday) tge date format is yyyy-mm-dd
+  var firstDateDay = new Date(firstDate).getDay();
+  var finishDateDay = new Date(finishDate).getDay();
+
+
+  if (firstDateDay == 5 || firstDateDay == 6) {
+    alert("La fecha de inicio no puede ser un fin de semana");
+    return "La fecha de inicio no puede ser un fin de semana";
+  } else if (finishDateDay == 5 || finishDateDay == 6) {
+    alert("La fecha de fin no puede ser un fin de semana");
+    return "La fecha de fin no puede ser un fin de semana";
+  }
+
+
+
+
 }
