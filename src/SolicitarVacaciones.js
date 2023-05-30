@@ -34,25 +34,12 @@ document.getElementById("sendData").onclick = async function () {
   var finishDate = document.getElementById("finishDate").value;
   var motivo = document.getElementById("motivo").value;
 
-  // If 'motivo' is empty, then it is not valid
-  if (document.getElementById("motivo").value == "") {
-    alert("Debe ingresar un motivo");
-    return "Debe ingresar un motivo";
-  }
+  // Validate the dates
+  var result = validarVacaciones(firstDate, finishDate);
 
-  //If the date is less than the current date, then it is not valid
-  if (firstDate < new Date().toISOString().split("T")[0]) {
-    alert("La fecha de inicio no puede ser menor o igual a la fecha actual");
-    return "La fecha de inicio no puede ser menor o igual a la fecha actual";
-  }
-
-  //Check if the dates are valid values for checking the difference
-  if (firstDate == "" || finishDate == "") {
-    alert("Debe ingresar ambas fechas");
-    return "Debe ingresar ambas fechas";
-  } else if (firstDate > finishDate || firstDate == finishDate) {
-    alert("La fecha de inicio no puede ser mayor o igual a la fecha de fin");
-    return "La fecha de inicio no puede ser mayor o igual a la fecha de fin";
+  // If the dates are not valid, then the function ends
+  if (result != undefined) {
+    return;
   }
 
   var ref = localStorage.getItem("userLoggueado");
@@ -71,10 +58,10 @@ document.getElementById("sendData").onclick = async function () {
   } else if (daysDifference > acumulatedDays) {
     alert(
       "No tienes dias suficientes para solicitar vacaciones. Tienes " +
-        acumulatedDays +
-        " dias acumulados e intentas solicitar " +
-        daysDifference +
-        " dias."
+      acumulatedDays +
+      " dias acumulados e intentas solicitar " +
+      daysDifference +
+      " dias."
     );
     return (
       "No tienes dias suficientes para solicitar vacaciones. Tienes " +
@@ -115,32 +102,31 @@ document.getElementById("sendData").onclick = async function () {
   }
 };
 
-//Partner tried to send an e-mail to the user
-/*
-var emailCx = await ObtenerFuncionariosEmail(ref);
+function validarVacaciones(firstDate, finishDate) {
+  //Get values from the form on SolicitarVacaciones.html
+  var firstDate = document.getElementById("firstDate").value;
+  var finishDate = document.getElementById("finishDate").value;
 
-if (result == "Vacaciones solicitadas con éxito") {
-    const email = {
-      to: emailCx,
-      subject: "Solicitud de vacaciones",
-      text:
-        "Sus vacaciones de la fecha: " +
-        firstDate +
-        " hasta la fecha: " +
-        finishDate +
-        " fueron solicitadas con exito y esta a la espera de aprobacion por su jefe directo",
-    };
+  // If 'motivo' is empty, then it is not valid
+  if (document.getElementById("motivo").value == "") {
+    alert("Debe ingresar un motivo");
+    return "Debe ingresar un motivo";
+  }
 
-    const response = await fetch("http://localhost:3000/send-email", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      mode: "no-cors", // set mode option to 'no-cors'
-      body: JSON.stringify(email),
-    });
+  //If the date is less than the current date, then it is not valid
+  if (firstDate < new Date().toISOString().split("T")[0]) {
+    alert("La fecha de inicio no puede ser menor o igual a la fecha actual");
+    return "La fecha de inicio no puede ser menor o igual a la fecha actual";
+  }
 
-    const result = await response.json();
+  //Check if the dates are valid values for checking the difference
+  if (firstDate == "" || finishDate == "") {
+    alert("Debe ingresar ambas fechas");
+    return "Debe ingresar ambas fechas";
+  } else if (firstDate > finishDate) {
+    alert("La fecha de inicio no puede ser mayor a la fecha de fin");
+    return "La fecha de inicio no puede ser mayor a la fecha de fin";
+  }
 
-    alert(result.message);
-  }*/
+  
+}
