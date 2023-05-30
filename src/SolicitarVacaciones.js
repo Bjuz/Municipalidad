@@ -34,11 +34,8 @@ document.getElementById("sendData").onclick = async function () {
   var finishDate = document.getElementById("finishDate").value;
   var motivo = document.getElementById("motivo").value;
 
-  // Validate the dates
-  var result = validarVacaciones(firstDate, finishDate);
-
   // If the dates are not valid, then the function ends
-  if (result != undefined) {
+  if (!validarVacaciones(firstDate, finishDate)) {
     return;
   }
 
@@ -103,29 +100,25 @@ document.getElementById("sendData").onclick = async function () {
 };
 
 function validarVacaciones(firstDate, finishDate) {
-  //Get values from the form on SolicitarVacaciones.html
-  var firstDate = document.getElementById("firstDate").value;
-  var finishDate = document.getElementById("finishDate").value;
-
   // If 'motivo' is empty, then it is not valid
   if (document.getElementById("motivo").value == "") {
     alert("Debe ingresar un motivo");
-    return "Debe ingresar un motivo";
+    return false;
   }
 
   //If the date is less than the current date, then it is not valid
   if (firstDate < new Date().toISOString().split("T")[0]) {
     alert("La fecha de inicio no puede ser menor o igual a la fecha actual");
-    return "La fecha de inicio no puede ser menor o igual a la fecha actual";
+    return false;
   }
 
   //Check if the dates are valid values for checking the difference
   if (firstDate == "" || finishDate == "") {
     alert("Debe ingresar ambas fechas");
-    return "Debe ingresar ambas fechas";
+    return false;
   } else if (firstDate > finishDate) {
     alert("La fecha de inicio no puede ser mayor a la fecha de fin");
-    return "La fecha de inicio no puede ser mayor a la fecha de fin";
+    return false;
   }
 
   // Check if the dates are not in the weekend (saturday or sunday) tge date format is yyyy-mm-dd
@@ -135,13 +128,13 @@ function validarVacaciones(firstDate, finishDate) {
 
   if (firstDateDay == 5 || firstDateDay == 6) {
     alert("La fecha de inicio no puede ser un fin de semana");
-    return "La fecha de inicio no puede ser un fin de semana";
+    return false;
   } else if (finishDateDay == 5 || finishDateDay == 6) {
     alert("La fecha de fin no puede ser un fin de semana");
-    return "La fecha de fin no puede ser un fin de semana";
+    return false;
   }
 
-
+  return true;
 
 
 }
