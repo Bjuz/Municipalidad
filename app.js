@@ -8,6 +8,11 @@ const accountTransport = require("./account_transport.json");
 const app = express();
 
 app.use(express.static(__dirname)); // Serve static files from the current directory
+app.use(express.static(path.join(__dirname, 'html')));
+app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'javascript')));
+app.use(express.static(path.join(__dirname, 'Media')));
+app.use(express.static(path.join(__dirname, 'Style')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
