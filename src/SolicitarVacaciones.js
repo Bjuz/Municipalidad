@@ -38,6 +38,29 @@ document.getElementById("sendData").onclick = async function () {
   if (!validarVacaciones(firstDate, finishDate)) {
     return;
   }
+  // Confirmation message
+  var firstDateFormatted = new Date(firstDate);
+  var finishDateFormatted = new Date(finishDate);
+
+  // Add one date to firstDate and finishDate to avoid the problem of the date being one day less than the one selected
+  firstDateFormatted.setDate(firstDateFormatted.getDate() + 1);
+  finishDateFormatted.setDate(finishDateFormatted.getDate() + 1);
+
+  var confirmation = confirm(
+    "¿Está seguro que desea solicitar vacaciones desde el " +
+    firstDateFormatted.getDate() +
+    " de " +
+    firstDateFormatted.toLocaleString("es-ES", { month: "long" }) +
+    " hasta el " +
+    finishDateFormatted.getDate() +
+    " de " +
+    finishDateFormatted.toLocaleString("es-ES", { month: "long" }) +
+    "?"
+  );
+
+  if (!confirmation) {
+    return false;
+  }
 
   var ref = localStorage.getItem("userLoggueado");
 
@@ -131,6 +154,16 @@ function validarVacaciones(firstDate, finishDate) {
     return false;
   } else if (finishDateDay == 5 || finishDateDay == 6) {
     alert("La fecha de fin no puede ser un fin de semana");
+    return false;
+  }
+
+  // Avoid to let user to take vacations with more than 2 years in advance
+  var today = new Date();
+  var twoYears = new Date();
+  twoYears.setFullYear(today.getFullYear() + 2);
+
+  if (firstDate > twoYears.toISOString().split("T")[0]) {
+    alert("No puede solicitar vacaciones con mas de 2 años de anticipación");
     return false;
   }
 
