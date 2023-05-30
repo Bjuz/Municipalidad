@@ -6,8 +6,6 @@ const { GetFuncionario } = require("./util");
 const { RetornarVacaciones } = require("./util");
 const { Restadias } = require("./util");
 
-
-
 // On window load
 window.onload = async function () {
   var userId = localStorage.getItem("userLoggueado");
@@ -22,14 +20,13 @@ window.onload = async function () {
   // Create an span with the ammount of vacations
   var span = document.createElement("span");
   span.innerHTML = "Vacaciones acumuladas: " + acumulatedDays;
-  console.log(acumulatedDays)
+  console.log(acumulatedDays);
 
   // Append as a child to mainDiv
   mainDiv.appendChild(span);
 
-
   roleDisplay(funcionario.role);
-}
+};
 
 document.getElementById("sendData").onclick = async function () {
   //Get values from the form on SolicitarVacaciones.html
@@ -48,7 +45,6 @@ document.getElementById("sendData").onclick = async function () {
     alert("La fecha de inicio no puede ser menor o igual a la fecha actual");
     return "La fecha de inicio no puede ser menor o igual a la fecha actual";
   }
-
 
   //Check if the dates are valid values for checking the difference
   if (firstDate == "" || finishDate == "") {
@@ -75,10 +71,10 @@ document.getElementById("sendData").onclick = async function () {
   } else if (daysDifference > acumulatedDays) {
     alert(
       "No tienes dias suficientes para solicitar vacaciones. Tienes " +
-      acumulatedDays +
-      " dias acumulados e intentas solicitar " +
-      daysDifference +
-      " dias."
+        acumulatedDays +
+        " dias acumulados e intentas solicitar " +
+        daysDifference +
+        " dias."
     );
     return (
       "No tienes dias suficientes para solicitar vacaciones. Tienes " +
@@ -94,26 +90,25 @@ document.getElementById("sendData").onclick = async function () {
       const data = {
         firstDate: firstDate,
         finishDate: finishDate,
-        motivo:motivo,
+        motivo: motivo,
       };
 
-      fetch('/send-email', {
-        method: 'POST',
+      fetch("/send-email", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
       })
-      .then(response => response.json())
-      .then(result => {
-        console.log('Response:', result);
-        // Handle the response data here
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        // Handle any errors that occurred during the request
-      });
-
+        .then((response) => response.json())
+        .then((result) => {
+          console.log("Response:", result);
+          // Handle the response data here
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          // Handle any errors that occurred during the request
+        });
     }
     alert(result);
     return result;

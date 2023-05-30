@@ -3,18 +3,17 @@ const { GetFuncionario } = require("./util");
 const { roleDisplay } = require("./NavBar/Display");
 const { UpdateVacationWithRazon } = require("./util");
 const { ObtenerFuncionariosUID } = require("./util");
-const  select = document.getElementById("vacationId"),
- startDate = document.getElementById("startDate"),
- finDate = document.getElementById("finDate");
+const select = document.getElementById("vacationId"),
+  startDate = document.getElementById("startDate"),
+  finDate = document.getElementById("finDate");
 
 var userId = localStorage.getItem("userLoggueado");
 
 // When the windows load, I would like to load the information of the user
 window.onload = async function () {
-
   var funcionario = await GetFuncionario(userId);
 
-  roleDisplay(funcionario.role)
+  roleDisplay(funcionario.role);
 
   // Let's get the vacations of the user
   const vacations = await RetornarVacaciones(userId);
@@ -31,22 +30,23 @@ window.onload = async function () {
 
     // If the vacations are not empty, then we will show the vacations
   } else {
-
     // This variable will asign an id to each option
     // This id will be the same that the id of the vacation in the database
     var i = 0;
 
     vacations.forEach((vacation) => {
-
       // Verify if the vacation is approved or rejected avoiding adding it to the select
-      if (vacation.Estado == "Aprobada" || vacation.Estado == "Rechazada" || vacation.Estado == "Cancelada") {
+      if (
+        vacation.Estado == "Aprobada" ||
+        vacation.Estado == "Rechazada" ||
+        vacation.Estado == "Cancelada"
+      ) {
         if (vacations.length == 1) {
           var option = document.createElement("option");
           option.text = "No hay solicitudes activas ";
           select.appendChild(option);
         }
       } else {
-
         // Values of the dates coming from the database
         firstDate = vacation.firstDate;
         finishDate = vacation.LastDate;
@@ -55,7 +55,7 @@ window.onload = async function () {
         var finDate = document.getElementById("finDate");
 
         // Let's add the dates to the inputs
-        startDate.value = firstDate; 
+        startDate.value = firstDate;
         finDate.value = finishDate;
 
         //The dates come like YYYY-MM-DD
@@ -84,7 +84,6 @@ window.onload = async function () {
 };
 
 async function loadInfo(id) {
-
   // Previously, we set the value of the option as the id of the vacation in the database
   var id = document.getElementById(id).value;
   if (!isNaN(id)) {
@@ -97,22 +96,18 @@ async function loadInfo(id) {
 }
 
 document.getElementById("updateBtn").onclick = async function () {
-  var response = await  UpdateSolicitud();
+  var response = await UpdateSolicitud();
 };
 
 async function UpdateSolicitud() {
-
-
-  // Let's get the values of the select 
+  // Let's get the values of the select
   var select = document.getElementById("vacationId");
   var optionText = select.options[select.selectedIndex].text;
 
   if (optionText == "No hay solicitudes activas ") {
     alert("No hay solicitudes activas");
     return;
-  }
-  else {
-
+  } else {
     // After getting the value of the select, we need to format the date
     // The date in the select is showed like 'DD/MM/YYYY hasta DD/MM/YYYY'
     // We need to re-format it in two variables like YYYY-MM-DD for the database
@@ -138,7 +133,6 @@ async function UpdateSolicitud() {
       if (motivo == "") {
         alert("Debe agregar un motivo");
       } else {
-
         //*******************Confirmation message *******************/
         // Format the dates to show them in the confirmation message
         var firstDateFormatted = new Date(firstDateNew);
@@ -151,14 +145,14 @@ async function UpdateSolicitud() {
 
         var confirmation = confirm(
           "¿Está seguro que desea modificar su solicitud, siendo ahora desde el " +
-          firstDateFormatted.getDate() +
-          " de " +
-          firstDateFormatted.toLocaleString("es-ES", { month: "long" }) +
-          " hasta el " +
-          finishDateFormatted.getDate() +
-          " de " +
-          finishDateFormatted.toLocaleString("es-ES", { month: "long" }) +
-          "?"
+            firstDateFormatted.getDate() +
+            " de " +
+            firstDateFormatted.toLocaleString("es-ES", { month: "long" }) +
+            " hasta el " +
+            finishDateFormatted.getDate() +
+            " de " +
+            finishDateFormatted.toLocaleString("es-ES", { month: "long" }) +
+            "?"
         );
 
         if (!confirmation) {
@@ -175,12 +169,16 @@ async function UpdateSolicitud() {
         //var vacationInfo = loadInfo(optionValue);
         // Database method to update the vacation
         var user = await ObtenerFuncionariosUID(userId);
-        const response = await UpdateVacationWithRazon(firstDate,finishDate,firstDateNew, finishDateNew,user.Ref, motivo);
+        const response = await UpdateVacationWithRazon(
+          firstDate,
+          finishDate,
+          firstDateNew,
+          finishDateNew,
+          user.Ref,
+          motivo
+        );
 
-        alert(response)
-
-
-
+        alert(response);
 
         /* This was here but I don't think it's necessary anymore:
 
@@ -199,7 +197,6 @@ async function UpdateSolicitud() {
   }
 }
 
-
 // Creates a boolean function to validate the date
 function validateDate(firstDate, finishDate, firstDateNew, finishDateNew) {
   // If the old dates are equal to the new dates, then we will show a message
@@ -211,13 +208,13 @@ function validateDate(firstDate, finishDate, firstDateNew, finishDateNew) {
   if (firstDate == "" || finishDate == "") {
     alert("Debe ingresar ambas fechas");
     return false;
-  } else
-    // If the new dates are equal or the firstDate is greater than the finishDate, 
-    // then we will show a message
-    if (firstDate > finishDate || firstDate == finishDate) {
-      alert("La fecha de inicio no puede ser mayor o igual a la fecha de fin");
-      return false;
-    }
+  }
+  // If the new dates are equal or the firstDate is greater than the finishDate,
+  // then we will show a message
+  else if (firstDate > finishDate || firstDate == finishDate) {
+    alert("La fecha de inicio no puede ser mayor o igual a la fecha de fin");
+    return false;
+  }
 
   // ***********  Get current date to compare with the new dates ************
   var today = new Date();

@@ -4,7 +4,6 @@ const { CreateANewUser } = require("./util");
 const { roleDisplay } = require("./NavBar/Display");
 const { GetFuncionario } = require("./util");
 
-
 // On window load
 window.onload = async function () {
   var userId = localStorage.getItem("userLoggueado");
@@ -12,7 +11,7 @@ window.onload = async function () {
   var funcionario = await GetFuncionario(userId);
 
   roleDisplay(funcionario.role);
-}
+};
 
 document.getElementById("sendData").onclick = function () {
   //document.getElementById("loader").style.display = "block";
@@ -42,7 +41,7 @@ async function Register() {
   var boss = document.getElementById("boss").value;
   var salary = document.getElementById("salary").value;
   var role = document.getElementById("role").value;
-  var bosscorreo = document.getElementById*("bosscorreo").value;
+  var bosscorreo = document.getElementById * "bosscorreo".value;
   var entryTime = document.getElementById("entryTime").value;
   var departureTime = document.getElementById("departureTime").value;
   var bosscorreo = document.getElementById("bosscorreo").value;
@@ -56,13 +55,26 @@ async function Register() {
     !salary ||
     !role ||
     !entryTime ||
-    !departureTime||
+    !departureTime ||
     !bosscorreo
   ) {
     console.log("Favor agregar todos los campos");
     alert("Favor agregar todos los campos");
   } else {
-    const text = await RegisterUser(id, name, email, accumulatedDays, ancient, boss, salary, role, entryTime, departureTime, generateP(),bosscorreo);
+    const text = await RegisterUser(
+      id,
+      name,
+      email,
+      accumulatedDays,
+      ancient,
+      boss,
+      salary,
+      role,
+      entryTime,
+      departureTime,
+      generateP(),
+      bosscorreo
+    );
     var resultCreate;
     var resultForget;
     if (text == "Usuario ingresado exitosamente") {

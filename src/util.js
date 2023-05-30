@@ -43,7 +43,6 @@ const firebaseApp = initializeApp({
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
 
-
 /*Inicio login*/
 export async function loginComplete(email, password) {
   const login = await LoginFb(email, password);
@@ -104,25 +103,28 @@ export async function RegisterUser(
   //Inicializa el UPN como empty
   var upn = "empty";
   var result = await Funcionarios(id, email); //obtiene el correo basado en id o email
-  if (result != "empty") {// no existe el usuario en auth ni en docs, entonces crear normal
-    if(result.Status){ //Existe
-      if(result.Status == "Deleted"){//existe pero fue borrado
-        upn = result.Ref //guarda el upn del usuario de auth
+  if (result != "empty") {
+    // no existe el usuario en auth ni en docs, entonces crear normal
+    if (result.Status) {
+      //Existe
+      if (result.Status == "Deleted") {
+        //existe pero fue borrado
+        upn = result.Ref; //guarda el upn del usuario de auth
         const deleteD = await DeleteDocumentCreaded(upn); //borra el documento de la base de datos
-      }else{
+      } else {
         return "El usuario ya existe";
       }
-    
     }
   }
-  if(upn == "empty"){ // si el usuario no existe en auth
+  if (upn == "empty") {
+    // si el usuario no existe en auth
     upn = await CreateANewUser(email, password);
   }
 
-  
-  if ( upn != "Usuario ya existe") { //doublecheck
+  if (upn != "Usuario ya existe") {
+    //doublecheck
     //Crea el doc con el upn y datos del usuario
-    const VarResponse = await Register( 
+    const VarResponse = await Register(
       id,
       name,
       email,
@@ -134,7 +136,7 @@ export async function RegisterUser(
       entryTime,
       departureTime,
       upn,
-      bosscorreo,
+      bosscorreo
     );
 
     return VarResponse;
@@ -221,8 +223,6 @@ export async function Funcionarios(id, email) {
   });
   console.log(Identidad);
   return Identidad;
-
-
 }
 
 async function LoadDb() {
@@ -350,15 +350,15 @@ export async function DeleteDocumentCreaded(ref) {
 export async function DeleteDocu(ref) {
   console.log(ref);
   var resut = await deleteDoc(doc(db, "users", ref))
-  .then(() => {
-    console.log("Deleted");
-    return "Deleted";
-  })
-  .catch((error) => {
-    console.log(error);
-    return error;
-  });
-return resut;
+    .then(() => {
+      console.log("Deleted");
+      return "Deleted";
+    })
+    .catch((error) => {
+      console.log(error);
+      return error;
+    });
+  return resut;
 }
 
 export async function DeleteUserCreaded(ref, Status) {
@@ -366,7 +366,7 @@ export async function DeleteUserCreaded(ref, Status) {
   return VarResponse;
 }
 
-export async function DeleteUser(ref,Status) {
+export async function DeleteUser(ref, Status) {
   var ref = doc(db, "users", ref);
   var response = await updateDoc(ref, {
     Status,
@@ -379,7 +379,7 @@ export async function DeleteUser(ref,Status) {
       console.log(error);
       return error;
     });
- return response;
+  return response;
 }
 
 export async function DeleteFeriadoCreaded(ref) {
@@ -430,7 +430,6 @@ export async function CreateANewUser(email, password) {
 }
 
 export async function CreateUser(email, password) {
-
   var result = await createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       return userCredential.user.uid;
@@ -448,21 +447,19 @@ export async function ObtenerFuncionariosEmail(UID) {
   return VarResponse;
 }
 
-
-
 // Comment the code because the btn LoggoutBTn was deleted from the codes in case you need to active again,
 
 // Add Vacation
-export async function AddVacation(firstDate, LastDate, ref,Razon) {
-  const VarResponse = await addValidVacation(firstDate, LastDate, ref,Razon);
+export async function AddVacation(firstDate, LastDate, ref, Razon) {
+  const VarResponse = await addValidVacation(firstDate, LastDate, ref, Razon);
   return VarResponse;
 }
 
-export async function addValidVacation(firstDate, LastDate, ref,Razon) {
+export async function addValidVacation(firstDate, LastDate, ref, Razon) {
   var funcionario = await ObtenerFuncionariosEmail(ref);
   let fecha1 = new Date(firstDate);
   let fecha2 = new Date(LastDate);
-  let diferencia = Restadias(firstDate,LastDate);
+  let diferencia = Restadias(firstDate, LastDate);
   let diasDeDiferencia = diferencia;
   console.log(diasDeDiferencia);
   var Validacion = await RevisarVacaciones(
@@ -512,15 +509,20 @@ export async function addValidVacation(firstDate, LastDate, ref,Razon) {
 //Emergency vacation
 
 export async function AddVacationEmergency(firstDate, LastDate, ref, Razon) {
-  const VarResponse = await addValidVacationEme(firstDate, LastDate, ref,Razon );
+  const VarResponse = await addValidVacationEme(
+    firstDate,
+    LastDate,
+    ref,
+    Razon
+  );
   return VarResponse;
 }
 
-export async function addValidVacationEme(firstDate, LastDate, ref,Razon) {
+export async function addValidVacationEme(firstDate, LastDate, ref, Razon) {
   var funcionario = await ObtenerFuncionariosEmail(ref);
   let fecha1 = new Date(firstDate);
   let fecha2 = new Date(LastDate);
-  let diferencia = Restadias(firstDate,LastDate);
+  let diferencia = Restadias(firstDate, LastDate);
   let diasDeDiferencia = diferencia;
   console.log(diasDeDiferencia);
   var Validacion = await RevisarVacaciones(
@@ -543,7 +545,6 @@ export async function addValidVacationEme(firstDate, LastDate, ref,Razon) {
     LastDate,
     Estado: "Vacacion de Emergencia",
     Razon,
-
   };
 
   if (funcionario.VacacionesActivas) {
@@ -559,7 +560,7 @@ export async function addValidVacationEme(firstDate, LastDate, ref,Razon) {
   })
     .then(() => {
       console.log("changes");
-      return "Vacaciones solicitadas con alta urgencia";  
+      return "Vacaciones solicitadas con alta urgencia";
     })
     .catch((error) => {
       console.log(error);
@@ -703,94 +704,110 @@ export async function DeleteValidVacation(firstDate, LastDate, ref) {
 
 //End Delete Vacation
 
-
-export async function UpdateVacation(firstDate, LastDate, ref, estado,razon) {
-  const VarResponse = await UpdateValidVacation(firstDate, LastDate, ref,estado,razon);
+export async function UpdateVacation(firstDate, LastDate, ref, estado, razon) {
+  const VarResponse = await UpdateValidVacation(
+    firstDate,
+    LastDate,
+    ref,
+    estado,
+    razon
+  );
   return VarResponse;
 }
 
-export async function UpdateValidVacation(firstDate, LastDate, ref,estado,razon) {
+export async function UpdateValidVacation(
+  firstDate,
+  LastDate,
+  ref,
+  estado,
+  razon
+) {
   var funcionario = await ObtenerFuncionariosUID(ref);
 
-  let diasDeDiferencia = Restadias(firstDate,LastDate);
+  let diasDeDiferencia = Restadias(firstDate, LastDate);
   let VacacionesActivas = [];
-  var VacacionSolicitada
+  var VacacionSolicitada;
   VacacionesActivas = funcionario.VacacionesActivas;
   const indiceElemento = VacacionesActivas.findIndex(
     (el) => el.firstDate == firstDate && el.LastDate == LastDate
   );
   var accumulatedDays = funcionario.accumulatedDays;
-  
-  if(estado == "Aprobado"){
-    if(VacacionesActivas[indiceElemento].Estado == "Esperando la aprobación del jefe directo"){
+
+  if (estado == "Aprobado") {
+    if (
+      VacacionesActivas[indiceElemento].Estado ==
+      "Esperando la aprobación del jefe directo"
+    ) {
       VacacionSolicitada = {
         firstDate,
         LastDate,
         Estado: "Esperando la aprobación del alcalde",
       };
-
-    }else if(VacacionesActivas[indiceElemento].Estado == "Esperando la aprobación del alcalde"){
+    } else if (
+      VacacionesActivas[indiceElemento].Estado ==
+      "Esperando la aprobación del alcalde"
+    ) {
       VacacionSolicitada = {
         firstDate,
         LastDate,
         Estado: "Esperando la revisión de recursos humanos",
       };
-
-    }else{
+    } else {
       VacacionSolicitada = {
         firstDate,
         LastDate,
         Estado: "Aprobada",
       };
     }
-      
-    
-
-  }else if(estado == "Rechazado"){
-    if(VacacionesActivas[indiceElemento].Estado == "Esperando la aprobación del jefe directo"){
+  } else if (estado == "Rechazado") {
+    if (
+      VacacionesActivas[indiceElemento].Estado ==
+      "Esperando la aprobación del jefe directo"
+    ) {
       VacacionSolicitada = {
         firstDate,
         LastDate,
         Estado: "Rechazada por jefe directo",
       };
-
-    }else if(VacacionesActivas[indiceElemento].Estado == "Esperando la aprobación del alcalde"){
+    } else if (
+      VacacionesActivas[indiceElemento].Estado ==
+      "Esperando la aprobación del alcalde"
+    ) {
       VacacionSolicitada = {
         firstDate,
         LastDate,
         Estado: "Rechazada por alcalde",
       };
-
-    }else{
+    } else {
       VacacionSolicitada = {
         firstDate,
         LastDate,
         Estado: "Rechazada por recursos humanos",
       };
     }
-    accumulatedDays = accumulatedDays +  diasDeDiferencia + 1;
-  }else{
+    accumulatedDays = accumulatedDays + diasDeDiferencia + 1;
+  } else {
     console.log(indiceElemento);
     VacacionSolicitada = {
       firstDate,
       LastDate,
-      Estado: VacacionesActivas[indiceElemento].Estado ,
-      razon
+      Estado: VacacionesActivas[indiceElemento].Estado,
+      razon,
     };
   }
 
   //.splice (index, 1);
-    VacacionesActivas.splice(indiceElemento, 1);
-    console.log(VacacionesActivas);
-    VacacionesActivas.push(VacacionSolicitada);
-    console.log(VacacionesActivas);
+  VacacionesActivas.splice(indiceElemento, 1);
+  console.log(VacacionesActivas);
+  VacacionesActivas.push(VacacionSolicitada);
+  console.log(VacacionesActivas);
 
-  console.log(accumulatedDays)
+  console.log(accumulatedDays);
   var refUser = await doc(db, "users", ref);
   console.log(refUser);
   var response = await updateDoc(refUser, {
     VacacionesActivas,
-    accumulatedDays
+    accumulatedDays,
   })
     .then(() => {
       console.log("changes");
@@ -799,7 +816,9 @@ export async function UpdateValidVacation(firstDate, LastDate, ref,estado,razon)
         firstDate +
         " hasta " +
         LastDate +
-        " fueron procesadas con éxito" + "el estado actual es: " + VacacionSolicitada.Estado
+        " fueron procesadas con éxito" +
+        "el estado actual es: " +
+        VacacionSolicitada.Estado
       );
     })
     .catch((error) => {
@@ -809,53 +828,71 @@ export async function UpdateValidVacation(firstDate, LastDate, ref,estado,razon)
   return response;
 }
 
-
-export async function UpdateVacationWithRazon(firstDate, LastDate,firstDateN, LastDateN, ref,razon) {
-  const VarResponse = await UpdateValidVacationRaz(firstDate, LastDate,firstDateN, LastDateN, ref,razon);
+export async function UpdateVacationWithRazon(
+  firstDate,
+  LastDate,
+  firstDateN,
+  LastDateN,
+  ref,
+  razon
+) {
+  const VarResponse = await UpdateValidVacationRaz(
+    firstDate,
+    LastDate,
+    firstDateN,
+    LastDateN,
+    ref,
+    razon
+  );
   return VarResponse;
 }
 
-
-export async function UpdateValidVacationRaz(firstDate, LastDate,firstDateN, LastDateN, ref,razon) {
+export async function UpdateValidVacationRaz(
+  firstDate,
+  LastDate,
+  firstDateN,
+  LastDateN,
+  ref,
+  razon
+) {
   var funcionario = await ObtenerFuncionariosUID(ref);
-  
-  let diasDeDiferencia = Restadias(firstDate,LastDate);
-  let diasDeDiferenciaN =  Restadias(firstDateN,LastDateN);
+
+  let diasDeDiferencia = Restadias(firstDate, LastDate);
+  let diasDeDiferenciaN = Restadias(firstDateN, LastDateN);
   let VacacionesActivas = [];
-  var VacacionSolicitada
+  var VacacionSolicitada;
   VacacionesActivas = funcionario.VacacionesActivas;
   const indiceElemento = VacacionesActivas.findIndex(
     (el) => el.firstDate == firstDate && el.LastDate == LastDate
   );
 
-  var accumulatedDays = funcionario.accumulatedDays + diasDeDiferencia - diasDeDiferenciaN;
+  var accumulatedDays =
+    funcionario.accumulatedDays + diasDeDiferencia - diasDeDiferenciaN;
 
-  if(accumulatedDays<0){
+  if (accumulatedDays < 0) {
     return "El usuario no tiene suficientes dias como para hacer el cambio";
   }
- 
 
-    console.log(VacacionesActivas[indiceElemento].Estado);
-    VacacionSolicitada = {
-      firstDate: firstDateN,
-      LastDate: LastDateN,
-      Estado: VacacionesActivas[indiceElemento].Estado ,
-      razon
-    };
-
+  console.log(VacacionesActivas[indiceElemento].Estado);
+  VacacionSolicitada = {
+    firstDate: firstDateN,
+    LastDate: LastDateN,
+    Estado: VacacionesActivas[indiceElemento].Estado,
+    razon,
+  };
 
   //.splice (index, 1);
-    VacacionesActivas.splice(indiceElemento, 1);
-    console.log(VacacionesActivas);
-    VacacionesActivas.push(VacacionSolicitada);
-    console.log(VacacionesActivas);
+  VacacionesActivas.splice(indiceElemento, 1);
+  console.log(VacacionesActivas);
+  VacacionesActivas.push(VacacionSolicitada);
+  console.log(VacacionesActivas);
 
-  console.log(accumulatedDays)
+  console.log(accumulatedDays);
   var refUser = await doc(db, "users", ref);
   console.log(refUser);
   var response = await updateDoc(refUser, {
     VacacionesActivas,
-    accumulatedDays
+    accumulatedDays,
   })
     .then(() => {
       console.log("changes");
@@ -864,7 +901,9 @@ export async function UpdateValidVacationRaz(firstDate, LastDate,firstDateN, Las
         firstDate +
         " hasta " +
         LastDate +
-        " fueron procesadas con éxito" + "el estado actual es: " + VacacionSolicitada.Estado
+        " fueron procesadas con éxito" +
+        "el estado actual es: " +
+        VacacionSolicitada.Estado
       );
     })
     .catch((error) => {
@@ -875,25 +914,27 @@ export async function UpdateValidVacationRaz(firstDate, LastDate,firstDateN, Las
 }
 
 //Query to get all the persons who are "funcionario" its not use in the code, is an example for future references
-export async function Query(){
+export async function Query() {
   const VarResponse = await QueryResult();
   return VarResponse;
 }
 
-export async function QueryResult(){
+export async function QueryResult() {
   const users = [];
-  const q = await  query(collection(db, "users"), where("role", "==", "Funcionario"));
-  const unsubscribe = await  onSnapshot(q, (querySnapshot) => {
- 
-  querySnapshot.forEach((doc) => {
-    users.push(doc.data().name);
+  const q = await query(
+    collection(db, "users"),
+    where("role", "==", "Funcionario")
+  );
+  const unsubscribe = await onSnapshot(q, (querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      users.push(doc.data().name);
+    });
+    console.log(users.join(", "));
   });
-  console.log(users.join(", "));
-}); 
-return users.join(", ");
+  return users.join(", ");
 }
 
-export function Restadias(dia1 , dia2){
+export function Restadias(dia1, dia2) {
   var unDia = 24 * 60 * 60 * 1000; // Cantidad de milisegundos en un día
   var inicio = new Date(dia1);
   var fin = new Date(dia2);
@@ -902,7 +943,7 @@ export function Restadias(dia1 , dia2){
   var diasHabiles = 0;
 
   for (var i = 0; i <= diasTotales; i++) {
-    var fecha = new Date(inicio.getTime() + (i * unDia));
+    var fecha = new Date(inicio.getTime() + i * unDia);
     var diaSemana = fecha.getDay(); // 0 = domingo, 1 = lunes, ..., 6 = sábado
 
     if (diaSemana !== 0 && diaSemana !== 6) {
@@ -914,16 +955,15 @@ export function Restadias(dia1 , dia2){
 }
 
 export async function IsLoggedIn() {
-
   const auth = await getAuth();
-  console.log(auth)
+  console.log(auth);
   const user = auth.currentUser;
-  console.log(user)
- 
+  console.log(user);
+
   if (user) {
-    return true
+    return true;
   } else {
-    return false
+    return false;
   }
 }
 

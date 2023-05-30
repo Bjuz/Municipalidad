@@ -2,7 +2,6 @@ const { RegisterFeriado } = require("./util");
 const { GetFuncionario } = require("./util");
 const { roleDisplay } = require("./NavBar/Display");
 
-
 // On window load
 window.onload = async function () {
   var userId = localStorage.getItem("userLoggueado");
@@ -10,7 +9,7 @@ window.onload = async function () {
   var funcionario = await GetFuncionario(userId);
 
   roleDisplay(funcionario.role);
-}
+};
 
 document.getElementById("sendData").onclick = function () {
   document.getElementById("loader").style.display = "block";

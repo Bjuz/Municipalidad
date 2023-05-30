@@ -40,4 +40,3 @@ EviarEmail(function (emailTransporter) {
 });
 
 module.exports = mailer;
-

@@ -11,25 +11,22 @@ const { GetFuncionario } = require("./util");
 // adds xlsx library to the project
 var XLSX = require("xlsx");
 
-
-
-
 window.addEventListener("DOMContentLoaded", async (event) => {
-
   var ref = localStorage.getItem("userLoggueado");
   var funcionario = await GetFuncionario(ref);
   roleDisplay(funcionario.role);
   const Vacations = await RetornarVacaciones(ref); // Retorna la cantidad de vacaciones disponibles
   const CantidadDeVacaciones = Vacations.length; // Retorna la lista de vacaciones
   console.log(Vacations);
-  const Listas = document.getElementById('Listas');
-  const CantVacaciones = document.getElementById('CantVacaciones');
+  const Listas = document.getElementById("Listas");
+  const CantVacaciones = document.getElementById("CantVacaciones");
   if (Vacations.length == 0) {
-    Listas.innerHTML = `<p>No hay vacaciones registradas</p>`
+    Listas.innerHTML = `<p>No hay vacaciones registradas</p>`;
   } else {
     var i = 0;
 
-    CantVacaciones.innerHTML = " Cantidad de vacaciones actuales: " + CantidadDeVacaciones;
+    CantVacaciones.innerHTML =
+      " Cantidad de vacaciones actuales: " + CantidadDeVacaciones;
 
     // Create headers for the table
     Listas.innerHTML = `<tr>
@@ -49,11 +46,12 @@ window.addEventListener("DOMContentLoaded", async (event) => {
       <td>${element.Estado}</td>
       <td>${element.Razon}</td>
      
-      </tr>`
-    })
+      </tr>`;
+    });
 
-    document.getElementById("download").innerHTML = `<button class="btn btn-primary" onclick="download()">Descargar</button>`
-
+    document.getElementById(
+      "download"
+    ).innerHTML = `<button class="btn btn-primary" onclick="download()">Descargar</button>`;
   }
 
   // This function is called when the user clicks on the download button
@@ -70,8 +68,5 @@ window.addEventListener("DOMContentLoaded", async (event) => {
 
     // Save the workbook as a xlsx file
     XLSX.writeFile(wb, "Vacaciones.xlsx");
-
-
   };
-
 });
