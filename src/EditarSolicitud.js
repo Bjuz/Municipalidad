@@ -3,9 +3,6 @@ const { GetFuncionario } = require("./util");
 const { roleDisplay } = require("./NavBar/Display");
 const { UpdateVacationWithRazon } = require("./util");
 const { ObtenerFuncionariosUID } = require("./util");
-const select = document.getElementById("vacationId"),
-  startDate = document.getElementById("startDate"),
-  finDate = document.getElementById("finDate");
 
 var userId = localStorage.getItem("userLoggueado");
 
@@ -73,7 +70,7 @@ window.onload = async function () {
         // The value of the option will be the id of the vacation
         option.setAttribute("value", vacation.id);
 
-        option.text = firstDate + " hasta " + finishDate;
+        option.text = i + " - " + firstDate + " hasta " + finishDate;
 
         // Finally, let's add the option to the select
         select.appendChild(option);
@@ -145,14 +142,14 @@ async function UpdateSolicitud() {
 
         var confirmation = confirm(
           "¿Está seguro que desea modificar su solicitud, siendo ahora desde el " +
-            firstDateFormatted.getDate() +
-            " de " +
-            firstDateFormatted.toLocaleString("es-ES", { month: "long" }) +
-            " hasta el " +
-            finishDateFormatted.getDate() +
-            " de " +
-            finishDateFormatted.toLocaleString("es-ES", { month: "long" }) +
-            "?"
+          firstDateFormatted.getDate() +
+          " de " +
+          firstDateFormatted.toLocaleString("es-ES", { month: "long" }) +
+          " hasta el " +
+          finishDateFormatted.getDate() +
+          " de " +
+          finishDateFormatted.toLocaleString("es-ES", { month: "long" }) +
+          "?"
         );
 
         if (!confirmation) {
