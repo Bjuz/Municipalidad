@@ -25,20 +25,20 @@ document.getElementById("sendData").onclick = async function () {
   firstDateFormatted.setDate(firstDateFormatted.getDate() + 1);
   finishDateFormatted.setDate(finishDateFormatted.getDate() + 1);
 
-  if (!validateDates(firstDate, finishDate, motivo)) {
+  if (!validarVacaciones(firstDate, finishDate)) {
     return;
   }
 
   var confirmation = confirm(
     "¿Está seguro que desea solicitar vacaciones desde el " +
-      firstDateFormatted.getDate() +
-      " de " +
-      firstDateFormatted.toLocaleString("es-ES", { month: "long" }) +
-      " hasta el " +
-      finishDateFormatted.getDate() +
-      " de " +
-      finishDateFormatted.toLocaleString("es-ES", { month: "long" }) +
-      "?"
+    firstDateFormatted.getDate() +
+    " de " +
+    firstDateFormatted.toLocaleString("es-ES", { month: "long" }) +
+    " hasta el " +
+    finishDateFormatted.getDate() +
+    " de " +
+    finishDateFormatted.toLocaleString("es-ES", { month: "long" }) +
+    "?"
   );
   if (!confirmation) {
     return;
@@ -49,30 +49,47 @@ document.getElementById("sendData").onclick = async function () {
   alert(result);
 };
 
-// Function to validate the dates
-function validateDates(firstDate, finishDate, motivo) {
-  // Get the current date
-  var currentDate = new Date();
-  // Format the current date to mm/dd/yyyy
-  currentDate = currentDate.toLocaleDateString("en-CA");
 
-  // 'firstDate' comes correctly, but
-  //Check if the dates are valid
+function validarVacaciones(firstDate, finishDate) {
+  //Get values from the form on SolicitarVacaciones.html
+  var firstDate = document.getElementById("firstDate").value;
+  var finishDate = document.getElementById("finishDate").value;
+
+  // If 'motivo' is empty, then it is not valid
+  if (document.getElementById("motivo").value == "") {
+    alert("Debe ingresar un motivo");
+    return false;
+  }
+
+  //If the date is less than the current date, then it is not valid
+  if (firstDate < new Date().toISOString().split("T")[0]) {
+    alert("La fecha de inicio no puede ser menor o igual a la fecha actual");
+    return false;
+  }
+
+  //Check if the dates are valid values for checking the difference
   if (firstDate == "" || finishDate == "") {
     alert("Debe ingresar ambas fechas");
     return false;
   } else if (firstDate > finishDate) {
     alert("La fecha de inicio no puede ser mayor a la fecha de fin");
     return false;
-  } // Check if the first date is greater than the current date
-  else if (firstDate < currentDate) {
-    alert("La fecha de inicio no puede ser menor a la fecha actual");
+  }
+  // Check if the dates are not in the weekend (saturday or sunday) tge date format is yyyy-mm-dd
+  var firstDateDay = new Date(firstDate).getDay();
+  var finishDateDay = new Date(finishDate).getDay();
+
+
+  if (firstDateDay == 5 || firstDateDay == 6) {
+    alert("La fecha de inicio no puede ser un fin de semana");
+    return false;
+
+  } else if (finishDateDay == 5 || finishDateDay == 6) {
+    alert("La fecha de fin no puede ser un fin de semana");
     return false;
   }
-  // Check if the reason is empty
-  else if (motivo == "") {
-    alert("Debe ingresar un motivo");
-    return false;
-  }
-  return true;
+
+
+
+
 }
