@@ -2,17 +2,14 @@ const { RegisterFeriado } = require("./util");
 const { GetFuncionario } = require("./util");
 const { roleDisplay } = require("./NavBar/Display");
 
-// On window load
-window.onload = async function () {
+// On windows load
+window.addEventListener("DOMContentLoaded", async (event) => {
   var userId = localStorage.getItem("userLoggueado");
-
   var funcionario = await GetFuncionario(userId);
-
   roleDisplay(funcionario.role);
-};
+});
 
 document.getElementById("sendData").onclick = function () {
-  document.getElementById("loader").style.display = "block";
   RegisterHoliday();
 };
 
@@ -21,9 +18,4 @@ async function RegisterHoliday() {
   const text = await RegisterFeriado(ancient);
 
   alert(text);
-  document.getElementById("loader").style.display = "none";
 }
-
-window.addEventListener("DOMContentLoaded", async (event) => {
-  document.getElementById("loader").style.display = "none";
-});
