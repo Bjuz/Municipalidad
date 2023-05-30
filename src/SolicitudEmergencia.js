@@ -51,9 +51,6 @@ document.getElementById("sendData").onclick = async function () {
 
 
 function validarVacaciones(firstDate, finishDate) {
-  //Get values from the form on SolicitarVacaciones.html
-  var firstDate = document.getElementById("firstDate").value;
-  var finishDate = document.getElementById("finishDate").value;
 
   // If 'motivo' is empty, then it is not valid
   if (document.getElementById("motivo").value == "") {
@@ -90,6 +87,6 @@ function validarVacaciones(firstDate, finishDate) {
   }
 
 
-
+  return true;
 
 }
