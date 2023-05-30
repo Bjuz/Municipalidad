@@ -85,6 +85,15 @@ function validarVacaciones(firstDate, finishDate) {
     alert("La fecha de fin no puede ser un fin de semana");
     return false;
   }
+  // Avoid to let user to take vacations with more than 2 years in advance
+  var today = new Date();
+  var twoYears = new Date();
+  twoYears.setFullYear(today.getFullYear() + 1);
+
+  if (firstDate > twoYears.toISOString().split("T")[0]) {
+    alert("No puede solicitar vacaciones con mas de 1 año de anticipación");
+    return false;
+  }
 
 
   return true;
