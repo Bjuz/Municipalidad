@@ -12,6 +12,22 @@ window.onload = async function () {
 
   var funcionario = await GetFuncionario(userId);
 
+  // Get the 'role' select
+  var select = document.getElementById("role").value = funcionario.role;
+
+  // Get 'role' value from 'funcionario'
+  var role = funcionario.role;
+
+  // The select already has the value of 'role' from 'funcionario'
+  // so we just need to display select the correct option
+  // that matches the value of 'role'
+  select.selectedIndex = select.options.selectedIndex = select.options[
+    [...select.options].findIndex((option) => option.value == role)
+  ].index;
+
+
+
+
   roleDisplay(funcionario.role);
 };
 
