@@ -103,6 +103,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
 
         //Finally add two buttons to the row in the last column
         const tdButtons = document.createElement("td");
+        tdButtons.setAttribute("class", "btn-group");
 
         const btnAprobar = document.createElement("button");
         btnAprobar.setAttribute("id", "btnAprobar" + i);
