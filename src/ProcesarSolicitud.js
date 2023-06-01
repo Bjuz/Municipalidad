@@ -5,7 +5,7 @@ const { GetFuncionario } = require("./util");
 var XLSX = require("xlsx");
 
 // Global variable that will contain the users with vacations data from the database
-const vacationUsers = [];
+var vacationUsers = [];
 
 // Load users data and generates the table
 window.addEventListener("DOMContentLoaded", async (event) => {
@@ -44,6 +44,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     trHeaders.appendChild(th);
     th.textContent = header;
   });
+
 
   users.forEach((user) => {
     if (user.hasOwnProperty("VacacionesActivas")) {
@@ -162,6 +163,11 @@ window.addEventListener("click", async (event) => {
   var LastDateVac = userIdAndDates.split("|")[2];
   // If the button id starts with btnAprobar
   var tipo;
+    //For debugging, create var of every argument used in the function UpdateVacation
+    console.log(firstDateVac);
+    console.log(LastDateVac);
+    console.log(user.Ref);
+
   if (buttonId.startsWith("btnAprobar")) {
     // Get the button value that is the user id, the first date and the last date
 
