@@ -18,6 +18,7 @@ module.exports = {
     Inicio: "./src/Inicio.js",
     EliminarEmpleado: "./src/EliminarEmpleado.js",
     ReporteFuncionarios: "./src/ReporteFuncionarios.js",
+    Tablas: "./src/Tablas.js",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
