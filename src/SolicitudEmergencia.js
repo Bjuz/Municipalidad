@@ -29,21 +29,35 @@ document.getElementById("sendData").onclick = async function () {
     return;
   }
 
-  var confirmation = confirm(
-    "¿Está seguro que desea solicitar vacaciones desde el " +
-    firstDateFormatted.getDate() +
-    " de " +
-    firstDateFormatted.toLocaleString("es-ES", { month: "long" }) +
-    " hasta el " +
-    finishDateFormatted.getDate() +
-    " de " +
-    finishDateFormatted.toLocaleString("es-ES", { month: "long" }) +
-    "?"
-  );
-  if (!confirmation) {
-    return;
-  }
+  // If the user request just one day, then the confirmation message is different
+  if (firstDate == finishDate) {
+    var confirmation = confirm(
+      "¿Está seguro que desea solicitar vacaciones el " +
+      firstDateFormatted.getDate() +
+      " de " +
+      firstDateFormatted.toLocaleString("es-ES", { month: "long" }) +
+      "?"
+    );
+    if (!confirmation) {
+      return;
+    }
+  } else {
 
+    var confirmation = confirm(
+      "¿Está seguro que desea solicitar vacaciones desde el " +
+      firstDateFormatted.getDate() +
+      " de " +
+      firstDateFormatted.toLocaleString("es-ES", { month: "long" }) +
+      " hasta el " +
+      finishDateFormatted.getDate() +
+      " de " +
+      finishDateFormatted.toLocaleString("es-ES", { month: "long" }) +
+      "?"
+    );
+    if (!confirmation) {
+      return;
+    }
+  }
   //There is no any database functionality yet, so we just show an alert
   var result = await AddVacationEmergency(firstDate, finishDate, ref, motivo);
   alert(result);
