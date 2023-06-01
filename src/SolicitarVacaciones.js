@@ -46,17 +46,30 @@ document.getElementById("sendData").onclick = async function () {
   firstDateFormatted.setDate(firstDateFormatted.getDate() + 1);
   finishDateFormatted.setDate(finishDateFormatted.getDate() + 1);
 
-  var confirmation = confirm(
-    "¿Está seguro que desea solicitar vacaciones desde el " +
-    firstDateFormatted.getDate() +
-    " de " +
-    firstDateFormatted.toLocaleString("es-ES", { month: "long" }) +
-    " hasta el " +
-    finishDateFormatted.getDate() +
-    " de " +
-    finishDateFormatted.toLocaleString("es-ES", { month: "long" }) +
-    "?"
-  );
+  var confirmation;
+
+  // If the user request just one day, then the confirmation message is different
+  if (firstDate == finishDate) {
+    confirmation = confirm(
+      "¿Está seguro que desea solicitar vacaciones el " +
+      firstDateFormatted.getDate() +
+      " de " +
+      firstDateFormatted.toLocaleString("es-ES", { month: "long" }) +
+      "?");
+  } else {
+
+    var confirmation = confirm(
+      "¿Está seguro que desea solicitar vacaciones desde el " +
+      firstDateFormatted.getDate() +
+      " de " +
+      firstDateFormatted.toLocaleString("es-ES", { month: "long" }) +
+      " hasta el " +
+      finishDateFormatted.getDate() +
+      " de " +
+      finishDateFormatted.toLocaleString("es-ES", { month: "long" }) +
+      "?"
+    );
+  }
 
   if (!confirmation) {
     return false;
