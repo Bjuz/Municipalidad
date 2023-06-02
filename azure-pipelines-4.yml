@@ -10,4 +10,7 @@ pool: Default
 steps:
 - task: CmdLine@2
   inputs:
-    script: 'git count-objects -vH'
+    script: |
+      echo Write your commands here
+      
+      echo Hello world
