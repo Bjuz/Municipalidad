@@ -10,8 +10,8 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: 6d15af64-176c-496d-b583-fd2ae21d4df4@1
-  inputs:
-        repository: self
-        submodules: true
-        persistCredentials: true
+
+    - checkout: self
+      repository: self
+      submodules: true
+      persistCredentials: true
