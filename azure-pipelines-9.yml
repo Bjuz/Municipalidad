@@ -11,6 +11,5 @@ pool:
 
 steps:
 - checkout: self # Required as first property. Configures checkout for the specified repository.
-  repository: self
   submodules: true
   persistCredentials: true
