@@ -10,8 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-
-    - checkout: self
-      repository: self
-      submodules: true
-      persistCredentials: true
+- checkout: string # Required as first property. Configures checkout for the specified repository.
+  repository: self
+  submodules: true
+  persistCredentials: true
