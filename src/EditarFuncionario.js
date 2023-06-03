@@ -98,6 +98,7 @@ document.getElementById("sendDataDelete").onclick = async function () {
   document.getElementById("accumulatedDays").value = "";
   document.getElementById("ancient").value = "";
   document.getElementById("boss").value = "";
+  document.getElementById("bosscorreo").value = "";
   document.getElementById("salary").value = "";
   document.getElementById("role").value = "";
   document.getElementById("entryTime").value = "00:00";
@@ -111,6 +112,7 @@ async function UpdateUser() {
   var accumulatedDays = document.getElementById("accumulatedDays").value;
   var ancient = document.getElementById("ancient").value;
   var boss = document.getElementById("boss").value;
+  var bosscorreo = document.getElementById("bosscorreo").value;
   var salary = document.getElementById("salary").value;
   var role = document.getElementById("role").value;
   var entryTime = document.getElementById("entryTime").value;
@@ -125,6 +127,7 @@ async function UpdateUser() {
     accumulatedDays,
     ancient,
     boss,
+    bosscorreo,
     salary,
     role,
     entryTime,
@@ -138,6 +141,7 @@ async function UpdateUser() {
   document.getElementById("accumulatedDays").value = "";
   document.getElementById("ancient").value = "";
   document.getElementById("boss").value = "";
+  document.getElementById("bosscorreo").value = "";
   document.getElementById("salary").value = "";
   document.getElementById("role").value = "";
   document.getElementById("entryTime").value = "00:00";

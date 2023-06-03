@@ -93,12 +93,12 @@ export async function RegisterUser(
   accumulatedDays,
   ancient,
   boss,
+  bosscorreo,
   salary,
   role,
   entryTime,
   departureTime,
   password,
-  bosscorreo
 ) {
   //Inicializa el UPN como empty
   var upn = "empty";
@@ -131,12 +131,12 @@ export async function RegisterUser(
       accumulatedDays,
       ancient,
       boss,
+      bosscorreo,
       salary,
       role,
       entryTime,
       departureTime,
       upn,
-      bosscorreo
     );
 
     return VarResponse;
@@ -152,12 +152,12 @@ export async function Register(
   accumulatedDays,
   ancient,
   boss,
+  bosscorreo,
   salary,
   role,
   entryTime,
   departureTime,
   upn,
-  bosscorreo
 ) {
   const test2 = await setDoc(doc(db, "users", upn), {
     id,
@@ -166,12 +166,12 @@ export async function Register(
     accumulatedDays,
     ancient,
     boss,
+    bosscorreo,
     salary,
     role,
     entryTime,
     departureTime,
     Ref: upn,
-    bosscorreo,
   });
   return "Usuario ingresado exitosamente";
 }
@@ -278,6 +278,7 @@ export async function UpdateUserInfo(
   accumulatedDays,
   ancient,
   boss,
+  bosscorreo,
   salary,
   role,
   entryTime,
@@ -293,6 +294,7 @@ export async function UpdateUserInfo(
       accumulatedDays,
       ancient,
       boss,
+      bosscorreo,
       salary,
       role,
       entryTime,
@@ -312,6 +314,7 @@ export async function UpdateInfo(
   accumulatedDays,
   ancient,
   boss,
+  bosscorreo,
   salary,
   role,
   entryTime,
@@ -326,6 +329,7 @@ export async function UpdateInfo(
     accumulatedDays,
     ancient,
     boss,
+    bosscorreo,
     salary,
     role,
     entryTime,

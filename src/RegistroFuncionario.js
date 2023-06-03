@@ -39,12 +39,11 @@ async function Register() {
   var accumulatedDays = document.getElementById("accumulatedDays").value;
   var ancient = document.getElementById("ancient").value;
   var boss = document.getElementById("boss").value;
+  var bosscorreo = document.getElementById("bosscorreo").value;
   var salary = document.getElementById("salary").value;
   var role = document.getElementById("role").value;
-  var bosscorreo = document.getElementById * "bosscorreo".value;
   var entryTime = document.getElementById("entryTime").value;
   var departureTime = document.getElementById("departureTime").value;
-  var bosscorreo = document.getElementById("bosscorreo").value;
   if (
     !id ||
     !name ||
@@ -52,11 +51,11 @@ async function Register() {
     !accumulatedDays ||
     !ancient ||
     !boss ||
+    !bosscorreo ||
     !salary ||
     !role ||
     !entryTime ||
-    !departureTime ||
-    !bosscorreo
+    !departureTime
   ) {
     console.log("Favor agregar todos los campos");
     alert("Favor agregar todos los campos");
@@ -68,12 +67,12 @@ async function Register() {
       accumulatedDays,
       ancient,
       boss,
+      bosscorreo,
       salary,
       role,
       entryTime,
       departureTime,
-      generateP(),
-      bosscorreo
+      generateP()
     );
     var resultCreate;
     var resultForget;
@@ -89,6 +88,7 @@ async function Register() {
       "");
     var ancient = (document.getElementById("ancient").value = "");
     var boss = (document.getElementById("boss").value = "");
+    var bosscorreo = (document.getElementById("bosscorreo").value = "");
     var salary = (document.getElementById("salary").value = "");
     var role = (document.getElementById("role").value = "");
     var bosscorreo = (document.getElementById("bosscorreo").value = "");
