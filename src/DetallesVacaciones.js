@@ -3,13 +3,14 @@
 
 // Then, dinamically put the number of vacations in this variable
 //You can change number of the next value and debug see it working
-const { RetornarVacaciones } = require("./util");
+
 const { RetornarCantidadVacaciones } = require("./util");
 const { roleDisplay } = require("./NavBar/Display");
 const { GetFuncionario } = require("./util");
 
 // adds xlsx library to the project
 var XLSX = require("xlsx");
+const { forEach } = require("lodash");
 
 window.addEventListener("DOMContentLoaded", async (event) => {
   var ref = localStorage.getItem("userLoggueado");
@@ -27,27 +28,6 @@ window.addEventListener("DOMContentLoaded", async (event) => {
 
     CantVacaciones.innerHTML =
       " Cantidad de vacaciones actuales: " + CantidadDeVacaciones;
-
-    // Create headers for the table
-    Listas.innerHTML = `<tr>
-    <th>ID</th>
-    <th>Fecha de inicio</th>
-    <th>Fecha de finalizacion</th>
-    <th>Estado</th>
-    <th>Motivo</th>
-    </tr>`;
-
-    Vacations.forEach((element) => {
-      i += 1;
-      Listas.innerHTML += `<tr>
-      <td>${i}</td>
-      <td>${element.firstDate}</td>
-      <td>${element.LastDate}</td>
-      <td>${element.Estado}</td>
-      <td>${element.Razon}</td>
-     
-      </tr>`;
-    });
 
     document.getElementById(
       "download"

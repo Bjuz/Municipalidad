@@ -29,7 +29,7 @@ window.onload = async function () {
   } else {
     // This variable will asign an id to each option
     // This id will be the same that the id of the vacation in the database
-    var i = 0;
+    var i = 1;
 
     vacations.forEach((vacation) => {
       // Verify if the vacation is approved or rejected avoiding adding it to the select
@@ -70,7 +70,7 @@ window.onload = async function () {
         // The value of the option will be the id of the vacation
         option.setAttribute("value", vacation.id);
 
-        option.text = i + " - " + firstDate + " hasta " + finishDate;
+        option.text = "" + i + ".   Desde " + firstDate + " hasta " + finishDate;
 
         // Finally, let's add the option to the select
         select.appendChild(option);
@@ -208,8 +208,8 @@ function validateDate(firstDate, finishDate, firstDateNew, finishDateNew) {
   }
   // If the new dates are equal or the firstDate is greater than the finishDate,
   // then we will show a message
-  else if (firstDate > finishDate || firstDate == finishDate) {
-    alert("La fecha de inicio no puede ser mayor o igual a la fecha de fin");
+  else if (firstDate > finishDate) {
+    alert("La fecha de inicio no puede ser mayor a la fecha de fin");
     return false;
   }
 
