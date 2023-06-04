@@ -73,8 +73,8 @@ function validarVacaciones(firstDate, finishDate) {
   }
 
   //If the date is less than the current date, then it is not valid
-  if (firstDate <= new Date().toISOString().split("T")[0]) {
-    alert("La fecha de inicio no puede ser menor o igual a la fecha actual");
+  if (firstDate < new Date().toISOString().split("T")[0]) {
+    alert("La fecha de inicio no puede ser menor a la fecha actual");
     return false;
   }
 
