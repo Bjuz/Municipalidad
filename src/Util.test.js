@@ -42,7 +42,7 @@ test("forgot password no Okay",  async ()=>{
 
 //Register
 test(" RegisterUser Okay",  async ()=>{
-    const result =  await RegisterUser("117840064","Jeaustin Rodriguez","Jeaustin.rdz@gmail.com","2","2","Henry","1600","Funcionario","07:00","16:00","159753");//falta la o en el correo
+    const result =  await RegisterUser("117840064","Jeaustin Rodriguez","Jeaustin.rdz@gmail.com","2","2","Henry","asistenterh@santabarbara.go.cr","1600","Funcionario","07:00","16:00","159753");//falta la o en el correo
     console.log(result)
     expect(result).not.toBe("El usuario ya existe");  // resultado no esperado "El usuario ya existe"
 });
