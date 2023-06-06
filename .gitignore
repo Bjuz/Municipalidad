@@ -2,3 +2,4 @@ junit.xml
 test-report.xml
 coverage
 *.yml
+*node_modules/*
