@@ -9,7 +9,7 @@ const { DeleteDocumentCreaded} = require('./util'); //importa ForgetPassword fro
 
 
 test("login ok",  async ()=>{
-    const result =  await loginComplete("jeaustin.samagu@gmail.com","Municip$ali123"); // todo bien // correo valido
+    const result =  await loginComplete("asistenterh@santabarbara.go.cr","Talen$to25"); // todo bien // correo valido
     console.log(result)
     expect(result).not.toBe("Correo o contraseña incorrecto."); //resultado esperado "logueado"
 });
@@ -48,7 +48,7 @@ test(" RegisterUser Okay",  async ()=>{
 });
 
 test(" RegisterUser existance user",  async ()=>{
-    const result =  await RegisterUser("117840064","Jeaustin Rodriguez","Jeaustin.rdz@gmail.com","2","2","Henry","asistenterh@santabarbara.go.cr","1600","Funcionario","07:00","16:00","159753");//falta la o en el correo
+    const result =  await RegisterUser("117840064","Jeaustin Rodriguez","Jeaustin.rdz@gmail.com","2","2","asistenterh","asistenterh@santabarbara.go.cr","1600","Funcionario","07:00","16:00","159753");//falta la o en el correo
     console.log(result)
     expect(result).toBe("El usuario ya existe");  // resultado esperado "El usuario ya existe"
 }); 
@@ -56,15 +56,15 @@ test(" RegisterUser existance user",  async ()=>{
 
 //Update user
 test(" Update User Okay",  async ()=>{
-    var test =  await ObtenerFuncionarios("117840064");
-    const result =  await UpdateUserInfo(test.Ref,"117840064","Jeaustin Rodriguez 2","Jeaustin.rdz@gmail.com","2","2","Henry","1600","Funcionario","07:00","16:00");//falta la o en el correo
+    var test =  await ObtenerFuncionarios("117840064","Jeaustin.rdz@gmail.com");
+    const result =  await UpdateUserInfo(test.Ref,"117840064","Jeaustin Rodriguez 2","Jeaustin.rdz@gmail.com","2","2","asistenterh","asistenterh@santabarbara.go.cr","1600","Funcionario","07:00","16:00");//falta la o en el correo
     console.log(result)
     expect(result).toBe("El usuario ha sido actualizado");  // resultado  esperado "El usuario ha sido actualizado" ok
 });
 
 test(" Update user no existance ",  async ()=>{
-    var test =  await ObtenerFuncionarios("0000");
-    const result =  await UpdateUserInfo(test.Ref,"117840064","Jeaustin Rodriguez","Jeaustin.rdz@gmail.com","2","2","Henry","1600","Funcionario","07:00","16:00");//falta la o en el correo
+    var test =  await ObtenerFuncionarios("0000","0000@gmail.com");
+    const result =  await UpdateUserInfo(test.Ref,"117840064","Jeaustin Rodriguez","Jeaustin.rdz@gmail.com","2","2","asistenterh","asistenterh@santabarbara.go.cr","1600","Funcionario","07:00","16:00");//falta la o en el correo
     console.log(result)
     expect(result).toBe("usuario no existe");  // resultado esperado "El usuario ya existe"
 }); 
