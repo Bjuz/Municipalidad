@@ -48,7 +48,7 @@ test(" RegisterUser Okay",  async ()=>{
 });
 
 test(" RegisterUser existance user",  async ()=>{
-    const result =  await RegisterUser("117840064","Jeaustin Rodriguez","Jeaustin.rdz@gmail.com","2","2","Henry","1600","Funcionario","07:00","16:00","159753");//falta la o en el correo
+    const result =  await RegisterUser("117840064","Jeaustin Rodriguez","Jeaustin.rdz@gmail.com","2","2","Henry","asistenterh@santabarbara.go.cr","1600","Funcionario","07:00","16:00","159753");//falta la o en el correo
     console.log(result)
     expect(result).toBe("El usuario ya existe");  // resultado esperado "El usuario ya existe"
 }); 
